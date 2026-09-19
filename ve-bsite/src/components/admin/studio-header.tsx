@@ -67,7 +67,7 @@ export function StudioHeader({
     <header className="h-16 w-full border-b border-soft-linen bg-snow px-4 sm:px-6 flex items-center justify-between gap-4 select-none z-30 shrink-0">
       {/* Brand & Studio Title */}
       <div className="flex items-center gap-4">
-        <Link href="/" className="flex items-center" title="Exit Studio to ve.ug">
+        <Link href="/" className="flex items-center" title="Exit Studio to veapp.store">
           <Logo className="h-5 w-auto" />
         </Link>
         <div className="h-5 w-px bg-soft-linen" />

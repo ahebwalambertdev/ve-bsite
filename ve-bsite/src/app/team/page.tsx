@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Our Team — Ve Fashion Marketplace',
     description: 'The Kampala team building trusted fashion commerce with Try-On and escrow protection.',
-    url: 'https://ve.ug/team',
+    url: 'https://veapp.store/team',
   },
 };
 

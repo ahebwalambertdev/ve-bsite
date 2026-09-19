@@ -369,13 +369,13 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
               <button
                 onClick={() => {
                   if (typeof navigator !== 'undefined' && navigator.clipboard) {
-                    navigator.clipboard.writeText('https://ve.ug/app');
+                    navigator.clipboard.writeText('https://veapp.store/app');
                     alert('Waiting list link copied to clipboard!');
                   }
                 }}
                 className="text-xs font-semibold text-dusty-olive-dark hover:underline inline-flex items-center gap-1 cursor-pointer"
               >
-                <Copy className="w-3.5 h-3.5" /> Copy ve.ug/app share link
+                <Copy className="w-3.5 h-3.5" /> Copy veapp.store/app share link
               </button>
             </div>
           </Card>

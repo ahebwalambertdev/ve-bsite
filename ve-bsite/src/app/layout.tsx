@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   title: 'Ve — Fashion, Found | Kampala Boutiques & Try-On',
   description:
     'Discover verified Kampala fashion boutiques with Try-On. Fast doorstep delivery, protected Mobile Money payments, and easy 48-hour returns.',
-  metadataBase: new URL('https://ve.ug'),
+  metadataBase: new URL('https://veapp.store'),
 };
 
 export default async function RootLayout({

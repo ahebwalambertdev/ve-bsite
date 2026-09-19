@@ -29,7 +29,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/', '/admin', '/_next/'],
       },
     ],
-    sitemap: 'https://ve.ug/sitemap.xml',
-    host: 'https://ve.ug',
+    sitemap: 'https://veapp.store/sitemap.xml',
+    host: 'https://veapp.store',
   };
 }

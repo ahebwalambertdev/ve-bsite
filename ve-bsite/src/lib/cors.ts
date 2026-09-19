@@ -5,6 +5,10 @@
  */
 
 const ALLOWED_ORIGINS = [
+  'https://veapp.store',
+  'https://www.veapp.store',
+  'https://vendor.veapp.store',
+  'https://admin.veapp.store',
   'https://ve.ug',
   'https://www.ve.ug',
   'https://vendor.ve.ug',
@@ -18,7 +22,7 @@ const ALLOWED_ORIGINS = [
 export function getCorsHeaders(requestOrigin?: string | null): HeadersInit {
   const origin = requestOrigin && ALLOWED_ORIGINS.includes(requestOrigin)
     ? requestOrigin
-    : 'https://ve.ug';
+    : 'https://veapp.store';
 
   return {
     'Access-Control-Allow-Origin': origin,

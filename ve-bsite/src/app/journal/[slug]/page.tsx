@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     openGraph: {
       title: article.title,
       description: article.excerpt,
-      url: `https://ve.ug/journal/${article.slug}`,
+      url: `https://veapp.store/journal/${article.slug}`,
       type: 'article',
       publishedTime: article.publishedAt,
     },
@@ -71,16 +71,16 @@ export default async function JournalArticlePage({ params }: ArticlePageProps) {
       name: 'Ve Technologies Ltd',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://ve.ug/icons/ve-logo-dark.svg',
+        url: 'https://veapp.store/icons/ve-logo-dark.svg',
       },
     },
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
-    mainEntityOfPage: `https://ve.ug/journal/${article.slug}`,
+    mainEntityOfPage: `https://veapp.store/journal/${article.slug}`,
   };
 
   const shareText = encodeURIComponent(`Read on Ve Journal: "${article.title}"`);
-  const whatsappShareUrl = `https://wa.me/?text=${shareText}%20https://ve.ug/journal/${article.slug}`;
+  const whatsappShareUrl = `https://wa.me/?text=${shareText}%20https://veapp.store/journal/${article.slug}`;
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-12">

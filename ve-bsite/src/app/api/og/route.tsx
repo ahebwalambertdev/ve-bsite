@@ -78,7 +78,7 @@ export async function GET(request: NextRequest) {
                 opacity: 0.6,
               }}
             >
-              ve.ug
+              veapp.store
             </div>
           </div>
 

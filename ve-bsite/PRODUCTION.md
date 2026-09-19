@@ -1,6 +1,6 @@
 # Ve Production Deployment & Operations Guide
 
-This guide details everything required to deploy the **Ve Marketing Website & Admin Studio** to production (e.g., on Vercel or a cloud VPS) serving **[ve.ug](https://ve.ug)**.
+This guide details everything required to deploy the **Ve Marketing Website & Admin Studio** to production (e.g., on Vercel or a cloud VPS) serving **[veapp.store](https://veapp.store)**.
 
 ---
 
@@ -39,7 +39,7 @@ This guide details everything required to deploy the **Ve Marketing Website & Ad
 - [ ] **Waitlist Backend**: Database table or webhook connected to capture leads from `/app`.
 - [ ] **Admin Credentials**: Custom strong `ADMIN_PASSCODE` and 64-character `ADMIN_SESSION_SECRET` generated.
 - [ ] **Robots Exclusion**: Search crawlers disallowed from indexing `/admin/` and `/admin/preview`.
-- [ ] **Domain & DNS**: `ve.ug` and `www.ve.ug` pointed to the hosting edge network with valid SSL.
+- [ ] **Domain & DNS**: `veapp.store` and `www.veapp.store` pointed to the hosting edge network with valid SSL.
 - [ ] **Google Analytics**: Real GA4 Measurement ID (`G-XXXXXXXXXX`) set in environment variables.
 - [ ] **Assets**: High-resolution brand and boutique media uploaded to Cloudinary CDN.
 - [ ] **Build Check**: `npm run build` passes with zero type or lint errors.
@@ -160,7 +160,7 @@ Configured in [`next.config.ts`](file:///c:/Users/Lambert/Desktop/Ve%20Admin/Web
 
 ## 6. Domain, DNS & SSL Configuration
 
-### 6.1 DNS Records for `ve.ug`
+### 6.1 DNS Records for `veapp.store`
 Set the following records at your DNS registrar:
 
 | Record Type | Host | Value | TTL |
@@ -170,7 +170,7 @@ Set the following records at your DNS registrar:
 
 ### 6.2 SSL / TLS
 - Vercel automatically issues and renews Let’s Encrypt SSL certificates.
-- Set canonical redirect rule in Vercel or DNS: `www.ve.ug` → `https://ve.ug`.
+- Set canonical redirect rule in Vercel or DNS: `www.veapp.store` → `https://veapp.store`.
 
 ---
 
@@ -230,15 +230,15 @@ Set the following records at your DNS registrar:
 
 Before sharing the live site publicly, verify the following:
 
-1. **Homepage Speed**: Run [PageSpeed Insights](https://pagespeed.web.dev/) on `https://ve.ug`. Mobile score should be 90+.
+1. **Homepage Speed**: Run [PageSpeed Insights](https://pagespeed.web.dev/) on `https://veapp.store`. Mobile score should be 90+.
 2. **Admin Authentication**:
-   - Visit `https://ve.ug/admin/login`.
+   - Visit `https://veapp.store/admin/login`.
    - Verify invalid password fails with `401`.
    - Verify correct password sets secure HTTP-only cookie and redirects to `/admin/studio`.
 3. **Live CMS Publishing**:
    - In `/admin/studio`, update the announcement bar text.
    - Click **Publish Changes**.
-   - Open an incognito browser window at `https://ve.ug` and confirm the new text appears immediately without rebuilding.
+   - Open an incognito browser window at `https://veapp.store` and confirm the new text appears immediately without rebuilding.
 4. **Bidirectional Navigation**:
    - In `/admin/studio`, click footer links in the preview (e.g. Terms or Contact) and verify the left editor panel automatically navigates to that screen.
 5. **Mobile Viewport**:

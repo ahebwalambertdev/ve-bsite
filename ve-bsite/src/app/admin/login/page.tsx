@@ -61,7 +61,7 @@ export default function AdminLoginPage() {
           href="/"
           className="text-xs font-medium text-neutral-500 hover:text-carbon-black transition-colors"
         >
-          ← Return to ve.ug
+          ← Return to veapp.store
         </Link>
       </div>
 

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Become a Ve-ndor — Sell on Ve in Kampala',
     description: 'Quick payouts, reliable deliveries, and sizing for Kampala fashion houses.',
-    url: 'https://ve.ug/sell',
+    url: 'https://veapp.store/sell',
   },
 };
 

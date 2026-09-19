@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { getJournalArticles } from '@/lib/journal-data';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://ve.ug';
+  const baseUrl = 'https://veapp.store';
 
   // Core Static Marketing & Operational Routes
   const staticRoutes: MetadataRoute.Sitemap = [

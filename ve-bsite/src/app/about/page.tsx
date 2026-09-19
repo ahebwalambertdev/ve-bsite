@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   description:
     'Why we built Ve: no more sizing guesswork, disappearing riders, or lost mobile money in Kampala. Real boutique fashion, verified trust.',
   openGraph: {
-    title: 'About Ve — Fashion, Found in Kampala',
-    description: 'Our manifesto: making fashion shopping safe in Uganda with protected payments, Try-On, and verified local boutiques.',
-    url: 'https://ve.ug/about',
+    title: 'About Ve — Rebuilding Fashion Trust in Kampala',
+    description: 'Ve is Kampala’s fashion discovery and Try-On marketplace.',
+    url: 'https://veapp.store/about',
   },
 };
 

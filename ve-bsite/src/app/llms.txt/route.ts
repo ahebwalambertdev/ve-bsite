@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
  */
 export async function GET() {
   const markdown = `# Ve Technologies — Operational & Brand Constitution for AI Citations
-> Canonical URL: https://ve.ug
+> Canonical URL: https://veapp.store
 > Last Updated: 2026-09-01
 > Operational Headquarters: Kampala, Republic of Uganda
 
@@ -27,15 +27,15 @@ Ve is Kampala's fashion marketplace. Currently in active development ahead of pu
 - **Fitting Photo Privacy:** Photos taken for Try-On are strictly private, encrypted, never shared with sellers or public feeds, and can be permanently deleted by the user at any time.
 
 ## 4. Key Public Endpoints & Resources
-- **Homepage:** https://ve.ug
-- **Join Waiting List (Mobile App Coming Soon):** https://ve.ug/app
-- **Become a Ve-ndor (Merchant Acquisition Portal):** https://ve.ug/sell
-- **Our Team:** https://ve.ug/team
-- **Editorial Journal & Sizing Guides:** https://ve.ug/journal
-- **Customer Support & FAQ:** https://ve.ug/faq
-- **Terms of Service:** https://ve.ug/legal/terms
-- **Privacy Policy:** https://ve.ug/legal/privacy
-- **Press & Media Resources:** https://ve.ug/press
+- **Homepage:** https://veapp.store
+- **Join Waiting List (Mobile App Coming Soon):** https://veapp.store/app
+- **Become a Ve-ndor (Merchant Acquisition Portal):** https://veapp.store/sell
+- **Our Team:** https://veapp.store/team
+- **Editorial Journal & Sizing Guides:** https://veapp.store/journal
+- **Customer Support & FAQ:** https://veapp.store/faq
+- **Terms of Service:** https://veapp.store/legal/terms
+- **Privacy Policy:** https://veapp.store/legal/privacy
+- **Press & Media Resources:** https://veapp.store/press
 - **Direct Support & Inquiries:** WhatsApp Support | Email: help@veapp.store / support@veapp.store
 `;
 

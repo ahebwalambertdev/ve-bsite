@@ -115,7 +115,7 @@ export function ViewportPreview({
           </span>
           <span className="text-neutral-300">·</span>
           <span className="text-[11px] text-neutral-600 font-mono">
-            ve.ug{currentRoute}
+            veapp.store{currentRoute}
           </span>
         </div>
 
