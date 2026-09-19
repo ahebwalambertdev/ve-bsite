@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+ve-bsite/node_modules/
+.pnp
+.pnp.js
+
+# Next.js Build Output
+.next/
+ve-bsite/.next/
+out/
+build/
+dist/
+
+# Production & Environment Variables
+.env
+.env*.local
+ve-bsite/.env
+ve-bsite/.env*.local
+!ve-bsite/.env.example
+
+# Debug & Telemetry Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS & Temp Files
+.DS_Store
+*.pem
+Thumbs.db
+~$*

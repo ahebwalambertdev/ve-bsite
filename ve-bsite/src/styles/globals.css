@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Core 4-Tone Organic Palette */
+  --snow: #fffaf6;
+  --dusty-olive: #7c8b74;
+  --carbon-black: #252525;
+  --soft-linen: #dde3d8;
+
+  /* Semantic UI Tokens */
+  --canvas: var(--snow);
+  --surface: var(--snow);
+  --surface-subtle: var(--soft-linen);
+  --surface-dark: var(--carbon-black);
+  --text-primary: var(--carbon-black);
+  --text-secondary: var(--dusty-olive);
+  --text-muted: #5a5d57;
+  --text-inverted: var(--snow);
+  --border: var(--soft-linen);
+  --accent: var(--dusty-olive);
+
+  /* Gradients */
+  --gradient-radial: radial-gradient(#fffaf6, #7c8b74, #252525, #dde3d8);
+  --gradient-horizontal: linear-gradient(90deg, #fffaf6, #dde3d8);
+
+  /* Emil Kowalski Custom Spring & Ease Curves */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--text-primary);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* GPU Compositor-Only Motion Standards (§14.5) */
+.animate-gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Accessibility: Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hide scrollbar utility while maintaining scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}

@@ -1,0 +1,510 @@
+import { SiteCmsData } from './types';
+
+export const DEFAULT_CMS_DATA: SiteCmsData = {
+  announcementBar: {
+    enabled: false,
+    text: 'Ve Mobile App in Active Development — Private Beta Access Rolling Out Across Kampala Soon',
+    linkText: 'Join Waiting List →',
+    linkUrl: '/app',
+  },
+
+  hero: {
+    megaHeadingLine1: 'Fashion Found.',
+    megaHeadingLine2: 'The first time shopping online feels safe.',
+    subHeadline:
+      'The Ve mobile app is coming soon. See how clothes look on you before you order, and pay only after you check your delivery.',
+    primaryCtaText: 'Join Waiting List',
+    primaryCtaLink: '/app',
+    secondaryCtaText: 'Become a Ve-ndor',
+    secondaryCtaLink: '/sell',
+    demoVideoTitle: 'Experience Ve in Action',
+    demoVideoDescription:
+      'Ve is built for Kampala’s vibrant fashion culture. Our mobile app combines video discovery with Try-On sizing right on your phone.',
+    looks: [
+      {
+        id: 'court-depth',
+        label: 'Look 01 · Court Streetwear',
+        image: '/images/court-depth.jpg',
+        tag: 'Athletic & Urban Drops',
+        location: 'Verified Collection',
+        sortOrder: 1,
+      },
+      {
+        id: 'portrait-close',
+        label: 'Look 02 · Editorial Beauty',
+        image: '/images/portrait-close.jpg',
+        tag: 'Contemporary High Fashion',
+        location: 'Boutique Spotlight',
+        sortOrder: 2,
+      },
+      {
+        id: 'streetwear-sun',
+        label: 'Look 03 · Sunlit Walk',
+        image: '/images/streetwear-sun.jpg',
+        tag: 'Minimalist Artisan Apparel',
+        location: 'Everyday Essentials',
+        sortOrder: 3,
+      },
+    ],
+  },
+
+  howItWorks: {
+    sectionTitle: 'No fake photos, No wrong sizes, No hustle.',
+    sectionSubtitle:
+      'Coming soon to Kampala: browse real local stores, see outfits on your body, and pay only after you check your delivery.',
+    steps: [
+      {
+        stepNumber: '01',
+        title: 'Scroll & Discover',
+        description:
+          'Find Kampala’s best stores, boutiques and thrift curators. What you see is what you get.',
+        image: '/images/how-it-works-discover.jpeg',
+        badge: 'Real boutique inventory',
+        iconName: 'Sparkles',
+      },
+      {
+        stepNumber: '02',
+        title: 'Try It On On Your Phone',
+        description:
+          'Snap a quick photo in private to see how any outfit looks on you before you order.',
+        image: '/images/how-it-works-tryon.jpg',
+        badge: '100% private, your photo stays yours',
+        iconName: 'ShieldCheck',
+      },
+      {
+        stepNumber: '03',
+        title: 'Check Before You Pay',
+        description:
+          'Our rider brings your order to your door and waits while you check the fabric and fit.',
+        image: '/images/how-it-works-pay.jpg',
+        badge: '48 hours to return or exchange',
+        iconName: 'Truck',
+      },
+    ],
+  },
+
+  faqs: [
+    {
+      id: 'escrow',
+      category: 'Protected Payments & Refunds',
+      question: 'How do I know my money is safe?',
+      answer:
+        'We hold your payment safe until you hold the package in your hands. When you check out with MTN MoMo, Airtel Money, or card, your funds are protected until our rider arrives. If it doesn’t fit or isn’t what you ordered, you don’t pay a dime or you get a quick refund straight to your Mobile Money.',
+      iconName: 'ShieldCheck',
+      sortOrder: 1,
+      isFeaturedHome: true,
+      isPublished: true,
+    },
+    {
+      id: 'delivery',
+      category: 'Orders & Delivery',
+      question: 'How fast does delivery take in Kampala?',
+      answer:
+        'Orders arrive fast across Kampala. You can track your rider in real time in the app as soon as our private beta launches.',
+      iconName: 'Truck',
+      sortOrder: 2,
+      isFeaturedHome: true,
+      isPublished: true,
+    },
+    {
+      id: 'vto',
+      category: 'Sizing & Try-On',
+      question: 'Is my photo kept private during Try-On?',
+      answer:
+        'Yes, 100% private. Your photo is used only on your phone to show you how clothes fit your shape. We never share your photos with sellers, other shoppers, or advertisers, and you can delete your photo with one tap whenever you like.',
+      iconName: 'Camera',
+      sortOrder: 3,
+      isFeaturedHome: true,
+      isPublished: true,
+    },
+    {
+      id: 'returns',
+      category: 'Returns & Disputes',
+      question: 'How do returns and swaps work if an item doesn’t fit?',
+      answer:
+        'Open the Ve app, tap Your Orders, choose the item, and tap Return or Exchange. Pick your replacement size or upload a quick photo of the issue. A rider is dispatched to collect the item from your door.',
+      iconName: 'RotateCcw',
+      sortOrder: 4,
+      isFeaturedHome: false,
+      isPublished: true,
+    },
+    {
+      id: 'vendor-onboarding',
+      category: 'Becoming a Boutique Vendor',
+      question: 'How can my boutique start selling on Ve?',
+      answer:
+        'You can apply at vendor.ve.ug by submitting your boutique name, shop location in Kampala, and National ID. Our merchant team will verify your boutique quickly so you can start listing clothes ahead of our launch.',
+      iconName: 'Store',
+      sortOrder: 5,
+      isFeaturedHome: false,
+      isPublished: true,
+    },
+  ],
+
+  vendorStrip: {
+    title: 'Sell where Kampala shops.',
+    description:
+      'We bring you real buyers, send riders to collect your packages, and send your earnings straight to your Mobile Money. Zero delivery headache, zero upfront fees.',
+    primaryCtaText: 'Become a Ve-ndor',
+    primaryCtaLink: '/sell',
+    secondaryCtaText: 'Merchant Portal',
+    secondaryCtaLink: 'https://vendor.ve.ug/register',
+  },
+
+  waitlist: {
+    title: 'Wear what fits.',
+    titleItalic: 'Delivered safely to your door.',
+    description:
+      'We’re putting the finishing touches on the Ve mobile app for Kampala. Join the early access waiting list to get free Try-On credits and be among the first to try on outfits virtually before paying.',
+    perks: [
+      'Free Try-On silhouettes on launch',
+      'First access to limited boutique drop notifications',
+      'Zero delivery fee on your first verified order',
+    ],
+    systemRequirementsNote:
+      'Ve is currently in private development. The app will launch across Kampala on Android 8+ and iOS 15+, optimized for low-data 3G connections.',
+  },
+
+  team: [
+    {
+      id: 'ahebwa',
+      name: 'Lambert Ahebwa',
+      role: 'Founder & CEO',
+      image: '/images/hero-kampala-street.webp',
+      bio: 'Leading product vision, security architecture, and high-trust payments for Kampala’s fashion culture.',
+      socialTwitter: 'https://twitter.com',
+      sortOrder: 1,
+    },
+    {
+      id: 'operations-lead',
+      name: 'Ryan Watts',
+      role: 'Head of Fulfillment',
+      image: '/images/court-depth.jpg',
+      bio: 'Directing Kampala doorstep package verification, rider dispatch, and rapid 48-hour boutique exchanges.',
+      sortOrder: 2,
+    },
+    {
+      id: 'merchant-success',
+      name: 'Lordin Mayiga',
+      role: 'Head of Ve-ndor Partnerships',
+      image: '/images/portrait-close.jpg',
+      bio: 'Working on the ground with boutique owners across Kampala to digitize catalogs with zero upfront fees.',
+      sortOrder: 3,
+    },
+    {
+      id: 'team-cto',
+      name: 'Isaac Magezi',
+      role: 'CTO',
+      image: '/images/hero-kampala-street.webp',
+      bio: 'Architecting privacy-first computer vision fitting pipelines and low-bandwidth client caching for Kampala’s mobile network.',
+      socialTwitter: 'https://twitter.com',
+      sortOrder: 4,
+    },
+    {
+      id: 'team-lead-eng',
+      name: 'Joseph Kajjabwangu',
+      role: 'Lead Engineer',
+      image: '/images/hero-kampala-street.webp',
+      bio: 'Engineering resilient escrow payments and real-time courier verification infrastructure across Kampala.',
+      socialTwitter: 'https://twitter.com',
+      sortOrder: 5,
+    },
+  ],
+
+  navigation: {
+    headerLinks: [
+      { id: 'how-it-works', label: 'How Ve Works', href: '/#how-it-works' },
+      { id: 'sell', label: 'Become a Ve-ndor', href: '/sell' },
+      { id: 'journal', label: 'Journal', href: '/journal' },
+      { id: 'team', label: 'Team', href: '/team' },
+      { id: 'faq', label: 'Support & FAQ', href: '/faq' },
+    ],
+    headerCta: {
+      text: 'Join Waiting List',
+      href: '/app',
+    },
+    socialLinks: {
+      whatsappUrl: 'https://wa.me/256700000000',
+      instagramUrl: 'https://instagram.com/veapp.ug',
+      tiktokUrl: 'https://tiktok.com/@veapp.ug',
+      twitterUrl: 'https://twitter.com/ve_uganda',
+      supportEmail: 'info@veapp.store',
+      vendorEmail: 'support@veapp.store',
+    },
+    footerLinks: [
+      { id: 'how-it-works', label: 'How Ve Works', href: '/#how-it-works' },
+      { id: 'sell', label: 'Become a Ve-ndor', href: '/sell' },
+      { id: 'app', label: 'Join Waiting List (Coming Soon)', href: '/app' },
+      { id: 'about', label: 'About Ve', href: '/about' },
+      { id: 'team', label: 'Our Team', href: '/team' },
+      { id: 'journal', label: 'Ve Journal', href: '/journal' },
+    ],
+  },
+
+  about: {
+    badge: 'Our Story & Mission · Kampala',
+    manifestoHeadline: 'Africa has the most vibrant fashion in the world.',
+    manifestoItalic: 'Buying it online shouldn’t feel like gambling.',
+    manifestoDescription:
+      'We founded Ve because everyone in Kampala has an online shopping horror story: sending Mobile Money before anything arrives, waiting days for a delivery that never comes, or opening a parcel to find a completely wrong size or even item from what was advertised.',
+    problemTitle: 'Why Buying Clothes on Instagram & WhatsApp Broke Down',
+    problemDescription:
+      'Across Kampala, thousands of talented designers and boutique owners run their shops over WhatsApp and Instagram DMs. But without real buyer protections, every order feels risky:',
+    problemPoints: [
+      {
+        id: 'sizing',
+        title: 'Sizing Guesswork',
+        text: 'UK, US, and European size tags rarely match real bodies or tailored clothes. Shoppers guess, and clothes often arrive too tight or too loose.',
+      },
+      {
+        id: 'screenshot',
+        title: 'The "Send Screenshot" Trap',
+        text: 'Sellers ask for Mobile Money upfront before anything ships. If the package doesn’t show up, you are left with zero recourse.',
+      },
+      {
+        id: 'delivery',
+        title: 'Delivery Headaches',
+        text: 'Random street riders get lost, damage clothes in the rain, or demand extra cash when they reach your gate.',
+      },
+      {
+        id: 'returns',
+        title: 'No Returns or Refunds',
+        text: 'When an outfit doesn’t fit or looks nothing like the photo, sellers rarely accept returns or refund your money.',
+      },
+    ],
+    solutionTitle: 'How Ve Protects You Every Step of the Way',
+    solutionDescription:
+      'Polite customer care isn’t enough to build trust. We built real guarantees into how every order is bought, tested, and delivered:',
+    pillars: [
+      {
+        id: 'p1',
+        title: 'Try-On on Your Phone',
+        description:
+          'Preview how clothes fit your body before ordering. Know your look before you tap buy—no sizing surprises.',
+        iconName: 'Sparkles',
+      },
+      {
+        id: 'p2',
+        title: 'Protected Escrow Payments',
+        description:
+          'Pay with MTN MoMo, Airtel Money, or card. We hold your payment safe until you inspect the order at delivery.',
+        iconName: 'ShieldCheck',
+      },
+      {
+        id: 'p3',
+        title: 'Riders Who Wait for You',
+        description:
+          'Our dedicated couriers wait patiently at your doorstep while you check the fabric, seams, and fit before you confirm.',
+        iconName: 'Truck',
+      },
+    ],
+  },
+
+  contact: {
+    badge: 'Direct Support · Kampala',
+    headline: 'Real humans. In Kampala.',
+    subheadline:
+      'No automated phone trees or days of silence. Chat directly with our customer care and merchant onboarding teams.',
+    supportCardTitle: 'Buyer & Order Support',
+    supportCardDescription:
+      'Have a question about an active delivery, 48-hour return status, or sizing consultation?',
+    supportCardHours: 'Monday – Saturday: 8:00 AM – 8:00 PM EAT',
+    supportCardCtaText: 'Chat on WhatsApp',
+    merchantCardTitle: 'Merchant Partnerships',
+    merchantCardDescription:
+      'Run a boutique or design label in Kampala? Speak directly with our merchant success director.',
+    merchantCardHours: 'Monday – Friday: 9:00 AM – 6:00 PM EAT',
+    merchantCardCtaText: 'Chat on WhatsApp',
+    inboxesTitle: 'Official Email Inboxes',
+    inboxes: [
+      {
+        id: 'help',
+        label: 'Customer Help & Orders',
+        email: 'help@veapp.store',
+        description: 'Order issues, sizing help, return requests',
+      },
+      {
+        id: 'support',
+        label: 'Merchant & Boutique Support',
+        email: 'support@veapp.store',
+        description: 'Boutique verification, payout questions',
+      },
+      {
+        id: 'info',
+        label: 'General & Press',
+        email: 'info@veapp.store',
+        description: 'Media coverage, general questions',
+      },
+      {
+        id: 'legal',
+        label: 'Legal & Privacy (DPPA 2019)',
+        email: 'legal@veapp.store',
+        description: 'Data protection officer inquiries',
+      },
+      {
+        id: 'dev',
+        label: 'Engineering & Developer APIs',
+        email: 'dev@veapp.store',
+        description: 'API integrations and security reports',
+      },
+    ],
+    officeTitle: 'Operations & Coverage',
+    officeName: 'Ve Technologies Ltd',
+    officeAddress: 'Digital operations across Greater Kampala, Uganda. Doorstep verification & fast rider dispatch.',
+    officeHours: 'Dispatch & Support: Mon – Sat, 8:00 AM – 8:00 PM EAT',
+    officeNote: 'No walk-in retail office at this time. All orders and boutique partner operations are managed digitally and delivered to your door.',
+  },
+
+  press: {
+    badge: 'Official Media Kit',
+    title: 'Press & Media Kit',
+    description:
+      'Official logos, editorial assets, and boilerplate text for journalists, creators, and partners covering Ve.',
+    boilerplateTitle: 'Company Boilerplate',
+    boilerplateText:
+      'Ve is Kampala’s fashion marketplace and Try-On platform. Founded in 2026, Ve connects independent boutiques, streetwear creators, and local designers with shoppers through a video discovery feed. To solve trust issues in Ugandan online shopping, Ve pairs Try-On sizing on your phone with protected Mobile Money payments and a dedicated courier network that lets customers check clothes before the rider leaves. Ve is headquartered in Kampala, Uganda.',
+    paletteTitle: 'Official Color Palette',
+    palette: [
+      { name: 'Snow', hex: '#FFFAF6', role: 'Canvas & Light Surfaces' },
+      { name: 'Dusty Olive', hex: '#7C8B74', role: 'Botanical Accent & Badges' },
+      { name: 'Carbon Black', hex: '#252525', role: 'Typography & Structural Depth' },
+      { name: 'Soft Linen', hex: '#DDE3D8', role: 'Containers & Subtle Borders' },
+    ],
+    inquiriesEmail: 'info@veapp.store',
+    mediaKitDownloadUrl: '/assets/ve-press-kit.zip',
+  },
+
+  legalTerms: {
+    title: 'Terms of Service',
+    effectiveDate: 'September 1, 2026',
+    version: '1.2',
+    jurisdiction: 'Republic of Uganda',
+    sections: [
+      {
+        id: 'acceptance',
+        title: '1. Acceptance of Terms & Eligibility',
+        paragraphs: [
+          'By accessing or using the Ve mobile application, web portal, or related services operated by Ve Technologies Ltd (“Ve”, “we”, or “us”), you agree to be bound by these Terms of Service. If you do not agree to these terms, you must discontinue platform use immediately.',
+          'You must be at least 18 years of age or possess legal parental/guardian consent under Ugandan law to execute transactions on the Ve platform.',
+        ],
+      },
+      {
+        id: 'escrow',
+        title: '2. Escrow Protection & Payment Processing',
+        paragraphs: [
+          'All payments executed via MTN Mobile Money, Airtel Money, or bank card are held in secure intermediary escrow by Ve until delivery is verified and confirmed by the customer at doorstep.',
+          'Merchants disburse earnings only upon confirmed doorstep inspection and expiry of the statutory return window. Direct merchant-to-buyer Mobile Money offline transactions are strictly prohibited.',
+        ],
+      },
+      {
+        id: 'inspection',
+        title: '3. Delivery & Mandatory Doorstep Inspection',
+        paragraphs: [
+          'Ve couriers are trained and contracted to wait patiently at delivery for up to ten (10) minutes while customers unseal and physically verify fabric condition, color fidelity, and fit.',
+          'If an item is damaged, defective, or noticeably different from the listing, the customer may reject the delivery immediately with zero penalty.',
+        ],
+      },
+      {
+        id: 'returns',
+        title: '4. 48-Hour Return & Refund Policy',
+        paragraphs: [
+          'Customers maintain a forty-eight (48) hour right of return or exchange from the delivery timestamp for any unworn, unwashed apparel with tags intact.',
+          'Approved refunds are credited back to the customer’s original Mobile Money wallet within two (2) to four (4) business hours following reverse courier pickup and verification.',
+        ],
+      },
+      {
+        id: 'merchants',
+        title: '5. Boutique Merchant Obligations',
+        paragraphs: [
+          'Merchants must maintain physical shop presence or inventory storage in Kampala, warrant garment authenticity, and uphold inventory stock accuracy.',
+          'Misleading photography, counterfeit branded apparel, or deliberate delivery delays will result in immediate merchant suspension and forfeiture of escrow funds.',
+        ],
+      },
+      {
+        id: 'vto',
+        title: '6. Try-On Technology & Fit Disclaimers',
+        paragraphs: [
+          'Try-On simulations are intended as consultative sizing guidance. Due to variations in individual posture, garment tailoring, and device cameras, visual try-on results do not constitute an absolute tailoring guarantee.',
+          'Ve processes try-on imagery strictly in ephemeral device cache and never shares user likenesses with third parties.',
+        ],
+      },
+      {
+        id: 'liability',
+        title: '7. Limitation of Liability & Governing Law',
+        paragraphs: [
+          'To the fullest extent permissible by Ugandan law, Ve Technologies Ltd shall not be liable for indirect, incidental, or consequential damages resulting from platform downtime or courier traffic delays.',
+          'These Terms are governed by and construed under the laws of the Republic of Uganda. Any disputes shall be subject to the exclusive jurisdiction of the Courts of Kampala.',
+        ],
+      },
+    ],
+  },
+
+  legalPrivacy: {
+    title: 'Privacy Policy',
+    effectiveDate: 'September 1, 2026',
+    version: '1.2',
+    complianceBadge: 'Compliant with Uganda DPPA 2019',
+    sections: [
+      {
+        id: 'dppa',
+        title: '1. Uganda DPPA 2019 Statutory Compliance',
+        paragraphs: [
+          'Ve Technologies Ltd is registered as a Data Controller and Data Processor under the Uganda Data Protection and Privacy Act, 2019 (DPPA) administered by the Personal Data Protection Office (PDPO). We process personal information exclusively under the principles of accountability, lawfulness, minimization, and security.',
+        ],
+      },
+      {
+        id: 'collection',
+        title: '2. Information We Collect',
+        paragraphs: [
+          'We collect only the minimum data required to facilitate safe commerce: Name, phone number (MTN/Airtel), delivery address in Kampala, transactional order history, and ephemeral photos uploaded voluntarily for Try-On sizing.',
+        ],
+      },
+      {
+        id: 'vto-privacy',
+        title: '3. Try-On Photo Privacy & Security',
+        paragraphs: [
+          'Try-On photos are strictly private. They are processed on-device or in transient encrypted secure memory, never sold to advertisers, never visible to merchants, and never published publicly.',
+          'Users can delete their Try-On silhouette at any time with a single tap in the application settings.',
+        ],
+      },
+      {
+        id: 'payments',
+        title: '4. Payment & Mobile Money Data',
+        paragraphs: [
+          'We do not store PIN numbers or bank account passwords. All Mobile Money prompt authorizations are mediated through regulated Ugandan payment switches certified to PCI-DSS Level 1 standards.',
+        ],
+      },
+      {
+        id: 'sharing',
+        title: '5. Third-Party Sharing & Couriers',
+        paragraphs: [
+          'We do not sell personal data. Couriers receive only the recipient name, delivery destination, and phone number necessary for route dispatch. Once delivery is completed, customer contact numbers are masked.',
+        ],
+      },
+      {
+        id: 'rights',
+        title: '6. Your Rights & Data Erasure',
+        paragraphs: [
+          'Under DPPA 2019 Sections 24 to 28, you have the right to access, rectify, object to processing, or demand erasure of your personal data at any time.',
+          'Requests for complete profile erasure are executed within forty-eight (48) hours of receipt.',
+        ],
+      },
+      {
+        id: 'dpo',
+        title: '7. Data Protection Officer (DPO) Contact',
+        paragraphs: [
+          'For inquiries, rights enforcement, or statutory complaints under the DPPA 2019, contact our designated Data Protection Officer at legal@veapp.store or reach out through our online support channels.',
+        ],
+      },
+    ],
+  },
+
+  journal: {
+    title: 'Fashion culture, curated for Kampala.',
+    description:
+      'Deep dives into local boutique craftsmanship, honest sizing guides, and the operational mechanics of Ugandan fashion commerce.',
+    categories: ['All', 'Vendor Spotlight', 'Kampala Style & Culture', 'Consumer Guide'],
+  },
+
+  lastUpdated: new Date().toISOString(),
+};

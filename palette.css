@@ -1,0 +1,73 @@
+/* Ve Website & Digital Ecosystem — Design System Color Palette */
+/* Derived from Adobe Swatch Exchange / Master Brand Specs */
+
+:root {
+  /* CSS HEX */
+  --snow: #fffaf6ff;
+  --dusty-olive: #7c8b74ff;
+  --carbon-black: #252525ff;
+  --soft-linen: #dde3d8ff;
+
+  /* CSS HSL */
+  --snow-hsl: hsla(27, 100%, 98%, 1);
+  --dusty-olive-hsl: hsla(99, 9%, 50%, 1);
+  --carbon-black-hsl: hsla(0, 0%, 15%, 1);
+  --soft-linen-hsl: hsla(93, 16%, 87%, 1);
+
+  /* CSS RGB */
+  --snow-rgb: rgba(255, 250, 246, 1);
+  --dusty-olive-rgb: rgba(124, 139, 116, 1);
+  --carbon-black-rgb: rgba(37, 37, 37, 1);
+  --soft-linen-rgb: rgba(221, 227, 216, 1);
+
+  /* Semantic UI Tokens */
+  --color-canvas: var(--snow);
+  --color-surface: var(--snow);
+  --color-surface-subtle: var(--soft-linen);
+  --color-surface-dark: var(--carbon-black);
+  --color-text-primary: var(--carbon-black);
+  --color-text-secondary: var(--dusty-olive);
+  --color-text-inverted: var(--snow);
+  --color-border: var(--soft-linen);
+  --color-accent: var(--dusty-olive);
+
+  /* Gradients */
+  --gradient-top: linear-gradient(0deg, #fffaf6ff, #7c8b74ff, #252525ff, #dde3d8ff);
+  --gradient-right: linear-gradient(90deg, #fffaf6ff, #7c8b74ff, #252525ff, #dde3d8ff);
+  --gradient-bottom: linear-gradient(180deg, #fffaf6ff, #7c8b74ff, #252525ff, #dde3d8ff);
+  --gradient-left: linear-gradient(270deg, #fffaf6ff, #7c8b74ff, #252525ff, #dde3d8ff);
+  --gradient-top-right: linear-gradient(45deg, #fffaf6ff, #7c8b74ff, #252525ff, #dde3d8ff);
+  --gradient-bottom-right: linear-gradient(135deg, #fffaf6ff, #7c8b74ff, #252525ff, #dde3d8ff);
+  --gradient-top-left: linear-gradient(225deg, #fffaf6ff, #7c8b74ff, #252525ff, #dde3d8ff);
+  --gradient-bottom-left: linear-gradient(315deg, #fffaf6ff, #7c8b74ff, #252525ff, #dde3d8ff);
+  --gradient-radial: radial-gradient(#fffaf6ff, #7c8b74ff, #252525ff, #dde3d8ff);
+}
+
+/* Background utilities */
+.bg-snow { background-color: var(--snow); }
+.bg-dusty-olive { background-color: var(--dusty-olive); }
+.bg-carbon-black { background-color: var(--carbon-black); }
+.bg-soft-linen { background-color: var(--soft-linen); }
+
+/* Text utilities */
+.text-snow { color: var(--snow); }
+.text-dusty-olive { color: var(--dusty-olive); }
+.text-carbon-black { color: var(--carbon-black); }
+.text-soft-linen { color: var(--soft-linen); }
+
+/* Border utilities */
+.border-snow { border-color: var(--snow); }
+.border-dusty-olive { border-color: var(--dusty-olive); }
+.border-carbon-black { border-color: var(--carbon-black); }
+.border-soft-linen { border-color: var(--soft-linen); }
+
+/* Gradient utilities */
+.bg-gradient-top { background-image: var(--gradient-top); }
+.bg-gradient-right { background-image: var(--gradient-right); }
+.bg-gradient-bottom { background-image: var(--gradient-bottom); }
+.bg-gradient-left { background-image: var(--gradient-left); }
+.bg-gradient-top-right { background-image: var(--gradient-top-right); }
+.bg-gradient-bottom-right { background-image: var(--gradient-bottom-right); }
+.bg-gradient-top-left { background-image: var(--gradient-top-left); }
+.bg-gradient-bottom-left { background-image: var(--gradient-bottom-left); }
+.bg-gradient-radial { background-image: var(--gradient-radial); }
