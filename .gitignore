@@ -29,3 +29,5 @@ yarn-error.log*
 *.pem
 Thumbs.db
 ~$*
+.temp/
+ve-bsite/supabase/.temp/
