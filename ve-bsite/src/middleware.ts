@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ADMIN_COOKIE_NAME, verifyAdminSession } from '@/lib/admin/auth';
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/admin/:path*'],
+  matcher: ['/admin', '/admin/:path*', '/api/admin/:path*'],
 };
 
 export async function middleware(req: NextRequest) {

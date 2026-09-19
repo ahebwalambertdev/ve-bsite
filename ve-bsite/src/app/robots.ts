@@ -18,6 +18,7 @@ export default function robots(): MetadataRoute.Robots {
           'Claude-Web',
         ],
         allow: '/',
+        disallow: ['/api/', '/admin/', '/admin', '/_next/'],
       },
       {
         userAgent: ['CCBot', 'GPTBot', 'Bytespider', 'Anthropic-AI'],
