@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { AppDownloadClient } from '@/components/app/app-download-client';
 import { Card } from '@/components/ui/card';
 import { Sparkles, Camera, Bike, ShieldCheck, ArrowRight } from 'lucide-react';
@@ -6,7 +7,7 @@ import { Sparkles, Camera, Bike, ShieldCheck, ArrowRight } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Join the Waiting List — Ve Mobile App Coming Soon',
   description:
-    'The Ve mobile app is coming soon to iOS & Android. Join the waiting list for early access to AI Virtual Try-On, verified Kampala boutiques, and safe doorstep delivery.',
+    'The Ve mobile app is coming soon to iOS & Android. Join the waiting list for early access to Try-On, verified Kampala boutiques, and safe doorstep delivery.',
   openGraph: {
     title: 'Join the Waiting List — Ve Mobile App (Coming Soon)',
     description: 'Boutique fashion, Try-On, and safe doorstep delivery across Kampala. Coming soon.',
@@ -84,12 +85,12 @@ export default function AppPage() {
               Ve is currently in private development. The app will launch across Kampala on Android 8+ and iOS 15+, optimized for low-data 3G connections.
             </p>
           </div>
-          <a
-            href="/faq"
+          <Link
+            href="/faq#device-compatibility"
             className="inline-flex items-center text-xs font-semibold text-dusty-olive-dark hover:underline flex-shrink-0"
           >
             Read App FAQ <ArrowRight className="w-3.5 h-3.5 ml-1" />
-          </a>
+          </Link>
         </div>
       </section>
     </div>

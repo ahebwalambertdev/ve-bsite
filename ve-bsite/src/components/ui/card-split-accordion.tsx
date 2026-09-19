@@ -88,7 +88,7 @@ const AccordionItem: FC<AccordionItemProps> = ({
 
   return (
     <MotionConfig transition={springTransition}>
-      <motion.li layout className="list-none">
+      <motion.li layout id={String(item.id)} className="list-none scroll-mt-28">
         <motion.div
           animate={{
             borderTopLeftRadius,
@@ -167,6 +167,22 @@ export const CardSplitAccordion: FC<CardSplitAccordionProps> = ({
   className = '',
 }) => {
   const [openId, setOpenId] = useState<number | string | null>(defaultOpenId);
+
+  React.useEffect(() => {
+    const handleHash = () => {
+      if (typeof window !== 'undefined' && window.location.hash) {
+        const hash = window.location.hash.replace('#', '');
+        const matched = items.find((item) => String(item.id) === hash);
+        if (matched) {
+          setOpenId(matched.id);
+        }
+      }
+    };
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, [items]);
 
   const openIndex = items.findIndex((item) => item.id === openId);
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { CardSplitAccordion, type CardSplitAccordionItemData } from '@/components/ui/card-split-accordion';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, HelpCircle, ShieldCheck, Bike, RotateCcw, Camera, Store } from 'lucide-react';
+import { MessageCircle, HelpCircle, ShieldCheck, Bike, RotateCcw, Camera, Store, Smartphone } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'FAQ & Support — Ve Marketplace Kampala',
@@ -96,12 +96,24 @@ const FAQ_DATA = [
       {
         question: 'How do I sign up to sell clothes on Ve?',
         answer:
-          'You can apply at vendor.ve.ug by submitting your boutique name, shop location in Kampala, and National ID. Our merchant team will verify your boutique quickly so you can start listing clothes.',
+          'You can apply at veapp.store/vendor by submitting your boutique name, shop location in Kampala, and National ID. Our merchant team will verify your boutique quickly so you can start listing clothes.',
       },
       {
         question: 'What are the merchant commission fees?',
         answer:
           'Listing outfits on Ve is completely free with no upfront joining fees or monthly charges to get started. We only earn a commission when you make a verified sale, starting as low as 6% up to 15% depending on your product category. Payments are sent straight to your Mobile Money as soon as orders are delivered.',
+      },
+    ],
+  },
+  {
+    category: 'App Access & Device Compatibility',
+    icon: Smartphone,
+    items: [
+      {
+        id: 'device-compatibility',
+        question: 'Questions about early access or device compatibility?',
+        answer:
+          'Ve is currently in private development. The app will launch across Kampala on Android 8+ and iOS 15+, optimized for low-data 3G connections.',
       },
     ],
   },
@@ -125,11 +137,13 @@ export default async function FAQPage() {
         else if (lower.includes('try-on') || lower.includes('sizing')) Icon = Camera;
         else if (lower.includes('return') || lower.includes('swap')) Icon = RotateCcw;
         else if (lower.includes('boutique') || lower.includes('vendor')) Icon = Store;
+        else if (lower.includes('device') || lower.includes('access') || lower.includes('compatibility')) Icon = Smartphone;
 
         return {
           category: catName,
           icon: Icon,
           items: publishedFaqs.filter((f) => (f.category || 'General') === catName).map((f) => ({
+            id: f.id || (f.question.toLowerCase().includes('device') || f.question.toLowerCase().includes('compatibility') ? 'device-compatibility' : undefined),
             question: f.question,
             answer: f.answer,
           })),
@@ -191,15 +205,23 @@ export default async function FAQPage() {
               </div>
 
               <CardSplitAccordion
-                items={section.items.map((item, index) => ({
-                  id: `${section.category}-${index}`,
-                  title: item.question,
-                  content: (
-                    <p className="text-sm text-carbon-black/80 leading-relaxed font-normal">
-                      {item.answer}
-                    </p>
-                  ),
-                }))}
+                items={section.items.map((item, index) => {
+                  const itemId =
+                    (item as any).id ||
+                    (item.question.toLowerCase().includes('device') ||
+                    item.question.toLowerCase().includes('compatibility')
+                      ? 'device-compatibility'
+                      : `${section.category}-${index}`);
+                  return {
+                    id: itemId,
+                    title: item.question,
+                    content: (
+                      <p className="text-sm text-carbon-black/80 leading-relaxed font-normal">
+                        {item.answer}
+                      </p>
+                    ),
+                  };
+                })}
                 defaultOpenId={section.category === 'Protected Payments & Refunds' ? 'Protected Payments & Refunds-0' : null}
               />
             </div>

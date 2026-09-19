@@ -54,7 +54,7 @@ export default async function SellPage() {
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center gap-3 pt-3">
           <a
-            href={vendor?.secondaryCtaLink || 'https://vendor.ve.ug/register'}
+            href={vendor?.secondaryCtaLink || 'https://veapp.store/vendor'}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -188,7 +188,7 @@ export default async function SellPage() {
             </div>
 
             <div className="pt-2">
-              <a href="https://vendor.ve.ug/register" className="inline-block">
+              <a href="https://veapp.store/vendor" className="inline-block">
                 <Button variant="primary" size="md">
                   Become a Ve-ndor
                   <ArrowRight className="w-3.5 h-3.5 ml-1.5" />

@@ -1554,7 +1554,7 @@ export function EditorPanel({ data, onChange, currentRoute = '/', onRouteChange 
                       type="text"
                       value={data.vendorStrip.secondaryCtaLink || ''}
                       onChange={(e) => updateVendor('secondaryCtaLink', e.target.value)}
-                      placeholder="https://vendor.ve.ug/register"
+                      placeholder="https://veapp.store/vendor"
                       className="w-full text-xs p-2 rounded border border-soft-linen bg-white text-carbon-black outline-none font-mono"
                     />
                   </div>

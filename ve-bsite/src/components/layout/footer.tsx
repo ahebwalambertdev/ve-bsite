@@ -166,7 +166,7 @@ export function Footer({ initialNav }: FooterProps = {}) {
             </ul>
           </div>
 
-          {/* Direct WhatsApp Escalation Column */}
+            {/* Direct WhatsApp Escalation Column */}
           <div className="col-span-2 md:col-span-1 space-y-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-dusty-olive font-sans">
               Connect With Us
@@ -175,7 +175,13 @@ export function Footer({ initialNav }: FooterProps = {}) {
               Have a question or need instant support in Kampala?
             </p>
             <a
-              href={socialLinks.whatsappUrl || CONTACT_CONFIG.getWhatsappUrl('Hi Ve Team, I have an inquiry')}
+              href={
+                socialLinks.whatsappUrl &&
+                !socialLinks.whatsappUrl.includes('256700000000') &&
+                !socialLinks.whatsappUrl.includes('000000')
+                  ? socialLinks.whatsappUrl
+                  : CONTACT_CONFIG.getWhatsappUrl('Hi Ve Team, I have an inquiry')
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-dusty-olive text-snow text-xs font-semibold hover:bg-[#6e7d66] transition-transform active:scale-95 shadow-subtle"

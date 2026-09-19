@@ -389,7 +389,7 @@ export default function AdminPreviewPage() {
                 </Button>
               </Link>
               <a
-                href={cmsData.vendorStrip.secondaryCtaLink || 'https://vendor.ve.ug/register'}
+                href={cmsData.vendorStrip.secondaryCtaLink || 'https://veapp.store/vendor'}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -1221,7 +1221,7 @@ export default function AdminPreviewPage() {
                     </Button>
                   </Link>
                   <a
-                    href={cmsData.vendorStrip.secondaryCtaLink || 'https://vendor.ve.ug/register'}
+                    href={cmsData.vendorStrip.secondaryCtaLink || 'https://veapp.store/vendor'}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

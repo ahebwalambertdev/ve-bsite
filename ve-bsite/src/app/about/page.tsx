@@ -40,7 +40,7 @@ export default async function AboutPage() {
     };
   });
   const aboutData = cmsData.about || {
-    badge: 'Our Story & Mission · Kampala',
+    badge: 'Our Story & Mission',
     manifestoHeadline: 'Africa has the most vibrant fashion in the world.',
     manifestoItalic: "Buying it online shouldn't feel like gambling.",
     manifestoDescription:

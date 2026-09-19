@@ -31,3 +31,6 @@ Thumbs.db
 ~$*
 .temp/
 ve-bsite/supabase/.temp/
+
+.vercel
+.env*.local

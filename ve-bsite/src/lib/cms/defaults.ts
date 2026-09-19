@@ -133,9 +133,20 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       category: 'Becoming a Boutique Vendor',
       question: 'How can my boutique start selling on Ve?',
       answer:
-        'You can apply at vendor.ve.ug by submitting your boutique name, shop location in Kampala, and National ID. Our merchant team will verify your boutique quickly so you can start listing clothes ahead of our launch.',
+        'You can apply at veapp.store/vendor  by submitting your boutique name, shop location in Kampala, and National ID. Our merchant team will verify your boutique quickly so you can start listing clothes ahead of our launch.',
       iconName: 'Store',
       sortOrder: 5,
+      isFeaturedHome: false,
+      isPublished: true,
+    },
+    {
+      id: 'device-compatibility',
+      category: 'App Access & Device Compatibility',
+      question: 'Questions about early access or device compatibility?',
+      answer:
+        'Ve is currently in private development. The app will launch across Kampala on Android 8+ and iOS 15+, optimized for low-data 3G connections.',
+      iconName: 'Smartphone',
+      sortOrder: 6,
       isFeaturedHome: false,
       isPublished: true,
     },
@@ -148,7 +159,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     primaryCtaText: 'Become a Ve-ndor',
     primaryCtaLink: '/sell',
     secondaryCtaText: 'Merchant Portal',
-    secondaryCtaLink: 'https://vendor.ve.ug/register',
+    secondaryCtaLink: 'https://veapp.store/vendor',
   },
 
   waitlist: {
@@ -224,11 +235,11 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       href: '/app',
     },
     socialLinks: {
-      whatsappUrl: 'https://wa.me/256700000000',
-      instagramUrl: 'https://instagram.com/veapp.ug',
-      tiktokUrl: 'https://tiktok.com/@veapp.ug',
-      twitterUrl: 'https://twitter.com/ve_uganda',
-      supportEmail: 'info@veapp.store',
+      whatsappUrl: 'https://wa.me/256781602159',
+      instagramUrl: 'https://www.instagram.com/veapp.store',
+      tiktokUrl: 'https://www.tiktok.com/@veapp.store',
+      twitterUrl: 'https://x.com/veapp_store',
+      supportEmail: 'help@veapp.store',
       vendorEmail: 'support@veapp.store',
     },
     footerLinks: [
@@ -242,7 +253,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
   },
 
   about: {
-    badge: 'Our Story & Mission · Kampala',
+    badge: 'Our Story & Mission',
     manifestoHeadline: 'Africa has the most vibrant fashion in the world.',
     manifestoItalic: 'Buying it online shouldn’t feel like gambling.',
     manifestoDescription:

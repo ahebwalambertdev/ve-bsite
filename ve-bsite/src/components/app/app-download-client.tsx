@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { 
-  Apple, 
-  Smartphone, 
   CheckCircle2, 
   ShieldCheck, 
   Copy, 
@@ -16,6 +14,32 @@ import {
   Share2,
   Clock
 } from 'lucide-react';
+
+function AndroidIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-1.0001s.4482-1.0001.9993-1.0001c.551 0 .9992.4486.9992 1.0001s-.4482 1.0001-.9992 1.0001m-11.046 0c-.5511 0-.9993-.4486-.9993-1.0001s.4482-1.0001.9993-1.0001c.5511 0 .9993.4486.9993 1.0001s-.4482 1.0001-.9993 1.0001m11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.0223 3.503C15.5902 8.4114 13.8533 8.084 12 8.084c-1.8533 0-3.5902.3274-5.1368.8657L4.841 5.4467a.4161.4161 0 0 0-.5677-.1521.4157.4157 0 0 0-.152.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396" />
+    </svg>
+  );
+}
+
+function AppleIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.63 1.35-.57.65-1.06 1.72-.93 2.74 1.01.08 2.02-.49 2.64-1.24z" />
+    </svg>
+  );
+}
 
 interface AppDownloadClientProps {
   initialRef?: string;
@@ -160,27 +184,27 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                     <button
                       type="button"
                       onClick={() => setPlatform('android')}
-                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg border text-xs font-semibold transition-all ${
+                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${
                         platform === 'android'
                           ? 'border-dusty-olive bg-dusty-olive/10 text-carbon-black ring-1 ring-dusty-olive'
                           : 'border-soft-linen bg-snow text-carbon-black/70 hover:border-carbon-black/30'
                       }`}
                     >
-                      <Smartphone className="w-4 h-4 text-dusty-olive" />
-                      Android (Play Store &amp; APK)
+                      <AndroidIcon className="w-4 h-4 text-dusty-olive" />
+                      Android
                     </button>
 
                     <button
                       type="button"
                       onClick={() => setPlatform('ios')}
-                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg border text-xs font-semibold transition-all ${
+                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${
                         platform === 'ios'
                           ? 'border-dusty-olive bg-dusty-olive/10 text-carbon-black ring-1 ring-dusty-olive'
                           : 'border-soft-linen bg-snow text-carbon-black/70 hover:border-carbon-black/30'
                       }`}
                     >
-                      <Apple className="w-4 h-4 text-dusty-olive" />
-                      iOS (iPhone / iPad)
+                      <AppleIcon className="w-4 h-4 text-dusty-olive" />
+                      iOS
                     </button>
                   </div>
                 </div>

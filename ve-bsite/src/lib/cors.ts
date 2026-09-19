@@ -11,7 +11,6 @@ const ALLOWED_ORIGINS = [
   'https://admin.veapp.store',
   'https://ve.ug',
   'https://www.ve.ug',
-  'https://vendor.ve.ug',
   'https://admin.ve.ug',
   // Local development environments
   'http://localhost:3000',

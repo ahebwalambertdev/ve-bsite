@@ -29,10 +29,21 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Ve — Fashion, Found | Kampala Boutiques & Try-On',
+  title: {
+    default: 'Ve: Fashion, Found | Own your look',
+    template: '%s | Ve',
+  },
   description:
     'Discover verified Kampala fashion boutiques with Try-On. Fast doorstep delivery, protected Mobile Money payments, and easy 48-hour returns.',
   metadataBase: new URL('https://veapp.store'),
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default async function RootLayout({
@@ -46,20 +57,34 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${sansFont.variable} ${serifFont.variable} overflow-x-hidden max-w-[100vw]`}>
       <head>
-        {/* Google Consent Mode v2 Default-Denied Initializer (§15.2) */}
-        <Script id="google-consent-default" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-              'analytics_storage': 'denied',
-              'ad_storage': 'denied',
-              'ad_user_data': 'denied',
-              'ad_personalization': 'denied',
-              'wait_for_update': 500
-            });
-          `}
-        </Script>
+        {/* Organization Schema for Google Knowledge Graph and AEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Ve',
+              legalName: 'Ve Technologies Ltd',
+              url: 'https://veapp.store',
+              logo: 'https://veapp.store/icon.svg',
+              description:
+                'Kampala’s curated fashion marketplace featuring verified local boutiques, doorstep fit verification, and private Try-On.',
+              sameAs: [
+                'https://www.instagram.com/veapp.store',
+                'https://www.tiktok.com/@veapp.store',
+                'https://x.com/veapp_store',
+              ],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+256781602159',
+                contactType: 'customer support',
+                areaServed: 'UG',
+                availableLanguage: ['en'],
+              },
+            }),
+          }}
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-snow text-carbon-black font-sans antialiased selection:bg-soft-linen selection:text-carbon-black overflow-x-hidden max-w-[100vw] w-full">
         <Header initialNav={cmsData.navigation} />
