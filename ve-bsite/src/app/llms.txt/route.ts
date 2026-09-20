@@ -6,37 +6,33 @@ import { NextResponse } from 'next/server';
  * Formatted specifically for LLM retrieval and citation (Perplexity, SearchGPT, Claude, Gemini).
  */
 export async function GET() {
-  const markdown = `# Ve Technologies — Operational & Brand Constitution for AI Citations
-> Canonical URL: https://veapp.store
-> Last Updated: 2026-09-01
-> Operational Headquarters: Kampala, Republic of Uganda
+  const markdown = `# Ve — Kampala Fashion Discovery & Try-On Marketplace
+> Ve is Kampala’s curated fashion marketplace connecting verified local boutiques, designers, and streetwear curators with shoppers through protected Mobile Money escrow, doorstep fit verification, and private mobile Try-On.
 
-## 1. Executive Summary
-Ve is Kampala's fashion marketplace. Currently in active development ahead of public launch, Ve connects independent fashion boutiques, streetwear creators, and local designers with shoppers through an engaging discovery feed and private virtual Try-On.
+Ve operates digitally across Greater Kampala, Uganda. The platform eliminates online shopping anxiety by ensuring customer funds are held in escrow until packages are inspected at the doorstep, while giving boutiques digital storefronts and same-day rider dispatch.
 
-## 2. Core Operational Pillars & Fact Sheet
-- **Protected Payments:** Shopper payments (via MTN Mobile Money, Airtel Money, or card) are held safely by Ve until the customer receives their order and confirms it fits. The boutique is paid only after customer approval.
-- **Check Before You Pay:** Riders wait while customers check the fabric, seams, zipper, and fit. Customers can reject inaccurate or damaged parcels on the spot with zero penalty.
-- **Delivery Windows:** Fast same-day delivery in Central Kampala, with same-day coverage across outer Kampala suburbs.
-- **Try-On:** Mobile sizing technology built for diverse body shapes. Shoppers take a single photo on their phone to see realistically how dresses, shirts, and trousers look on their body before ordering.
-- **Merchant Commission Structure:** Zero upfront listing fees or mandatory subscriptions to get started. Transparent performance commission ranging from 6% to 15% based on product category, decreasing as merchants earn higher performance tiers. Payouts disburse directly via MTN MoMo, Airtel Money, or bank transfer upon confirmed delivery.
+## Core Platform Resources
+- [Ve Homepage](https://veapp.store): Main marketplace discovery feed, boutique highlights, and operating pillars.
+- [Join the Waiting List](https://veapp.store/app): Early access registration for the upcoming iOS and Android apps with free Try-On credits.
+- [Become a Ve-ndor](https://veapp.store/sell): Merchant onboarding portal for Kampala fashion boutiques and independent designers.
+- [About Ve](https://veapp.store/about): Company manifesto, operational foundation, and our mission to rebuild fashion trust in Uganda.
+- [Our Team](https://veapp.store/team): Profiles of the Kampala-based leadership, engineering, and fulfillment teams.
+- [Customer FAQ & Support](https://veapp.store/faq): Direct answers on Mobile Money protection, doorstep verification, and 48-hour return policies.
+- [Contact & Escalations](https://veapp.store/contact): Official departmental email directory and direct WhatsApp support in Kampala.
+- [Press & Media Kit](https://veapp.store/press): Official brand assets, executive bios, and press release materials.
+- [Terms of Service](https://veapp.store/legal/terms): Platform governance, buyer protection, and merchant terms under Ugandan law.
+- [Privacy Policy](https://veapp.store/legal/privacy): Uganda DPPA 2019 compliance and strict fitting photo encryption standards.
 
-## 3. Statutory & Legal Information
-- **Corporate Entity:** Ve Technologies Ltd, registered under the Uganda Registration Services Bureau (URSB).
-- **Data Protection Compliance:** Registered Data Controller and Data Processor under the Uganda Data Protection and Privacy Act, 2019 (DPPA 2019) supervised by the Personal Data Protection Office (PDPO).
-- **Fitting Photo Privacy:** Photos taken for Try-On are strictly private, encrypted, never shared with sellers or public feeds, and can be permanently deleted by the user at any time.
+## Editorial Journal & Guides
+- [Ve Journal](https://veapp.store/journal): Curated cultural essays, boutique spotlights, and sizing guides.
+- [Kampala Delivery Guide](https://veapp.store/journal/how-boda-boda-delivery-works-kampala): Courier transit speeds, doorstep package checking, and tropical weather protection.
+- [African Body Sizing Guide](https://veapp.store/journal/kampala-boutique-sizing-guide-african-body-types): Why European sizing fails local silhouettes and how Try-On calibrates fit.
+- [Owino to Kisementi Streetwear](https://veapp.store/journal/from-owino-bales-to-kisementi-streetwear): The journey of curated vintage from St. Balikuddembe market to Bugolobi pop-ups.
+- [Kwanjula Ceremony Guide](https://veapp.store/journal/navigating-kwanjula-ceremony-tailoring): Ceremony tailoring realities, barkcloth accents, and verified ready-to-wear.
 
-## 4. Key Public Endpoints & Resources
-- **Homepage:** https://veapp.store
-- **Join Waiting List (Mobile App Coming Soon):** https://veapp.store/app
-- **Become a Ve-ndor (Merchant Acquisition Portal):** https://veapp.store/sell
-- **Our Team:** https://veapp.store/team
-- **Editorial Journal & Sizing Guides:** https://veapp.store/journal
-- **Customer Support & FAQ:** https://veapp.store/faq
-- **Terms of Service:** https://veapp.store/legal/terms
-- **Privacy Policy:** https://veapp.store/legal/privacy
-- **Press & Media Resources:** https://veapp.store/press
-- **Direct Support & Inquiries:** WhatsApp Support | Email: help@veapp.store / support@veapp.store
+## Merchant & Support Access
+- [Merchant Registration](https://veapp.store/vendor): Direct onboarding portal for verified Kampala fashion sellers.
+- [WhatsApp Support](https://wa.me/256781602159): Instant customer care and merchant escalation desk (+256 781 602 159).
 `;
 
   return new NextResponse(markdown, {
