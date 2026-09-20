@@ -14,7 +14,8 @@ import {
   Banknote, 
   Camera, 
   Layers, 
-  Check
+  Check,
+  Award
 } from 'lucide-react';
 import { CONTACT_CONFIG } from '@/lib/contact';
 
@@ -50,16 +51,66 @@ export function VendorApplicationClient() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Operations Profile (Tier 2 Unlock) State
+  const [showOperationsProfile, setShowOperationsProfile] = useState(false);
+  const [operationsCompleted, setOperationsCompleted] = useState(false);
+  const [isOperationsSubmitting, setIsOperationsSubmitting] = useState(false);
+
+  const [inventoryTracking, setInventoryTracking] = useState('');
+  const [doubleSellingFrequency, setDoubleSellingFrequency] = useState('');
+  const [deliveryMethod, setDeliveryMethod] = useState('');
+  const [shrinkageIssue, setShrinkageIssue] = useState('');
+  const [photographyMethod, setPhotographyMethod] = useState('');
+  const [topToolDesired, setTopToolDesired] = useState('');
+
   useEffect(() => {
     try {
       const saved = localStorage.getItem('ve_vendor_application');
       if (saved) {
         setIsSubmitted(true);
+        const parsed = JSON.parse(saved);
+        if (parsed?.boutiqueName) setBoutiqueName(parsed.boutiqueName);
+        if (parsed?.ownerName) setOwnerName(parsed.ownerName);
+        if (parsed?.whatsapp) setWhatsapp(parsed.whatsapp);
+        if (parsed?.location) setLocation(parsed.location);
+      }
+      const savedOps = localStorage.getItem('ve_vendor_operations_profile');
+      if (savedOps) {
+        setOperationsCompleted(true);
       }
     } catch {
       // Storage ignored
     }
   }, []);
+
+  const handleOperationsSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsOperationsSubmitting(true);
+    setTimeout(() => {
+      setIsOperationsSubmitting(false);
+      setOperationsCompleted(true);
+      setShowOperationsProfile(false);
+      try {
+        localStorage.setItem(
+          've_vendor_operations_profile',
+          JSON.stringify({
+            boutiqueName,
+            whatsapp,
+            inventoryTracking,
+            doubleSellingFrequency,
+            deliveryMethod,
+            shrinkageIssue,
+            photographyMethod,
+            topToolDesired,
+            growthTierUnlocked: true,
+            submittedAt: new Date().toISOString(),
+          })
+        );
+      } catch {
+        // Storage ignored
+      }
+    }, 500);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -304,6 +355,295 @@ export function VendorApplicationClient() {
                   </li>
                 </ul>
               </div>
+
+              {/* Special Early Adopter Perk: 1 Month of Tier 2 Growth Package Free */}
+              {operationsCompleted ? (
+                <div className="p-5 bg-snow rounded-xl border-2 border-dusty-olive shadow-subtle space-y-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-dusty-olive text-snow flex items-center justify-center flex-shrink-0">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <h4 className="font-serif text-base font-semibold text-carbon-black">
+                      Tier 2 (Growth Package) Unlocked Free for 1 Month!
+                    </h4>
+                  </div>
+                  <p className="text-xs text-carbon-black/75 leading-relaxed pl-8">
+                    Your boutique (<strong className="text-carbon-black">{boutiqueName || 'Your Boutique'}</strong>) is credited with 1 month of complimentary Growth Tier access upon launch (featured catalog placement, dedicated counter pickup, and studio photo enhancement).
+                  </p>
+                  <div className="pl-8 pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowOperationsProfile(true)}
+                      className="text-xs text-dusty-olive-dark hover:underline font-medium cursor-pointer"
+                    >
+                      Update boutique operations profile →
+                    </button>
+                  </div>
+                </div>
+              ) : showOperationsProfile ? (
+                <div className="p-6 bg-snow rounded-xl border border-dusty-olive/60 shadow-subtle space-y-5">
+                  <div className="space-y-1 border-b border-soft-linen pb-3">
+                    <div className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-dusty-olive-dark bg-soft-linen/50 px-2 py-0.5 rounded-full">
+                      <Award className="w-3 h-3 text-dusty-olive" />
+                      Early Merchant Growth Perk
+                    </div>
+                    <h4 className="font-serif text-xl font-semibold text-carbon-black">
+                      Boutique Operations &amp; Needs Profile
+                    </h4>
+                    <p className="text-xs text-carbon-black/65">
+                      Answer 6 quick questions so we configure Ve to your shop routine. Unlocks 1 Month of our Tier 2 Growth Package for free.
+                    </p>
+                  </div>
+
+                  <form onSubmit={handleOperationsSubmit} className="space-y-4 text-xs">
+                    {/* Q1: Stock Tracking */}
+                    <div className="space-y-1.5">
+                      <label className="font-semibold text-carbon-black block">
+                        1. How does your boutique currently record daily sales and stock?
+                      </label>
+                      <div className="space-y-1.5 pt-1">
+                        {[
+                          'Counter notebook and pen',
+                          'WhatsApp messages & mental notes',
+                          'Excel spreadsheet on phone or computer',
+                          'Point-of-Sale (POS) software',
+                        ].map((opt) => (
+                          <label
+                            key={opt}
+                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
+                              inventoryTracking === opt
+                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
+                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="inventory-tracking"
+                              value={opt}
+                              checked={inventoryTracking === opt}
+                              onChange={() => setInventoryTracking(opt)}
+                              className="accent-dusty-olive"
+                            />
+                            <span>{opt}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Q2: Double Selling */}
+                    <div className="space-y-1.5">
+                      <label className="font-semibold text-carbon-black block">
+                        2. Have you ever sold an outfit in your shop that an online buyer had already requested?
+                      </label>
+                      <div className="space-y-1.5 pt-1">
+                        {[
+                          'Frequently — it causes big customer disappointment',
+                          'Once in a while',
+                          'Rarely or never',
+                        ].map((opt) => (
+                          <label
+                            key={opt}
+                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
+                              doubleSellingFrequency === opt
+                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
+                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="double-selling"
+                              value={opt}
+                              checked={doubleSellingFrequency === opt}
+                              onChange={() => setDoubleSellingFrequency(opt)}
+                              className="accent-dusty-olive"
+                            />
+                            <span>{opt}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Q3: Delivery Method */}
+                    <div className="space-y-1.5">
+                      <label className="font-semibold text-carbon-black block">
+                        3. How do you currently send clothes to customers who order remotely?
+                      </label>
+                      <div className="space-y-1.5 pt-1">
+                        {[
+                          'I stop what I am doing and bargain with street boda riders',
+                          'The customer arranges their own pickup rider',
+                          'SafeBoda / Farasi / courier apps',
+                          'No deliveries — customers must visit the boutique in person',
+                        ].map((opt) => (
+                          <label
+                            key={opt}
+                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
+                              deliveryMethod === opt
+                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
+                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="delivery-method"
+                              value={opt}
+                              checked={deliveryMethod === opt}
+                              onChange={() => setDeliveryMethod(opt)}
+                              className="accent-dusty-olive"
+                            />
+                            <span>{opt}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Q4: Stock Loss */}
+                    <div className="space-y-1.5">
+                      <label className="font-semibold text-carbon-black block">
+                        4. Do you ever experience clothes going missing from hangers or counter cash not matching?
+                      </label>
+                      <div className="space-y-1.5 pt-1">
+                        {[
+                          'Yes, missing hanger stock is a real issue',
+                          'Yes, counter cash occasionally does not tally with sales',
+                          'No, I manage the shop counter myself 100% of the time',
+                        ].map((opt) => (
+                          <label
+                            key={opt}
+                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
+                              shrinkageIssue === opt
+                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
+                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="shrinkage-issue"
+                              value={opt}
+                              checked={shrinkageIssue === opt}
+                              onChange={() => setShrinkageIssue(opt)}
+                              className="accent-dusty-olive"
+                            />
+                            <span>{opt}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Q5: Photography */}
+                    <div className="space-y-1.5">
+                      <label className="font-semibold text-carbon-black block">
+                        5. How do you currently photograph clothes for your boutique?
+                      </label>
+                      <div className="space-y-1.5 pt-1">
+                        {[
+                          'Smartphone photos on a hanger or mannequin in the shop',
+                          'I or a friend model the outfits',
+                          'I hire a professional photographer / studio',
+                          'Manufacturer or stock photos from the internet',
+                        ].map((opt) => (
+                          <label
+                            key={opt}
+                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
+                              photographyMethod === opt
+                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
+                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="photography-method"
+                              value={opt}
+                              checked={photographyMethod === opt}
+                              onChange={() => setPhotographyMethod(opt)}
+                              className="accent-dusty-olive"
+                            />
+                            <span>{opt}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Q6: Top Feature */}
+                    <div className="space-y-1.5">
+                      <label className="font-semibold text-carbon-black block">
+                        6. Which Ve tool would make the biggest difference for your shop right now?
+                      </label>
+                      <div className="space-y-1.5 pt-1">
+                        {[
+                          'Automatic shop counter pickup by dedicated riders',
+                          'Never double-selling in-store vs online',
+                          'Clean studio photos with automatic background removal',
+                          'Guaranteed Mobile Money payouts with zero fake SMS receipts',
+                        ].map((opt) => (
+                          <label
+                            key={opt}
+                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
+                              topToolDesired === opt
+                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
+                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="top-tool"
+                              value={opt}
+                              checked={topToolDesired === opt}
+                              onChange={() => setTopToolDesired(opt)}
+                              className="accent-dusty-olive"
+                            />
+                            <span>{opt}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-soft-linen">
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        size="md"
+                        disabled={isOperationsSubmitting}
+                        className="w-full sm:w-auto font-semibold cursor-pointer"
+                      >
+                        {isOperationsSubmitting ? 'Unlocking Growth Tier...' : 'Unlock 1 Month Growth Tier Free'}
+                        <ArrowRight className="w-4 h-4 ml-1.5" />
+                      </Button>
+                      <button
+                        type="button"
+                        onClick={() => setShowOperationsProfile(false)}
+                        className="text-xs text-neutral-500 hover:text-carbon-black hover:underline cursor-pointer"
+                      >
+                        Maybe later
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              ) : (
+                <div className="p-5 bg-snow rounded-xl border border-dusty-olive/50 shadow-subtle space-y-3">
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-dusty-olive-dark bg-soft-linen/50 px-2 py-0.5 rounded-full">
+                      <Award className="w-3 h-3 text-dusty-olive" />
+                      Early Boutique Partner Perk
+                    </div>
+                    <h4 className="font-serif text-lg font-semibold text-carbon-black">
+                      Unlock 1 Month of Tier 2 (Growth Package) Free
+                    </h4>
+                    <p className="text-xs text-carbon-black/70 leading-relaxed">
+                      Complete our 2-minute Boutique Operations Profile so we configure Ve to your shop routine. We&apos;ll upgrade your boutique to the Growth Tier (featured catalog placement, dedicated counter pickup, and studio photo enhancement) for your entire first month.
+                    </p>
+                  </div>
+                  <Button
+                    type="button"
+                    onClick={() => setShowOperationsProfile(true)}
+                    variant="accent"
+                    size="sm"
+                    className="w-full sm:w-auto font-semibold cursor-pointer"
+                  >
+                    Unlock 1 Month Growth Tier Free →
+                  </Button>
+                </div>
+              )}
 
               {/* Fast Track via WhatsApp */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
