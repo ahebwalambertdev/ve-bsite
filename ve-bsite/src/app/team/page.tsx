@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     'Meet the founders, engineers, curators, and logistics operators building Kampala’s trusted fashion marketplace and Try-On ecosystem.',
   openGraph: {
     title: 'Our Team — Ve Fashion Marketplace',
-    description: 'The Kampala team building trusted fashion commerce with Try-On and escrow protection.',
+    description: 'The Kampala team building trusted fashion commerce with Try-On and protected payments.',
     url: 'https://www.veapp.store/team',
   },
 };

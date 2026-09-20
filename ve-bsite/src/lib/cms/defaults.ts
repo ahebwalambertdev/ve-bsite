@@ -12,14 +12,14 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     megaHeadingLine1: 'Fashion Found.',
     megaHeadingLine2: 'The first time shopping online feels safe.',
     subHeadline:
-      'The Ve mobile app is coming soon. See how clothes look on you before you order, and pay only after you check your delivery.',
+      'The Ve mobile app is coming soon. See how clothes look on you before you order, with protected payments and easy 48-hour returns.',
     primaryCtaText: 'Join Waiting List',
     primaryCtaLink: '/app',
     secondaryCtaText: 'Become a Ve-ndor',
     secondaryCtaLink: '/sell',
     demoVideoTitle: 'Experience Ve in Action',
     demoVideoDescription:
-      'Ve is built for Kampala’s vibrant fashion culture. Our mobile app combines video discovery with Try-On sizing right on your phone.',
+      'Ve is built for Kampala’s vibrant fashion culture. Our mobile app combines video discovery with Try-On right on your phone.',
     looks: [
       {
         id: 'court-depth',
@@ -51,7 +51,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
   howItWorks: {
     sectionTitle: 'No fake photos, No wrong sizes, No hustle.',
     sectionSubtitle:
-      'Coming soon to Kampala: browse real local stores, see outfits on your body, and pay only after you check your delivery.',
+      'Coming soon to Kampala: browse real local stores, see how clothes look on you, with protected payments and easy returns.',
     steps: [
       {
         stepNumber: '01',
@@ -73,9 +73,9 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       },
       {
         stepNumber: '03',
-        title: 'Check Before You Pay',
+        title: 'Fast Delivery & Easy Returns',
         description:
-          'Our rider brings your order to your door and waits while you check the fabric and fit.',
+          'Orders arrive fast at your door across Kampala, backed by protected payments and easy 48-hour returns.',
         image: '/images/how-it-works-pay.jpg',
         badge: '48 hours to return or exchange',
         iconName: 'Truck',
@@ -85,11 +85,11 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
 
   faqs: [
     {
-      id: 'escrow',
-      category: 'Protected Payments & Refunds',
+      id: 'payments',
+      category: 'Protected Payments & Returns',
       question: 'How do I know my money is safe?',
       answer:
-        'We hold your payment safe until you hold the package in your hands. When you check out with MTN MoMo, Airtel Money, or card, your funds are protected until our rider arrives. If it doesn’t fit or isn’t what you ordered, you don’t pay a dime or you get a quick refund straight to your Mobile Money.',
+        'When you check out with MTN MoMo, Airtel Money, or card, we hold your payment safe until your delivery arrives. Try your clothes on at home with peace of mind. If an item doesn’t fit or isn’t what you ordered, you get a quick refund or exchange.',
       iconName: 'ShieldCheck',
       sortOrder: 1,
       isFeaturedHome: true,
@@ -108,10 +108,10 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     },
     {
       id: 'vto',
-      category: 'Sizing & Try-On',
+      category: 'Try-On',
       question: 'Is my photo kept private during Try-On?',
       answer:
-        'Yes, 100% private. Your photo is used only on your phone to show you how clothes fit your shape. We never share your photos with sellers, other shoppers, or advertisers, and you can delete your photo with one tap whenever you like.',
+        'Yes, 100% private. Your photo is used only to show how clothes look on you. It is not used for sizing or body measurements. We never share your photos with sellers, other shoppers, or advertisers, and you can delete your photo with one tap whenever you like.',
       iconName: 'Camera',
       sortOrder: 3,
       isFeaturedHome: true,
@@ -166,9 +166,9 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     title: 'Wear what fits.',
     titleItalic: 'Delivered safely to your door.',
     description:
-      'We’re putting the finishing touches on the Ve mobile app for Kampala. Join the early access waiting list to get free Try-On credits and be among the first to try on outfits virtually before paying.',
+      'We’re putting the finishing touches on the Ve mobile app for Kampala. Join the early access waiting list to get free Try-On credits and be among the first to see how outfits look before you order.',
     perks: [
-      'Free Try-On silhouettes on launch',
+      'Free Try-On looks on launch',
       'First access to limited boutique drop notifications',
       'Zero delivery fee on your first verified order',
     ],
@@ -191,7 +191,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       name: 'Ryan Watts',
       role: 'Head of Fulfillment',
       image: '/images/court-depth.jpg',
-      bio: 'Directing Kampala doorstep package verification, rider dispatch, and rapid 48-hour boutique exchanges.',
+      bio: 'Directing Kampala doorstep package delivery, rider dispatch, and rapid 48-hour boutique exchanges.',
       sortOrder: 2,
     },
     {
@@ -207,7 +207,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       name: 'Isaac Magezi',
       role: 'CTO',
       image: '/images/hero-kampala-street.webp',
-      bio: 'Architecting privacy-first computer vision fitting pipelines and low-bandwidth client caching for Kampala’s mobile network.',
+      bio: 'Architecting privacy-first Try-On processing and low-bandwidth client caching for Kampala’s mobile network.',
       socialTwitter: 'https://twitter.com',
       sortOrder: 4,
     },
@@ -216,7 +216,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       name: 'Joseph Kajjabwangu',
       role: 'Lead Engineer',
       image: '/images/hero-kampala-street.webp',
-      bio: 'Engineering resilient escrow payments and real-time courier verification infrastructure across Kampala.',
+      bio: 'Engineering resilient payment protection and real-time courier dispatch infrastructure across Kampala.',
       socialTwitter: 'https://twitter.com',
       sortOrder: 5,
     },
@@ -291,21 +291,21 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
         id: 'p1',
         title: 'Try-On on Your Phone',
         description:
-          'Preview how clothes fit your body before ordering. Know your look before you tap buy—no sizing surprises.',
+          'See how clothes look on you before ordering. Preview outfits right on your phone so you can shop with confidence.',
         iconName: 'Sparkles',
       },
       {
         id: 'p2',
-        title: 'Protected Escrow Payments',
+        title: 'Protected Payments',
         description:
-          'Pay with MTN MoMo, Airtel Money, or card. We hold your payment safe until you inspect the order at delivery.',
+          'Pay with MTN MoMo, Airtel Money, or card. We hold your payment safe until your order is delivered.',
         iconName: 'ShieldCheck',
       },
       {
         id: 'p3',
-        title: 'Riders Who Wait for You',
+        title: 'Fast Delivery & Easy Returns',
         description:
-          'Our dedicated couriers wait patiently at your doorstep while you check the fabric, seams, and fit before you confirm.',
+          'Orders arrive fast at your door across Kampala, backed by simple 48-hour returns if you need a different size.',
         iconName: 'Truck',
       },
     ],
@@ -361,7 +361,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     ],
     officeTitle: 'Operations & Coverage',
     officeName: 'Ve Technologies Ltd',
-    officeAddress: 'Digital operations across Greater Kampala, Uganda. Doorstep verification & fast rider dispatch.',
+    officeAddress: 'Digital operations across Greater Kampala, Uganda. Fast rider dispatch.',
     officeHours: 'Dispatch & Support: Mon – Sat, 8:00 AM – 8:00 PM EAT',
     officeNote: 'No walk-in retail office at this time. All orders and boutique partner operations are managed digitally and delivered to your door.',
   },
@@ -373,7 +373,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       'Official logos, editorial assets, and boilerplate text for journalists, creators, and partners covering Ve.',
     boilerplateTitle: 'Company Boilerplate',
     boilerplateText:
-      'Ve is Kampala’s fashion marketplace and Try-On platform. Founded in 2026, Ve connects independent boutiques, streetwear creators, and local designers with shoppers through a video discovery feed. To solve trust issues in Ugandan online shopping, Ve pairs Try-On sizing on your phone with protected Mobile Money payments and a dedicated courier network that lets customers check clothes before the rider leaves. Ve is headquartered in Kampala, Uganda.',
+      'Ve is Kampala’s fashion marketplace and Try-On platform. Founded in 2026, Ve connects independent boutiques, streetwear creators, and local designers with shoppers through a video discovery feed. To solve trust issues in Ugandan online shopping, Ve pairs Try-On on your phone with protected payments and easy 48-hour returns. Ve is headquartered in Kampala, Uganda.',
     paletteTitle: 'Official Color Palette',
     palette: [
       { name: 'Snow', hex: '#FFFAF6', role: 'Canvas & Light Surfaces' },
@@ -400,19 +400,19 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
         ],
       },
       {
-        id: 'escrow',
-        title: '2. Escrow Protection & Payment Processing',
+        id: 'payments',
+        title: '2. Payment Protection & Processing',
         paragraphs: [
-          'All payments executed via MTN Mobile Money, Airtel Money, or bank card are held in secure intermediary escrow by Ve until delivery is verified and confirmed by the customer at doorstep.',
-          'Merchants disburse earnings only upon confirmed doorstep inspection and expiry of the statutory return window. Direct merchant-to-buyer Mobile Money offline transactions are strictly prohibited.',
+          'All payments executed via MTN Mobile Money, Airtel Money, or bank card are held safe by Ve until delivery is completed.',
+          'Merchants receive disbursements upon confirmed delivery and expiry of the return window. Direct merchant-to-buyer Mobile Money offline transactions are strictly prohibited.',
         ],
       },
       {
-        id: 'inspection',
-        title: '3. Delivery & Mandatory Doorstep Inspection',
+        id: 'delivery',
+        title: '3. Delivery & Doorstep Drop-off',
         paragraphs: [
-          'Ve couriers are trained and contracted to wait patiently at delivery for up to ten (10) minutes while customers unseal and physically verify fabric condition, color fidelity, and fit.',
-          'If an item is damaged, defective, or noticeably different from the listing, the customer may reject the delivery immediately with zero penalty.',
+          'Ve couriers deliver orders directly to the customer’s specified delivery address across Kampala.',
+          'Customers have 48 hours to try on garments at home. If an item is damaged, defective, or noticeably different from the listing, the customer may initiate an in-app return or exchange.',
         ],
       },
       {
@@ -428,15 +428,15 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
         title: '5. Boutique Merchant Obligations',
         paragraphs: [
           'Merchants must maintain physical shop presence or inventory storage in Kampala, warrant garment authenticity, and uphold inventory stock accuracy.',
-          'Misleading photography, counterfeit branded apparel, or deliberate delivery delays will result in immediate merchant suspension and forfeiture of escrow funds.',
+          'Misleading photography, counterfeit branded apparel, or deliberate delivery delays will result in immediate merchant suspension and forfeiture of pending payouts.',
         ],
       },
       {
         id: 'vto',
-        title: '6. Try-On Technology & Fit Disclaimers',
+        title: '6. Try-On Disclaimers',
         paragraphs: [
-          'Try-On simulations are intended as consultative sizing guidance. Due to variations in individual posture, garment tailoring, and device cameras, visual try-on results do not constitute an absolute tailoring guarantee.',
-          'Ve processes try-on imagery strictly in ephemeral device cache and never shares user likenesses with third parties.',
+          'Try-On is intended solely to visualize how clothing looks. It is not an accurate size finder and does not calculate body measurements or guarantee fit.',
+          'Ve processes try-on imagery strictly in ephemeral device cache and never shares user photos with third parties.',
         ],
       },
       {
@@ -467,7 +467,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
         id: 'collection',
         title: '2. Information We Collect',
         paragraphs: [
-          'We collect only the minimum data required to facilitate safe commerce: Name, phone number (MTN/Airtel), delivery address in Kampala, transactional order history, and ephemeral photos uploaded voluntarily for Try-On sizing.',
+          'We collect only the minimum data required to facilitate safe commerce: Name, phone number (MTN/Airtel), delivery address in Kampala, transactional order history, and ephemeral photos uploaded voluntarily for Try-On.',
         ],
       },
       {
@@ -475,7 +475,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
         title: '3. Try-On Photo Privacy & Security',
         paragraphs: [
           'Try-On photos are strictly private. They are processed on-device or in transient encrypted secure memory, never sold to advertisers, never visible to merchants, and never published publicly.',
-          'Users can delete their Try-On silhouette at any time with a single tap in the application settings.',
+          'Users can delete their Try-On photo at any time with a single tap in the application settings.',
         ],
       },
       {

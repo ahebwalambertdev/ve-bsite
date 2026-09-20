@@ -128,7 +128,7 @@ export default async function SellPage() {
               Fewer Returns with Try-On
             </h3>
             <p className="text-sm text-carbon-black/75 leading-relaxed">
-              Most clothing returns happen because clothes don&apos;t fit. With Try-On, customers see how your outfit looks on their body before buying, so they get the right size the first time.
+              With Try-On, customers see how your outfit looks on them before buying, helping them choose pieces they love and reducing returns.
             </p>
           </Card>
 

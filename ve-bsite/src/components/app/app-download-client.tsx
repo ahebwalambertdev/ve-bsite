@@ -158,7 +158,7 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
             </h1>
 
             <p className="text-base sm:text-lg text-carbon-black/75 leading-relaxed">
-              We&apos;re putting the finishing touches on the Ve mobile app for Kampala. Join the early access waiting list to get free Try-On credits and be among the first to try on outfits virtually before paying.
+              We&apos;re putting the finishing touches on the Ve mobile app for Kampala. Join the early access waiting list to get free Try-On credits and be among the first to see how outfits look before you order.
             </p>
           </div>
 
@@ -299,7 +299,7 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                   Early Member Perks Unlocked:
                 </div>
                 <ul className="list-disc list-inside space-y-1 pl-1">
-                  <li>Free Try-On silhouettes on launch</li>
+                  <li>Free Try-On looks on launch</li>
                   <li>First access to limited boutique drop notifications</li>
                   <li>Zero delivery fee on your first verified order</li>
                 </ul>
@@ -329,7 +329,7 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-4 h-4 text-dusty-olive flex-shrink-0 mt-0.5" />
-              <span className="text-xs text-carbon-black/70">Check Before You Pay</span>
+              <span className="text-xs text-carbon-black/70">48-Hour Returns</span>
             </div>
             <div className="flex items-start gap-2 col-span-2 sm:col-span-1">
               <CheckCircle2 className="w-4 h-4 text-dusty-olive flex-shrink-0 mt-0.5" />

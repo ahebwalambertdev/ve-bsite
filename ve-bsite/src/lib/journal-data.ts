@@ -32,9 +32,9 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     readTime: '4 min read',
     publishedAt: '2026-08-25',
     excerpt:
-      'Deliveries across Kampala are fast on Ve, and riders wait while you check the package.',
+      'Deliveries across Kampala are fast on Ve, backed by protected payments and easy returns.',
     tldr:
-      'Orders in Central Kampala arrive fast, and deliveries to outer suburbs arrive same-day. Every order lets you check the fabric and fit before you confirm.',
+      'Orders in Central Kampala arrive fast, and deliveries to outer suburbs arrive same-day. Every order is backed by protected payments and easy 48-hour returns.',
     coverImage: '/images/hero-kampala-street.webp',
     content: [
       {
@@ -43,75 +43,75 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
           'Deliveries within Kampala’s central business district and inner neighborhoods typically arrive within hours of boutique confirmation. Riders pick up directly from verified boutiques to ensure delicate fabrics and tailored outfits arrive clean and undamaged.',
         ],
         table: {
-          headers: ['Kampala Region / Suburb', 'Typical Delivery Time', 'Standard Delivery Rate', 'Weather Protection'],
+          headers: ['Kampala Region / Suburb', 'Typical Delivery Time', 'Standard Delivery Rate', 'Courier Service'],
           rows: [
-            ['Central (Kololo, Nakasero, Kamwokya)', '2 – 3 Hours', 'UGX 5,000', 'Waterproof Cargo Bag'],
-            ['Inner East (Bugolobi, Mbuya, Ntinda)', '3 – 4 Hours', 'UGX 5,000', 'Waterproof Cargo Bag'],
-            ['Greater Suburbs (Kira, Namugongo, Kisasi)', 'Same Day (4 – 6 Hours)', 'UGX 7,000', 'Waterproof Cargo Bag'],
-            ['Outer Urban (Entebbe, Mukono, Nansana)', 'Same Day (Order by 2 PM)', 'UGX 10,000 – 12,000', 'Waterproof Cargo Bag'],
+            ['Central (Kololo, Nakasero, Kamwokya)', '2 – 3 Hours', 'UGX 5,000', 'Dedicated Ve Rider'],
+            ['Inner East (Bugolobi, Mbuya, Ntinda)', '3 – 4 Hours', 'UGX 5,000', 'Dedicated Ve Rider'],
+            ['Greater Suburbs (Kira, Namugongo, Kisasi)', 'Same Day (4 – 6 Hours)', 'UGX 7,000', 'Dedicated Ve Rider'],
+            ['Outer Urban (Entebbe, Mukono, Nansana)', 'Same Day (Order by 2 PM)', 'UGX 10,000 – 12,000', 'Dedicated Ve Rider'],
           ],
         },
       },
       {
-        sectionHeading: 'How does checking your package at delivery work?',
+        sectionHeading: 'How do deliveries and returns work?',
         paragraphs: [
-          'Unlike ordinary delivery riders who drop parcels and speed off, Ve riders wait patiently so you can check your clothes before confirming.',
+          'Ve riders deliver orders directly to your door across Kampala, so you get your fashion quickly and safely.',
         ],
         steps: [
-          'The rider arrives and hands you the sealed Ve package.',
-          'You open the parcel and check the seams, zippers, color, and size.',
-          'If you love what you ordered, you confirm delivery with the rider.',
-          'If the piece doesn’t match or has an issue, you can reject it right away with zero return fees.',
+          'Your rider arrives and hands you the sealed Ve package.',
+          'Try your clothes on comfortably at home.',
+          'If you love what you ordered, keep your pieces and enjoy your new look.',
+          'If you need a different size or wish to return, initiate an exchange in the app within 48 hours for a quick rider pickup.',
         ],
       },
       {
-        sectionHeading: 'What happens when afternoon rain hits Kampala?',
+        sectionHeading: 'What makes Ve deliveries reliable across Kampala?',
         paragraphs: [
-          'Afternoon tropical downpours are a reality in Kampala. To ensure clothes never arrive damp, all Ve riders carry waterproof bags.',
+          'From peak-hour traffic on Jinja Road to sudden weather shifts, Ve coordinates direct deliveries from local boutiques straight to your gate.',
         ],
         callout: {
-          title: 'Weather Protection',
-          body: 'All Ve riders carry heavy-duty waterproof bags, keeping your clothes completely dry even during heavy Kampala downpours.',
+          title: 'Dedicated Couriers',
+          body: 'Ve couriers are dedicated and trained, ensuring your clothes arrive carefully handled and on time.',
         },
       },
     ],
   },
   {
     slug: 'kampala-boutique-sizing-guide-african-body-types',
-    title: 'Why do European clothing sizes fail African body proportions?',
+    title: 'Navigating boutique clothing sizes in Kampala',
     category: 'Kampala Style & Culture',
-    author: 'Ve Design & Sizing Team',
+    author: 'Ve Design Team',
     readTime: '5 min read',
     publishedAt: '2026-08-18',
     excerpt:
-      'Standard EU and UK sizing charts assume a flatter hip-to-waist ratio than the natural silhouette of Ugandan women, causing 30% of online clothing purchases to fail at the hips or thighs.',
+      'Different boutiques and international brands use different sizing standards, making online clothing purchases tricky without seeing the style first.',
     tldr:
-      'European fashion grading assumes a standard 10-inch difference between waist and hip circumference. Ugandan female silhouettes average a 13-to-15-inch differential. Ve’s Try-On feature previews clothing directly on your body to eliminate sizing surprises.',
+      'Brand sizing varies widely between fashion labels. With Ve’s Try-On, you can see how an outfit looks on you before ordering so you can choose styles with confidence.',
     coverImage: '/images/hero-kampala-street.webp',
     content: [
       {
-        sectionHeading: 'How does the silhouette differential cause sizing mismatch?',
+        sectionHeading: 'Why size tags differ across boutiques',
         paragraphs: [
-          'When an online boutique imports UK Size 12 or EU Size 40 denim, the waistband may fit accurately while the thigh and hip measurements remain severely constricted. Conversely, sizing up to accommodate hips leaves an unsightly gap at the lower spine.',
+          'When boutiques stock pieces from different regions—UK, EU, US, and local designers—the same size number can fit differently. Checking garment details and seeing how the style looks on you helps you make the right pick.',
         ],
         table: {
-          headers: ['Metric Parameter', 'European Fast Fashion Standard', 'Kampala Measured Average', 'Ve Recommendation'],
+          headers: ['Garment Type', 'Fit Consideration', 'What to Look For', 'Ve Experience'],
           rows: [
-            ['Waist-to-Hip Delta', '10.0 inches (25.4 cm)', '14.2 inches (36.1 cm)', 'Calibrated via Try-On'],
-            ['Thigh Circumference (Sz M)', '21.5 inches', '24.8 inches', 'Select tailored curve cut'],
-            ['Torso Length to Rise', 'Standard 11.5 inches', '13.0 inches high rise', 'High-rise silhouette match'],
+            ['Fitted Denim', 'Waist and hip proportion', 'Check waist & rise specifications', 'Preview look with Try-On'],
+            ['Tailored Dresses', 'Torso and curve balance', 'Select cut that matches your preference', 'Preview look with Try-On'],
+            ['Structured Blazers', 'Shoulder and chest width', 'Review boutique measurement notes', 'Preview look with Try-On'],
           ],
         },
       },
       {
-        sectionHeading: 'How to use Try-On to see your fit on your phone?',
+        sectionHeading: 'How to use Try-On to see how clothes look on you',
         paragraphs: [
-          'To bypass confusing brand tags, you can preview how an outfit fits your silhouette before tapping order.',
+          'Try-On is built to show you how an outfit looks on you right from your phone before you place an order. It is designed purely to preview styles and aesthetics, not as a sizing calculator.',
         ],
         steps: [
-          'Wear everyday fitted clothes and snap a full-length photo in good light.',
-          'Let Ve map your shoulder width, waist, and hip shape.',
-          'Preview the outfit on your silhouette to verify the fit before ordering.',
+          'Snap a photo on your phone in good lighting.',
+          'Select any boutique outfit you want to preview.',
+          'See how the outfit looks on you before you order.',
         ],
       },
     ],
@@ -138,7 +138,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       {
         sectionHeading: 'How do protected payments change the merchant experience?',
         paragraphs: [
-          'With Ve holding customer payments safely in escrow, boutiques know the order is genuine before the outfit leaves the shop. Payouts arrive automatically via Mobile Money on reliable schedules.',
+          'With Ve holding customer payments safely, boutiques know the order is genuine before the outfit leaves the shop. Payouts arrive automatically via Mobile Money on reliable schedules.',
         ],
         callout: {
           title: 'Artisan Quote',
@@ -157,7 +157,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     excerpt:
       'Inside the 9 AM bale openings at St. Balikuddembe (Owino) Market, where young curators unearth 90s archive grails, restore them, and bring curated vintage to weekend pop-ups at MoTIV Bugolobi.',
     tldr:
-      'Kampala’s secondhand economy (mitumba) has evolved from chaotic market stalls into a curated streetwear movement. Curators spend hours picking, dry-cleaning, and styling pieces, but traditional Instagram sales left them vulnerable to ghost buyers. Ve provides verified doorstep delivery and guaranteed Mobile Money escrow.',
+      'Kampala’s secondhand economy (mitumba) has evolved from chaotic market stalls into a curated streetwear movement. Curators spend hours picking, dry-cleaning, and styling pieces, but traditional Instagram sales left them vulnerable to ghost buyers. Ve provides verified doorstep delivery and guaranteed Mobile Money payment protection.',
     coverImage: '/images/hero-kampala-street.webp',
     content: [
       {
@@ -189,7 +189,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     excerpt:
       'From Kiyembe Lane fabric rolls to modern Buganda barkcloth (olubugo) waistcoats, how Kampala wedding and introduction guests are escaping the dreaded Friday-night tailor delay.',
     tldr:
-      'Kwanjula (introduction) and wedding season in Kampala traditionally meant high stress: commissioning custom tailors on Kiyembe Lane and praying the outfit would be ready before Saturday morning. Ve’s curated ready-to-wear designers and doorstep fitting allow guests to order verified garments that arrive days in advance.',
+      'Kwanjula (introduction) and wedding season in Kampala traditionally meant high stress: commissioning custom tailors on Kiyembe Lane and praying the outfit would be ready before Saturday morning. Ve’s curated ready-to-wear designers and easy 48-hour returns allow guests to order verified garments that arrive days in advance.',
     coverImage: '/images/hero-kampala-street.webp',
     content: [
       {
@@ -203,14 +203,14 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
           rows: [
             ['Traditional Kiyembe Bespoke', '2 to 4 Weeks', 'High (Last-minute alterations)', 'Upfront Cash / MoMo deposit'],
             ['Instagram DM Sellers', '3 to 5 Days', 'Very High (“What I ordered vs Got”)', 'Unprotected advance transfer'],
-            ['Ve Verified Boutiques', '2 to 4 Hours', 'Zero (Doorstep fit verification)', 'Escrow-protected Mobile Money'],
+            ['Ve Verified Boutiques', '2 to 4 Hours', 'Easy 48-Hour Returns', 'Protected Mobile Money'],
           ],
         },
       },
       {
-        sectionHeading: 'How doorstep verification saves ceremony weekends',
+        sectionHeading: 'How fast delivery and easy returns save ceremony weekends',
         paragraphs: [
-          'With Ve’s Doorstep Verification, ceremony guests can order an outfit on Thursday, try it on while the rider waits, inspect the hem and lining, and confirm delivery. If the fit isn’t perfect, an exchange or return happens immediately without losing money or missing the ceremony.',
+          'With Ve, ceremony guests can order ready-to-wear outfits days in advance and try them on at home. If you need a different size or style, quick 48-hour exchanges let you get the right piece without stress before your event.',
         ],
       },
     ],

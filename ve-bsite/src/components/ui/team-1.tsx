@@ -143,7 +143,7 @@ export const DEFAULT_VE_TEAM: TeamMember[] = [
     name: 'Joseph Kajjabwangu',
     role: 'Lead Engineer',
     image: '/images/hero-kampala-street.webp',
-    bio: 'Engineering resilient escrow payments and real-time courier verification infrastructure across Kampala.',
+    bio: 'Engineering resilient payment protection and real-time courier dispatch infrastructure across Kampala.',
     socials: [
       { icon: 'github', url: 'https://github.com' },
       { icon: 'twitter', url: 'https://twitter.com' },

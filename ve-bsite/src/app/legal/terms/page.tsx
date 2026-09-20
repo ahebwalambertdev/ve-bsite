@@ -8,10 +8,10 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: 'Terms of Service — Ve Fashion Marketplace',
   description:
-    'Official Terms of Service governing buyers, merchants, delivery couriers, 48-hour escrow protections, and platform usage in Uganda.',
+    'Official Terms of Service governing buyers, merchants, delivery couriers, payment protections, and platform usage in Uganda.',
   openGraph: {
     title: 'Ve Terms of Service',
-    description: 'Buyer and merchant agreements, escrow protection terms, and delivery liability.',
+    description: 'Buyer and merchant agreements, payment protection terms, and delivery liability.',
     url: 'https://www.veapp.store/legal/terms',
   },
 };

@@ -340,7 +340,7 @@ export default function AdminPreviewPage() {
                 2. Try-On on Your Phone
               </h3>
               <p className="text-xs text-neutral-600 leading-relaxed">
-                Snap a private photo to see outfits on your body so you know they fit before ordering.
+                Snap a private photo to see how outfits look on you before ordering.
               </p>
             </Card>
 
@@ -349,10 +349,10 @@ export default function AdminPreviewPage() {
                 <Bike className="w-5 h-5 text-dusty-olive" />
               </div>
               <h3 className="font-serif text-lg font-semibold text-carbon-black mb-1.5">
-                3. Check Before You Pay
+                3. Fast Delivery &amp; Easy Returns
               </h3>
               <p className="text-xs text-neutral-600 leading-relaxed">
-                Our rider brings packages to your door and waits while you verify before payment releases.
+                Orders arrive fast at your door across Kampala, backed by protected payments and easy 48-hour returns.
               </p>
             </Card>
           </div>
@@ -408,7 +408,7 @@ export default function AdminPreviewPage() {
                 Predictable Mobile Money Payouts
               </h3>
               <p className="text-xs text-neutral-600 leading-relaxed">
-                No fake SMS screenshots. Payments are escrow-protected and disburse directly to your MTN or Airtel wallet upon confirmed delivery.
+                No fake SMS screenshots. Payments are protected and disburse directly to your MTN or Airtel wallet upon confirmed delivery.
               </p>
             </Card>
 
@@ -425,10 +425,10 @@ export default function AdminPreviewPage() {
             <Card className="p-6 bg-snow border-soft-linen space-y-3">
               <Camera className="w-6 h-6 text-dusty-olive" />
               <h3 className="font-serif text-xl font-semibold text-carbon-black">
-                Zero Sizing Returns
+                Fewer Returns with Try-On
               </h3>
               <p className="text-xs text-neutral-600 leading-relaxed">
-                Shoppers see your items on their actual silhouette through Try-On before ordering, slashing size dispute returns by up to 80%.
+                Shoppers see how your outfits look on them through Try-On before ordering, helping them buy with confidence.
               </p>
             </Card>
 

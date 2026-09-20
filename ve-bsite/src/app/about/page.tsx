@@ -78,21 +78,21 @@ export default async function AboutPage() {
         id: 'p1',
         title: 'Try-On on Your Phone',
         description:
-          'Preview how clothes fit your body before ordering. Know your look before you tap buy—no sizing surprises.',
+          'See how clothes look on you before ordering. Preview outfits right on your phone so you can shop with confidence.',
         iconName: 'Sparkles',
       },
       {
         id: 'p2',
-        title: 'Protected Escrow Payments',
+        title: 'Protected Payments',
         description:
-          'Pay with MTN MoMo, Airtel Money, or card. We hold your payment safe until you inspect the order at delivery.',
+          'Pay with MTN MoMo, Airtel Money, or card. We hold your payment safe until your order is delivered.',
         iconName: 'ShieldCheck',
       },
       {
         id: 'p3',
-        title: 'Riders Who Wait for You',
+        title: 'Fast Delivery & Easy Returns',
         description:
-          'Our dedicated couriers wait patiently at your doorstep while you check the fabric, seams, and fit before you confirm.',
+          'Orders arrive fast at your door across Kampala, backed by simple 48-hour returns if you need a different size.',
         iconName: 'Truck',
       },
     ],

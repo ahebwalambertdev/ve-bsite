@@ -69,7 +69,7 @@ function StepCardContent({ step, index }: { step: HowItWorksStep; index: number 
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-carbon-black/50 via-transparent to-transparent h-28 pointer-events-none" />
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-carbon-black/95 via-carbon-black/80 via-45% to-transparent pointer-events-none" />
 
-      {/* Viewfinder visual accent for Step 2 (Virtual Try-on) */}
+      {/* Viewfinder visual accent for Step 2 (Try-On) */}
       {isViewfinderStep && (
         <div className="absolute inset-x-8 top-14 bottom-36 z-10 pointer-events-none opacity-40 group-hover:opacity-85 transition-opacity duration-300">
           <div className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-white rounded-tl-sm drop-shadow" />

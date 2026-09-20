@@ -55,7 +55,7 @@ export default function AppPage() {
               2. Try-On
             </h3>
             <p className="text-sm text-carbon-black/70 leading-relaxed">
-              Take one photo in private. See how any dress, jacket, or jeans looks on your shape so you know it fits before spending money. Every new account receives free try-on looks to start.
+              Take a photo in private. See how any dress, jacket, or streetwear looks on you before ordering. Every new account receives free try-on looks to start.
             </p>
           </Card>
 
@@ -65,10 +65,10 @@ export default function AppPage() {
               <Bike className="w-6 h-6 text-dusty-olive" />
             </div>
             <h3 className="font-serif text-xl font-semibold text-carbon-black mb-2">
-              3. Check Before You Pay
+              3. Fast Delivery &amp; Easy Returns
             </h3>
             <p className="text-sm text-carbon-black/70 leading-relaxed">
-              Our rider brings your package to your door and waits while you check the fabric and seams. You&apos;re always protected by easy 48-hour returns.
+              Orders arrive fast at your door across Kampala, backed by protected payments and easy 48-hour returns if you need a different size.
             </p>
           </Card>
         </div>

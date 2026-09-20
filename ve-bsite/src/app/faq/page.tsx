@@ -22,12 +22,12 @@ const FAQ_DATA = [
       {
         question: 'How does Ve protect my money when I buy clothes?',
         answer:
-          'When you place an order, Ve holds your payment safely in the middle. The boutique is only paid after our rider brings the package to your door and you confirm you love what you ordered. If the piece doesn’t fit, looks different from the pictures, or has a fault, your money is promptly returned to your MTN Mobile Money or Airtel Money.',
+          'When you place an order with MTN MoMo, Airtel Money, or card, Ve holds your payment safe until your order is delivered. Try your clothes on at home with complete peace of mind. If an item doesn’t fit or isn’t what you ordered, you can request an exchange or prompt refund directly in the app.',
       },
       {
         question: 'Which payment methods are accepted on Ve in Uganda?',
         answer:
-          'Ve accepts MTN Mobile Money, Airtel Money, and Visa/Mastercard debit and credit cards. You can also choose Cash on Delivery in central Kampala, where the courier collects payment only after you have inspected the garment.',
+          'Ve accepts MTN Mobile Money, Airtel Money, and Visa/Mastercard debit and credit cards, as well as Cash on Delivery for select deliveries.',
       },
       {
         question: 'How are prices and fees displayed at checkout?',
@@ -46,9 +46,9 @@ const FAQ_DATA = [
           'Orders in Central Kampala typically arrive the same day, often within hours. Deliveries to outer suburbs like Entebbe, Kira, and Mukono arrive same-day or the next morning depending on when you place your order.',
       },
       {
-        question: 'Can I open and check the package before the rider leaves?',
+        question: 'What if an item doesn’t fit or I change my mind after delivery?',
         answer:
-          'Yes, absolutely! Checking your package before the rider leaves is encouraged for every delivery on Ve. Our riders will gladly wait at your door while you verify the fabric, seams, zipper, and size before you confirm.',
+          'You have 48 hours to try on your clothes at home in complete comfort. If an item doesn’t fit or you need an exchange, simply tap Return or Exchange in the app. A rider will be dispatched to collect the package, and your refund or exchange is handled promptly.',
       },
       {
         question: 'How much does delivery cost?',
@@ -74,18 +74,18 @@ const FAQ_DATA = [
     ],
   },
   {
-    category: 'Try-On & Sizing',
+    category: 'Try-On',
     icon: Camera,
     items: [
       {
         question: 'How does Try-On work on my phone?',
         answer:
-          'Try-On lets you see clothes on your own body before ordering. Snap a single full-length photo of yourself in the app, and Ve realistically displays how outfits look on your shape. Every new account receives free try-on looks right away to test their fits.',
+          'Try-On lets you see how outfits look on you before ordering. Snap a single photo of yourself in the app, and Ve shows you the look and style on your photo. It is designed to help you preview how clothes look, not as a sizing calculator. Every new account receives free try-on looks to start.',
       },
       {
         question: 'Are my Try-On photos kept private?',
         answer:
-          'Yes, 100% private. Your photos are strictly for your eyes only. Boutiques, other shoppers, and riders never see them, and they are never posted anywhere publicly. You can also delete your fitting photo in the app anytime with one tap.',
+          'Yes, 100% private. Your photos are strictly for your eyes only. Boutiques, other shoppers, and riders never see them, and they are never posted anywhere publicly. You can also delete your photo in the app anytime with one tap.',
       },
     ],
   },
@@ -132,7 +132,7 @@ export default async function FAQPage() {
     ? Array.from(new Set(publishedFaqs.map((f) => f.category || 'General'))).map((catName) => {
         let Icon = HelpCircle;
         const lower = catName.toLowerCase();
-        if (lower.includes('payment') || lower.includes('escrow') || lower.includes('refund')) Icon = ShieldCheck;
+        if (lower.includes('payment') || lower.includes('refund') || lower.includes('protect')) Icon = ShieldCheck;
         else if (lower.includes('deliver') || lower.includes('timing')) Icon = Bike;
         else if (lower.includes('try-on') || lower.includes('sizing')) Icon = Camera;
         else if (lower.includes('return') || lower.includes('swap')) Icon = RotateCcw;

@@ -139,7 +139,7 @@ export function HeroSection({ onOpenDemo, dynamicContent }: HeroSectionProps) {
             style={{ textShadow: '0 1px 8px rgba(0,0,0,0.95)' }}
           >
             {dynamicContent?.subHeadline ||
-              'The Ve mobile app is coming soon. See how clothes look on you before you order, and pay only after you check your delivery.'}
+              'The Ve mobile app is coming soon. See how clothes look on you before you order, with protected payments and easy 48-hour returns.'}
           </p>
 
           {/* Action Buttons */}
@@ -197,7 +197,7 @@ export function HeroSection({ onOpenDemo, dynamicContent }: HeroSectionProps) {
         <div className="space-y-4 text-sm text-neutral-600 leading-relaxed">
           <p>
             {dynamicContent?.demoVideoDescription ||
-              'Ve is built for Kampala’s vibrant fashion culture. Our mobile app combines video discovery with Try-On sizing right on your phone.'}
+              'Ve is built for Kampala’s vibrant fashion culture. Our mobile app combines video discovery with Try-On right on your phone.'}
           </p>
           <AspectContainer ratio="video">
             <div className="absolute inset-0 bg-carbon-black flex flex-col items-center justify-center text-snow p-6 text-center">
