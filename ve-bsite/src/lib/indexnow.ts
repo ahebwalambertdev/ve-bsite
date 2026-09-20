@@ -10,17 +10,17 @@ const KEY_LOCATION = `https://${SITE_HOST}/${INDEXNOW_KEY}.txt`;
 
 /** All public pages on the site */
 export const ALL_PUBLIC_URLS = [
-  'https://veapp.store/',
-  'https://veapp.store/app',
-  'https://veapp.store/sell',
-  'https://veapp.store/about',
-  'https://veapp.store/team',
-  'https://veapp.store/faq',
-  'https://veapp.store/contact',
-  'https://veapp.store/journal',
-  'https://veapp.store/press',
-  'https://veapp.store/legal/privacy',
-  'https://veapp.store/legal/terms',
+  'https://www.veapp.store/',
+  'https://www.veapp.store/app',
+  'https://www.veapp.store/sell',
+  'https://www.veapp.store/about',
+  'https://www.veapp.store/team',
+  'https://www.veapp.store/faq',
+  'https://www.veapp.store/contact',
+  'https://www.veapp.store/journal',
+  'https://www.veapp.store/press',
+  'https://www.veapp.store/legal/privacy',
+  'https://www.veapp.store/legal/terms',
 ];
 
 /**
