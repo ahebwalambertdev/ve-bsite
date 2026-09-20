@@ -34,11 +34,22 @@ export async function POST(req: NextRequest) {
       // Revalidation error ignored if not in ISR context
     }
 
+    // Ping IndexNow to instantly notify Bing, Yandex, Copilot, ChatGPT, Perplexity
+    let indexNowStatus = 'skipped';
+    try {
+      const { submitAllToIndexNow } = await import('@/lib/indexnow');
+      const indexResult = await submitAllToIndexNow();
+      indexNowStatus = indexResult.success ? 'ok' : `failed (${indexResult.status})`;
+    } catch {
+      indexNowStatus = 'error';
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Published successfully and site revalidated.',
       data: result.data,
       publishedAt: new Date().toISOString(),
+      indexNow: indexNowStatus,
     });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Publish failed';
