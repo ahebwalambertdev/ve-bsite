@@ -4,12 +4,16 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   CheckCircle2, 
   ShieldCheck, 
   Copy, 
   Sparkles, 
   ArrowRight, 
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
   Store, 
   Share2, 
   Clock,
@@ -58,6 +62,7 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [showSurvey, setShowSurvey] = useState(false);
+  const [surveyStep, setSurveyStep] = useState(0);
   const [surveyCompleted, setSurveyCompleted] = useState(false);
   const [isSurveySubmitting, setIsSurveySubmitting] = useState(false);
 
@@ -299,226 +304,360 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                 </div>
               </div>
 
-              <div className="p-4 bg-snow rounded-xl border border-soft-linen space-y-2 text-xs text-carbon-black/70">
-                <div className="font-semibold text-carbon-black flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-dusty-olive" />
-                  Early Member Perks Unlocked:
-                </div>
-                <ul className="list-disc list-inside space-y-1 pl-1">
-                  <li>Free Try-On looks on launch</li>
-                  <li>First access to limited boutique drop notifications</li>
-                  <li>Priority invite to Kampala private beta</li>
-                </ul>
-              </div>
-
-              {/* Special Early Adopter Perk: Free First Delivery Questionnaire */}
+              {/* Special Early Adopter Perk: Free First Delivery Question-by-Question Form */}
               {surveyCompleted ? (
-                <div className="p-5 bg-snow rounded-xl border-2 border-dusty-olive shadow-subtle space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-dusty-olive text-snow flex items-center justify-center flex-shrink-0">
+                <div className="p-5 bg-snow rounded-xl border-2 border-dusty-olive shadow-subtle space-y-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-full bg-dusty-olive text-snow flex items-center justify-center flex-shrink-0">
                       <Check className="w-4 h-4" />
                     </div>
-                    <h4 className="font-serif text-base font-semibold text-carbon-black">
-                      100% Free First Delivery Unlocked!
-                    </h4>
+                    <div>
+                      <span className="inline-block text-[10px] font-mono uppercase tracking-widest text-dusty-olive-dark font-semibold">
+                        Early Member Voucher
+                      </span>
+                      <h4 className="font-serif text-lg font-semibold text-carbon-black">
+                        100% Free First Delivery Unlocked!
+                      </h4>
+                    </div>
                   </div>
-                  <p className="text-xs text-carbon-black/75 leading-relaxed pl-8">
-                    Your contact (<strong className="text-carbon-black">{contact || 'your contact'}</strong>) is credited with a free first delivery voucher across Kampala. We&apos;ll send your voucher code when beta goes live.
+                  <p className="text-xs text-carbon-black/75 leading-relaxed">
+                    Your contact (<strong className="text-carbon-black">{contact || 'your contact'}</strong>) is credited with a free first delivery voucher across Kampala. We&apos;ll SMS/WhatsApp your voucher code when private beta opens.
                   </p>
-                  <div className="pl-8 pt-1">
+                  <div className="flex items-center gap-2 p-2.5 bg-soft-linen/30 rounded-lg border border-soft-linen text-xs font-mono text-carbon-black">
+                    <Gift className="w-4 h-4 text-dusty-olive" />
+                    <span>VOUCHER: <strong>VE-FIRST-FREE</strong> (Active for {deliveryArea || 'Kampala'})</span>
+                  </div>
+                  <div className="pt-1">
                     <button
                       type="button"
-                      onClick={() => setShowSurvey(true)}
+                      onClick={() => {
+                        setSurveyStep(0);
+                        setShowSurvey(true);
+                      }}
                       className="text-xs text-dusty-olive-dark hover:underline font-medium cursor-pointer"
                     >
-                      Update style &amp; delivery preferences →
+                      Review or update preferences →
                     </button>
                   </div>
                 </div>
               ) : showSurvey ? (
-                <div className="p-6 bg-snow rounded-xl border border-dusty-olive/60 shadow-subtle space-y-5">
-                  <div className="space-y-1 border-b border-soft-linen pb-3">
-                    <div className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-dusty-olive-dark bg-soft-linen/50 px-2 py-0.5 rounded-full">
-                      <Gift className="w-3 h-3 text-dusty-olive" />
-                      Free Delivery Questionnaire
+                <div className="p-5 sm:p-6 bg-snow rounded-xl border border-dusty-olive/60 shadow-subtle space-y-4">
+                  {/* Gamified Progress Bar & Milestone Header */}
+                  <div className="space-y-2 border-b border-soft-linen pb-3">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-semibold text-carbon-black flex items-center gap-1.5">
+                        <Gift className="w-4 h-4 text-dusty-olive" />
+                        Question {surveyStep + 1} of 5
+                      </span>
+                      <span className="font-mono font-medium text-dusty-olive-dark bg-dusty-olive/10 px-2.5 py-0.5 rounded-full text-[11px]">
+                        {Math.round(((surveyStep + 1) / 5) * 100)}% to Free Delivery
+                      </span>
                     </div>
-                    <h4 className="font-serif text-xl font-semibold text-carbon-black">
-                      Style &amp; Delivery Preferences
-                    </h4>
-                    <p className="text-xs text-carbon-black/65">
-                      Answer 5 quick questions so our boutiques stock what you love. Unlocks free delivery on your first order.
+
+                    {/* Progress Bar Track */}
+                    <div className="w-full bg-soft-linen rounded-full h-2 overflow-hidden">
+                      <motion.div
+                        className="bg-dusty-olive h-full rounded-full"
+                        initial={false}
+                        animate={{ width: `${Math.round(((surveyStep + 1) / 5) * 100)}%` }}
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                      />
+                    </div>
+
+                    {/* Gamified Prize Motivation Line */}
+                    <p className="text-[11px] text-neutral-600 font-medium pt-0.5">
+                      {surveyStep === 0 && '🎁 Step 1 of 5: Where do you usually buy clothes in Kampala?'}
+                      {surveyStep === 1 && '🎁 Step 2 of 5: What is your biggest headache when shopping online?'}
+                      {surveyStep === 2 && '🎁 Step 3 of 5: Halfway! What fashion styles are you eager to browse on Ve?'}
+                      {surveyStep === 3 && '🎁 Step 4 of 5: Almost there! What excites you most about Try-On on your phone?'}
+                      {surveyStep === 4 && '🎉 Final Step: What neighborhood in Kampala should we deliver your order to?'}
                     </p>
                   </div>
 
                   <form onSubmit={handleSurveySubmit} className="space-y-4 text-xs">
-                    {/* Q1: Shopping Habits */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        1. Where do you usually buy clothes in Kampala? <span className="text-carbon-black/50 font-normal">(choose any)</span>
-                      </label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-                        {[
-                          'Downtown Arcades (Gazaland, Pioneer, Mukwano)',
-                          'Boutiques in Ntinda, Kisementi, Bugolobi',
-                          'Instagram & WhatsApp DM sellers',
-                          'Shein & overseas cargo brokers',
-                          'Curated thrift & Owino market',
-                        ].map((item) => (
-                          <label
-                            key={item}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              shoppingHabits.includes(item)
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={shoppingHabits.includes(item)}
-                              onChange={() => toggleShoppingHabit(item)}
-                              className="accent-dusty-olive rounded"
-                            />
-                            <span>{item}</span>
+                    <AnimatePresence mode="wait">
+                      {/* STEP 0: Shopping Habits */}
+                      {surveyStep === 0 && (
+                        <motion.div
+                          key="step-0"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            Where do you usually buy clothes in Kampala?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Select all that apply
+                            </span>
                           </label>
-                        ))}
-                      </div>
-                    </div>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Downtown Arcades (Gazaland, Pioneer, Mukwano)',
+                              'Boutiques in Ntinda, Kisementi, Bugolobi',
+                              'Instagram & WhatsApp DM sellers',
+                              'Shein & overseas cargo brokers',
+                              'Curated thrift & Owino market',
+                            ].map((item) => (
+                              <label
+                                key={item}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  shoppingHabits.includes(item)
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={shoppingHabits.includes(item)}
+                                  onChange={() => toggleShoppingHabit(item)}
+                                  className="accent-dusty-olive rounded w-4 h-4"
+                                />
+                                <span>{item}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
 
-                    {/* Q2: Online Frustration */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        2. What is your biggest headache when shopping online?
-                      </label>
-                      <div className="space-y-1.5 pt-1">
-                        {[
-                          'Sizes are wrong or fit poorly',
-                          'What arrives looks nothing like the photo',
-                          'Waiting 2-4 weeks for overseas delivery',
-                          'Impossible returns / sellers ghosting after payment',
-                          'Expensive delivery charges',
-                        ].map((frust) => (
-                          <label
-                            key={frust}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              onlineFrustration === frust
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name="online-frustration"
-                              value={frust}
-                              checked={onlineFrustration === frust}
-                              onChange={() => setOnlineFrustration(frust)}
-                              className="accent-dusty-olive"
-                            />
-                            <span>{frust}</span>
+                      {/* STEP 1: Online Frustration */}
+                      {surveyStep === 1 && (
+                        <motion.div
+                          key="step-1"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            What is your biggest headache when shopping online?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Pick your single biggest challenge
+                            </span>
                           </label>
-                        ))}
-                      </div>
-                    </div>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Sizes are wrong or fit poorly',
+                              'What arrives looks nothing like the photo',
+                              'Waiting 2-4 weeks for overseas delivery',
+                              'Impossible returns / sellers ghosting after payment',
+                              'Expensive delivery charges',
+                            ].map((frust) => (
+                              <label
+                                key={frust}
+                                onClick={() => setOnlineFrustration(frust)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  onlineFrustration === frust
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="online-frustration"
+                                  value={frust}
+                                  checked={onlineFrustration === frust}
+                                  onChange={() => setOnlineFrustration(frust)}
+                                  className="accent-dusty-olive w-4 h-4"
+                                />
+                                <span>{frust}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
 
-                    {/* Q3: Categories */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        3. What styles are you most eager to browse on Ve? <span className="text-carbon-black/50 font-normal">(choose any)</span>
-                      </label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-                        {[
-                          'Everyday casual & streetwear',
-                          'Office, blazer & workwear dresses',
-                          'Ceremony & wedding outfits (Kwanjula/party)',
-                          'Footwear, sneakers & heels',
-                          'Bags, jewelry & accessories',
-                        ].map((cat) => (
-                          <label
-                            key={cat}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              styleCategories.includes(cat)
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={styleCategories.includes(cat)}
-                              onChange={() => toggleStyleCategory(cat)}
-                              className="accent-dusty-olive rounded"
-                            />
-                            <span>{cat}</span>
+                      {/* STEP 2: Style Categories */}
+                      {surveyStep === 2 && (
+                        <motion.div
+                          key="step-2"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            What styles are you most eager to browse on Ve?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Choose all you like to wear
+                            </span>
                           </label>
-                        ))}
-                      </div>
-                    </div>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Everyday casual & streetwear',
+                              'Office, blazer & workwear dresses',
+                              'Ceremony & wedding outfits (Kwanjula/party)',
+                              'Footwear, sneakers & heels',
+                              'Bags, jewelry & accessories',
+                            ].map((cat) => (
+                              <label
+                                key={cat}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  styleCategories.includes(cat)
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={styleCategories.includes(cat)}
+                                  onChange={() => toggleStyleCategory(cat)}
+                                  className="accent-dusty-olive rounded w-4 h-4"
+                                />
+                                <span>{cat}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
 
-                    {/* Q4: Try-On Excitement */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        4. What excites you most about Try-On on your phone?
-                      </label>
-                      <div className="space-y-1.5 pt-1">
-                        {[
-                          'Seeing if an outfit matches my body and style before paying',
-                          'Trying multiple outfits in seconds without undressing',
-                          'Never wasting money on clothes that end up unworn in my closet',
-                        ].map((reason) => (
-                          <label
-                            key={reason}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              tryOnExcitement === reason
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name="tryon-excitement"
-                              value={reason}
-                              checked={tryOnExcitement === reason}
-                              onChange={() => setTryOnExcitement(reason)}
-                              className="accent-dusty-olive"
-                            />
-                            <span>{reason}</span>
+                      {/* STEP 3: Try-On Excitement */}
+                      {surveyStep === 3 && (
+                        <motion.div
+                          key="step-3"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            What excites you most about Try-On on your phone?
                           </label>
-                        ))}
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Seeing if an outfit matches my body and style before paying',
+                              'Trying multiple outfits in seconds without undressing',
+                              'Never wasting money on clothes that end up unworn in my closet',
+                            ].map((reason) => (
+                              <label
+                                key={reason}
+                                onClick={() => setTryOnExcitement(reason)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  tryOnExcitement === reason
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="tryon-excitement"
+                                  value={reason}
+                                  checked={tryOnExcitement === reason}
+                                  onChange={() => setTryOnExcitement(reason)}
+                                  className="accent-dusty-olive w-4 h-4"
+                                />
+                                <span>{reason}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {/* STEP 4: Delivery Area */}
+                      {surveyStep === 4 && (
+                        <motion.div
+                          key="step-4"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label htmlFor="delivery-area-input" className="font-semibold text-carbon-black block text-sm">
+                            What neighborhood in Kampala do you receive packages in?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Type your area or tap a popular zone below
+                            </span>
+                          </label>
+                          <input
+                            id="delivery-area-input"
+                            type="text"
+                            required
+                            value={deliveryArea}
+                            onChange={(e) => setDeliveryArea(e.target.value)}
+                            placeholder="e.g. Ntinda, Kololo, Kira, Najjera, Entebbe Road..."
+                            className="w-full px-3.5 py-2.5 rounded-lg border border-soft-linen bg-snow text-carbon-black placeholder:text-carbon-black/40 focus:outline-none focus:ring-2 focus:ring-dusty-olive text-xs"
+                          />
+                          <div className="pt-1 space-y-1">
+                            <span className="text-[10px] text-neutral-500 font-semibold uppercase tracking-wider block">
+                              Quick tap:
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {['Ntinda', 'Kololo', 'Kisementi', 'Bugolobi', 'Naalya', 'Kira', 'Kampala Central', 'Entebbe Rd'].map((place) => (
+                                <button
+                                  key={place}
+                                  type="button"
+                                  onClick={() => setDeliveryArea(place)}
+                                  className={`px-2.5 py-1 rounded-full text-[11px] border transition-colors ${
+                                    deliveryArea === place
+                                      ? 'bg-dusty-olive text-snow border-dusty-olive font-medium'
+                                      : 'bg-soft-linen/30 border-soft-linen text-carbon-black/80 hover:bg-soft-linen/70'
+                                  }`}
+                                >
+                                  {place}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Step Navigation Controls */}
+                    <div className="pt-3 flex items-center justify-between gap-2 border-t border-soft-linen">
+                      {surveyStep > 0 ? (
+                        <button
+                          type="button"
+                          onClick={() => setSurveyStep((s) => s - 1)}
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-neutral-600 hover:text-carbon-black cursor-pointer px-2 py-1 rounded"
+                        >
+                          <ChevronLeft className="w-3.5 h-3.5" />
+                          Back
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setShowSurvey(false)}
+                          className="text-xs text-neutral-500 hover:text-carbon-black hover:underline cursor-pointer"
+                        >
+                          Maybe later
+                        </button>
+                      )}
+
+                      <div className="flex items-center gap-2">
+                        {surveyStep < 4 ? (
+                          <Button
+                            type="button"
+                            variant="primary"
+                            size="sm"
+                            disabled={
+                              (surveyStep === 0 && shoppingHabits.length === 0) ||
+                              (surveyStep === 1 && !onlineFrustration) ||
+                              (surveyStep === 2 && styleCategories.length === 0) ||
+                              (surveyStep === 3 && !tryOnExcitement)
+                            }
+                            onClick={() => setSurveyStep((s) => s + 1)}
+                            className="font-semibold cursor-pointer"
+                          >
+                            Next Question
+                            <ChevronRight className="w-3.5 h-3.5 ml-1" />
+                          </Button>
+                        ) : (
+                          <Button
+                            type="submit"
+                            variant="accent"
+                            size="sm"
+                            disabled={!deliveryArea.trim() || isSurveySubmitting}
+                            className="font-semibold cursor-pointer"
+                          >
+                            {isSurveySubmitting ? 'Unlocking Voucher...' : 'Claim Free First Delivery 🎁'}
+                          </Button>
+                        )}
                       </div>
-                    </div>
-
-                    {/* Q5: Delivery Area */}
-                    <div className="space-y-1.5">
-                      <label htmlFor="delivery-area-input" className="font-semibold text-carbon-black block">
-                        5. What neighborhood in Kampala do you receive packages in?
-                      </label>
-                      <input
-                        id="delivery-area-input"
-                        type="text"
-                        required
-                        value={deliveryArea}
-                        onChange={(e) => setDeliveryArea(e.target.value)}
-                        placeholder="e.g. Ntinda, Kololo, Kira, Najjera, Entebbe Road..."
-                        className="w-full px-3.5 py-2.5 rounded-lg border border-soft-linen bg-snow text-carbon-black placeholder:text-carbon-black/40 focus:outline-none focus:ring-2 focus:ring-dusty-olive"
-                      />
-                    </div>
-
-                    <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-soft-linen">
-                      <Button
-                        type="submit"
-                        variant="primary"
-                        size="md"
-                        disabled={isSurveySubmitting}
-                        className="w-full sm:w-auto font-semibold cursor-pointer"
-                      >
-                        {isSurveySubmitting ? 'Unlocking Voucher...' : 'Unlock Free Delivery Voucher'}
-                        <ArrowRight className="w-4 h-4 ml-1.5" />
-                      </Button>
-                      <button
-                        type="button"
-                        onClick={() => setShowSurvey(false)}
-                        className="text-xs text-neutral-500 hover:text-carbon-black hover:underline cursor-pointer"
-                      >
-                        Maybe later
-                      </button>
                     </div>
                   </form>
                 </div>
@@ -527,23 +666,26 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                   <div className="space-y-1">
                     <div className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-dusty-olive-dark bg-soft-linen/50 px-2 py-0.5 rounded-full">
                       <Gift className="w-3 h-3 text-dusty-olive" />
-                      Extra Early Adopter Perk
+                      Early Adopter Perk
                     </div>
                     <h4 className="font-serif text-lg font-semibold text-carbon-black">
                       Want Free First Delivery on Launch Day?
                     </h4>
                     <p className="text-xs text-carbon-black/70 leading-relaxed">
-                      Complete our 60-second Style &amp; Delivery Preferences so our verified boutiques stock what you actually want. We&apos;ll credit your account with 100% free delivery on your first order.
+                      Complete our 60-second Style &amp; Delivery Preferences so our verified boutiques stock what you actually want. We&apos;ll credit your contact with 100% free delivery across Kampala on your first order.
                     </p>
                   </div>
                   <Button
                     type="button"
-                    onClick={() => setShowSurvey(true)}
+                    onClick={() => {
+                      setSurveyStep(0);
+                      setShowSurvey(true);
+                    }}
                     variant="accent"
                     size="sm"
                     className="w-full sm:w-auto font-semibold cursor-pointer"
                   >
-                    Claim Free First Delivery →
+                    Claim Free First Delivery (60s) →
                   </Button>
                 </div>
               )}

@@ -58,7 +58,12 @@ export const getCmsData = cache(async (): Promise<SiteCmsData> => {
     return memoryCmsCache;
   }
 
-  // 1. Try Supabase if configured
+  // 1. Read local repository CMS file or default data as base truth
+  const diskData = readLocalCmsFile();
+  const localData: SiteCmsData = diskData || { ...DEFAULT_CMS_DATA };
+  const localTimestamp = new Date(localData.lastUpdated || 0).getTime();
+
+  // 2. Try Supabase if configured
   try {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     if (supabaseUrl && !supabaseUrl.includes('placeholder')) {
@@ -69,6 +74,38 @@ export const getCmsData = cache(async (): Promise<SiteCmsData> => {
         .single();
 
       if (!error && data?.data) {
+        const supabaseTimestamp = new Date(data.updated_at || data.data?.lastUpdated || 0).getTime();
+        const rawJsonString = JSON.stringify(data.data);
+        const hasOutdatedTerms =
+          rawJsonString.includes('Check Before You Pay') ||
+          rawJsonString.toLowerCase().includes('escrow') ||
+          rawJsonString.toLowerCase().includes('waterproof bag');
+
+        // If local repository code is newer than Supabase OR if Supabase has outdated terms:
+        // Use the clean repository data and sync it back to Supabase
+        if (localTimestamp > supabaseTimestamp || hasOutdatedTerms) {
+          memoryCmsCache = localData;
+          isDataLoaded = true;
+
+          // Asynchronously sync the updated codebase content to Supabase in the background
+          try {
+            const client = getServiceSupabase();
+            client
+              .from('site_cms_data')
+              .upsert({
+                id: 'main',
+                data: localData,
+                updated_at: new Date().toISOString(),
+              })
+              .then(() => {});
+          } catch {
+            // Silently continue
+          }
+
+          return memoryCmsCache;
+        }
+
+        // Otherwise Supabase was deliberately edited after code deployment
         memoryCmsCache = {
           ...DEFAULT_CMS_DATA,
           ...data.data,
@@ -97,14 +134,8 @@ export const getCmsData = cache(async (): Promise<SiteCmsData> => {
     // Supabase network or schema fallback
   }
 
-  // 2. Try reading persistent local file from disk
-  const diskData = readLocalCmsFile();
-  if (diskData) {
-    memoryCmsCache = diskData;
-    isDataLoaded = true;
-    return memoryCmsCache;
-  }
-
+  // 3. Fallback to local data
+  memoryCmsCache = localData;
   isDataLoaded = true;
   return memoryCmsCache;
 });

@@ -4,10 +4,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   CheckCircle2, 
   Store, 
   ArrowRight, 
+  ChevronLeft,
+  ChevronRight,
   MessageCircle, 
   Sparkles, 
   Bike, 
@@ -53,6 +56,7 @@ export function VendorApplicationClient() {
 
   // Operations Profile (Tier 2 Unlock) State
   const [showOperationsProfile, setShowOperationsProfile] = useState(false);
+  const [operationsStep, setOperationsStep] = useState(0);
   const [operationsCompleted, setOperationsCompleted] = useState(false);
   const [isOperationsSubmitting, setIsOperationsSubmitting] = useState(false);
 
@@ -356,266 +360,397 @@ export function VendorApplicationClient() {
                 </ul>
               </div>
 
-              {/* Special Early Adopter Perk: 1 Month of Tier 2 Growth Package Free */}
+              {/* Special Early Adopter Perk: 1 Month of Growth Package Free Question-by-Question Form */}
               {operationsCompleted ? (
-                <div className="p-5 bg-snow rounded-xl border-2 border-dusty-olive shadow-subtle space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-dusty-olive text-snow flex items-center justify-center flex-shrink-0">
+                <div className="p-5 bg-snow rounded-xl border-2 border-dusty-olive shadow-subtle space-y-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-full bg-dusty-olive text-snow flex items-center justify-center flex-shrink-0">
                       <Check className="w-4 h-4" />
                     </div>
-                    <h4 className="font-serif text-base font-semibold text-carbon-black">
-                      Tier 2 (Growth Package) Unlocked Free for 1 Month!
-                    </h4>
+                    <div>
+                      <span className="inline-block text-[10px] font-mono uppercase tracking-widest text-dusty-olive-dark font-semibold">
+                        Partner Perk Unlocked
+                      </span>
+                      <h4 className="font-serif text-lg font-semibold text-carbon-black">
+                        Growth Package Unlocked Free for 1 Month!
+                      </h4>
+                    </div>
                   </div>
-                  <p className="text-xs text-carbon-black/75 leading-relaxed pl-8">
+                  <p className="text-xs text-carbon-black/75 leading-relaxed">
                     Your boutique (<strong className="text-carbon-black">{boutiqueName || 'Your Boutique'}</strong>) is credited with 1 month of complimentary Growth Tier access upon launch (featured catalog placement, dedicated counter pickup, and studio photo enhancement).
                   </p>
-                  <div className="pl-8 pt-1">
+                  <div className="flex items-center gap-2 p-2.5 bg-soft-linen/30 rounded-lg border border-soft-linen text-xs font-mono text-carbon-black">
+                    <Award className="w-4 h-4 text-dusty-olive" />
+                    <span>STATUS: <strong>TIER-2 GROWTH TIER ACTIVATED (UGX 150,000 VALUE)</strong></span>
+                  </div>
+                  <div className="pt-1">
                     <button
                       type="button"
-                      onClick={() => setShowOperationsProfile(true)}
+                      onClick={() => {
+                        setOperationsStep(0);
+                        setShowOperationsProfile(true);
+                      }}
                       className="text-xs text-dusty-olive-dark hover:underline font-medium cursor-pointer"
                     >
-                      Update boutique operations profile →
+                      Review or update operations profile →
                     </button>
                   </div>
                 </div>
               ) : showOperationsProfile ? (
-                <div className="p-6 bg-snow rounded-xl border border-dusty-olive/60 shadow-subtle space-y-5">
-                  <div className="space-y-1 border-b border-soft-linen pb-3">
-                    <div className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-dusty-olive-dark bg-soft-linen/50 px-2 py-0.5 rounded-full">
-                      <Award className="w-3 h-3 text-dusty-olive" />
-                      Early Merchant Growth Perk
+                <div className="p-5 sm:p-6 bg-snow rounded-xl border border-dusty-olive/60 shadow-subtle space-y-4">
+                  {/* Gamified Progress Bar & Milestone Header */}
+                  <div className="space-y-2 border-b border-soft-linen pb-3">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-semibold text-carbon-black flex items-center gap-1.5">
+                        <Award className="w-4 h-4 text-dusty-olive" />
+                        Question {operationsStep + 1} of 6
+                      </span>
+                      <span className="font-mono font-medium text-dusty-olive-dark bg-dusty-olive/10 px-2.5 py-0.5 rounded-full text-[11px]">
+                        {Math.round(((operationsStep + 1) / 6) * 100)}% to Free Growth Tier
+                      </span>
                     </div>
-                    <h4 className="font-serif text-xl font-semibold text-carbon-black">
-                      Boutique Operations &amp; Needs Profile
-                    </h4>
-                    <p className="text-xs text-carbon-black/65">
-                      Answer 6 quick questions so we configure Ve to your shop routine. Unlocks 1 Month of our Tier 2 Growth Package for free.
+
+                    {/* Progress Bar Track */}
+                    <div className="w-full bg-soft-linen rounded-full h-2 overflow-hidden">
+                      <motion.div
+                        className="bg-dusty-olive h-full rounded-full"
+                        initial={false}
+                        animate={{ width: `${Math.round(((operationsStep + 1) / 6) * 100)}%` }}
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                      />
+                    </div>
+
+                    {/* Gamified Prize Motivation Line */}
+                    <p className="text-[11px] text-neutral-600 font-medium pt-0.5">
+                      {operationsStep === 0 && '💼 Step 1 of 6: How does your boutique currently record daily sales & stock?'}
+                      {operationsStep === 1 && '📦 Step 2 of 6: Have you ever sold an outfit in your shop that an online buyer requested?'}
+                      {operationsStep === 2 && '🚚 Step 3 of 6: Halfway! How do you currently send clothes to remote customers?'}
+                      {operationsStep === 3 && '🛡️ Step 4 of 6: Do clothes ever go missing from hangers or counter cash not match?'}
+                      {operationsStep === 4 && '📸 Step 5 of 6: Almost there! How do you currently photograph clothes for your boutique?'}
+                      {operationsStep === 5 && '🎉 Final Question: Which Ve tool would make the biggest difference for your shop?'}
                     </p>
                   </div>
 
                   <form onSubmit={handleOperationsSubmit} className="space-y-4 text-xs">
-                    {/* Q1: Stock Tracking */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        1. How does your boutique currently record daily sales and stock?
-                      </label>
-                      <div className="space-y-1.5 pt-1">
-                        {[
-                          'Counter notebook and pen',
-                          'WhatsApp messages & mental notes',
-                          'Excel spreadsheet on phone or computer',
-                          'Point-of-Sale (POS) software',
-                        ].map((opt) => (
-                          <label
-                            key={opt}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              inventoryTracking === opt
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name="inventory-tracking"
-                              value={opt}
-                              checked={inventoryTracking === opt}
-                              onChange={() => setInventoryTracking(opt)}
-                              className="accent-dusty-olive"
-                            />
-                            <span>{opt}</span>
+                    <AnimatePresence mode="wait">
+                      {/* STEP 0: Stock Tracking */}
+                      {operationsStep === 0 && (
+                        <motion.div
+                          key="ops-step-0"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            How does your boutique currently record daily sales and stock?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Pick your current routine
+                            </span>
                           </label>
-                        ))}
-                      </div>
-                    </div>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Counter notebook and pen',
+                              'WhatsApp messages & mental notes',
+                              'Excel spreadsheet on phone or computer',
+                              'Point-of-Sale (POS) software',
+                            ].map((opt) => (
+                              <label
+                                key={opt}
+                                onClick={() => setInventoryTracking(opt)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  inventoryTracking === opt
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="inventory-tracking"
+                                  value={opt}
+                                  checked={inventoryTracking === opt}
+                                  onChange={() => setInventoryTracking(opt)}
+                                  className="accent-dusty-olive w-4 h-4"
+                                />
+                                <span>{opt}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
 
-                    {/* Q2: Double Selling */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        2. Have you ever sold an outfit in your shop that an online buyer had already requested?
-                      </label>
-                      <div className="space-y-1.5 pt-1">
-                        {[
-                          'Frequently — it causes big customer disappointment',
-                          'Once in a while',
-                          'Rarely or never',
-                        ].map((opt) => (
-                          <label
-                            key={opt}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              doubleSellingFrequency === opt
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name="double-selling"
-                              value={opt}
-                              checked={doubleSellingFrequency === opt}
-                              onChange={() => setDoubleSellingFrequency(opt)}
-                              className="accent-dusty-olive"
-                            />
-                            <span>{opt}</span>
+                      {/* STEP 1: Double Selling */}
+                      {operationsStep === 1 && (
+                        <motion.div
+                          key="ops-step-1"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            Have you ever sold an outfit in your shop that an online buyer had already requested?
                           </label>
-                        ))}
-                      </div>
-                    </div>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Frequently — it causes big customer disappointment',
+                              'Once in a while — we try to catch it manually',
+                              'Rarely or never — we keep strict tabs',
+                            ].map((opt) => (
+                              <label
+                                key={opt}
+                                onClick={() => setDoubleSellingFrequency(opt)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  doubleSellingFrequency === opt
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="double-selling"
+                                  value={opt}
+                                  checked={doubleSellingFrequency === opt}
+                                  onChange={() => setDoubleSellingFrequency(opt)}
+                                  className="accent-dusty-olive w-4 h-4"
+                                />
+                                <span>{opt}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
 
-                    {/* Q3: Delivery Method */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        3. How do you currently send clothes to customers who order remotely?
-                      </label>
-                      <div className="space-y-1.5 pt-1">
-                        {[
-                          'I stop what I am doing and bargain with street boda riders',
-                          'The customer arranges their own pickup rider',
-                          'SafeBoda / Farasi / courier apps',
-                          'No deliveries — customers must visit the boutique in person',
-                        ].map((opt) => (
-                          <label
-                            key={opt}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              deliveryMethod === opt
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name="delivery-method"
-                              value={opt}
-                              checked={deliveryMethod === opt}
-                              onChange={() => setDeliveryMethod(opt)}
-                              className="accent-dusty-olive"
-                            />
-                            <span>{opt}</span>
+                      {/* STEP 2: Delivery Method */}
+                      {operationsStep === 2 && (
+                        <motion.div
+                          key="ops-step-2"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            How do you currently send clothes to customers who order remotely?
                           </label>
-                        ))}
-                      </div>
-                    </div>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Bargain with street boda riders near the arcade',
+                              'The customer sends their own rider to pick up',
+                              'SafeBoda / Farasi on my phone',
+                              'We don’t do deliveries / in-person shop visits only',
+                            ].map((opt) => (
+                              <label
+                                key={opt}
+                                onClick={() => setDeliveryMethod(opt)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  deliveryMethod === opt
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="delivery-method"
+                                  value={opt}
+                                  checked={deliveryMethod === opt}
+                                  onChange={() => setDeliveryMethod(opt)}
+                                  className="accent-dusty-olive w-4 h-4"
+                                />
+                                <span>{opt}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
 
-                    {/* Q4: Stock Loss */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        4. Do you ever experience clothes going missing from hangers or counter cash not matching?
-                      </label>
-                      <div className="space-y-1.5 pt-1">
-                        {[
-                          'Yes, missing hanger stock is a real issue',
-                          'Yes, counter cash occasionally does not tally with sales',
-                          'No, I manage the shop counter myself 100% of the time',
-                        ].map((opt) => (
-                          <label
-                            key={opt}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              shrinkageIssue === opt
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name="shrinkage-issue"
-                              value={opt}
-                              checked={shrinkageIssue === opt}
-                              onChange={() => setShrinkageIssue(opt)}
-                              className="accent-dusty-olive"
-                            />
-                            <span>{opt}</span>
+                      {/* STEP 3: Stock Loss */}
+                      {operationsStep === 3 && (
+                        <motion.div
+                          key="ops-step-3"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            Do you ever experience clothes going missing from hangers or counter cash not matching?
                           </label>
-                        ))}
-                      </div>
-                    </div>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Yes, missing hanger stock is a real issue',
+                              'Yes, counter cash occasionally does not tally with sales',
+                              'No, I manage the shop counter myself 100% of the time',
+                            ].map((opt) => (
+                              <label
+                                key={opt}
+                                onClick={() => setShrinkageIssue(opt)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  shrinkageIssue === opt
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="shrinkage-issue"
+                                  value={opt}
+                                  checked={shrinkageIssue === opt}
+                                  onChange={() => setShrinkageIssue(opt)}
+                                  className="accent-dusty-olive w-4 h-4"
+                                />
+                                <span>{opt}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
 
-                    {/* Q5: Photography */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        5. How do you currently photograph clothes for your boutique?
-                      </label>
-                      <div className="space-y-1.5 pt-1">
-                        {[
-                          'Smartphone photos on a hanger or mannequin in the shop',
-                          'I or a friend model the outfits',
-                          'I hire a professional photographer / studio',
-                          'Manufacturer or stock photos from the internet',
-                        ].map((opt) => (
-                          <label
-                            key={opt}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              photographyMethod === opt
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name="photography-method"
-                              value={opt}
-                              checked={photographyMethod === opt}
-                              onChange={() => setPhotographyMethod(opt)}
-                              className="accent-dusty-olive"
-                            />
-                            <span>{opt}</span>
+                      {/* STEP 4: Photography */}
+                      {operationsStep === 4 && (
+                        <motion.div
+                          key="ops-step-4"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            How do you currently photograph clothes for your boutique?
                           </label>
-                        ))}
-                      </div>
-                    </div>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Smartphone photos on a hanger or mannequin in the shop',
+                              'I or a friend model the outfits',
+                              'I hire a professional photographer / studio',
+                              'Manufacturer or stock photos from the internet',
+                            ].map((opt) => (
+                              <label
+                                key={opt}
+                                onClick={() => setPhotographyMethod(opt)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  photographyMethod === opt
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="photography-method"
+                                  value={opt}
+                                  checked={photographyMethod === opt}
+                                  onChange={() => setPhotographyMethod(opt)}
+                                  className="accent-dusty-olive w-4 h-4"
+                                />
+                                <span>{opt}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
 
-                    {/* Q6: Top Feature */}
-                    <div className="space-y-1.5">
-                      <label className="font-semibold text-carbon-black block">
-                        6. Which Ve tool would make the biggest difference for your shop right now?
-                      </label>
-                      <div className="space-y-1.5 pt-1">
-                        {[
-                          'Automatic shop counter pickup by dedicated riders',
-                          'Never double-selling in-store vs online',
-                          'Clean studio photos with automatic background removal',
-                          'Guaranteed Mobile Money payouts with zero fake SMS receipts',
-                        ].map((opt) => (
-                          <label
-                            key={opt}
-                            className={`flex items-center gap-2 p-2 rounded-lg border text-[11px] cursor-pointer transition-colors ${
-                              topToolDesired === opt
-                                ? 'border-dusty-olive bg-soft-linen/30 text-carbon-black font-medium'
-                                : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name="top-tool"
-                              value={opt}
-                              checked={topToolDesired === opt}
-                              onChange={() => setTopToolDesired(opt)}
-                              className="accent-dusty-olive"
-                            />
-                            <span>{opt}</span>
+                      {/* STEP 5: Top Tool */}
+                      {operationsStep === 5 && (
+                        <motion.div
+                          key="ops-step-5"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            Which Ve tool would make the biggest difference for your shop right now?
                           </label>
-                        ))}
-                      </div>
-                    </div>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Automatic shop counter pickup by dedicated riders',
+                              'Never double-selling in-store vs online',
+                              'Clean studio photos with automatic background removal',
+                              'Guaranteed Mobile Money payouts with zero fake SMS receipts',
+                            ].map((opt) => (
+                              <label
+                                key={opt}
+                                onClick={() => setTopToolDesired(opt)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  topToolDesired === opt
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="top-tool"
+                                  value={opt}
+                                  checked={topToolDesired === opt}
+                                  onChange={() => setTopToolDesired(opt)}
+                                  className="accent-dusty-olive w-4 h-4"
+                                />
+                                <span>{opt}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
-                    <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-soft-linen">
-                      <Button
-                        type="submit"
-                        variant="primary"
-                        size="md"
-                        disabled={isOperationsSubmitting}
-                        className="w-full sm:w-auto font-semibold cursor-pointer"
-                      >
-                        {isOperationsSubmitting ? 'Unlocking Growth Tier...' : 'Unlock 1 Month Growth Tier Free'}
-                        <ArrowRight className="w-4 h-4 ml-1.5" />
-                      </Button>
-                      <button
-                        type="button"
-                        onClick={() => setShowOperationsProfile(false)}
-                        className="text-xs text-neutral-500 hover:text-carbon-black hover:underline cursor-pointer"
-                      >
-                        Maybe later
-                      </button>
+                    {/* Step Navigation Controls */}
+                    <div className="pt-3 flex items-center justify-between gap-2 border-t border-soft-linen">
+                      {operationsStep > 0 ? (
+                        <button
+                          type="button"
+                          onClick={() => setOperationsStep((s) => s - 1)}
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-neutral-600 hover:text-carbon-black cursor-pointer px-2 py-1 rounded"
+                        >
+                          <ChevronLeft className="w-3.5 h-3.5" />
+                          Back
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setShowOperationsProfile(false)}
+                          className="text-xs text-neutral-500 hover:text-carbon-black hover:underline cursor-pointer"
+                        >
+                          Maybe later
+                        </button>
+                      )}
+
+                      <div className="flex items-center gap-2">
+                        {operationsStep < 5 ? (
+                          <Button
+                            type="button"
+                            variant="primary"
+                            size="sm"
+                            disabled={
+                              (operationsStep === 0 && !inventoryTracking) ||
+                              (operationsStep === 1 && !doubleSellingFrequency) ||
+                              (operationsStep === 2 && !deliveryMethod) ||
+                              (operationsStep === 3 && !shrinkageIssue) ||
+                              (operationsStep === 4 && !photographyMethod)
+                            }
+                            onClick={() => setOperationsStep((s) => s + 1)}
+                            className="font-semibold cursor-pointer"
+                          >
+                            Next Question
+                            <ChevronRight className="w-3.5 h-3.5 ml-1" />
+                          </Button>
+                        ) : (
+                          <Button
+                            type="submit"
+                            variant="accent"
+                            size="sm"
+                            disabled={!topToolDesired || isOperationsSubmitting}
+                            className="font-semibold cursor-pointer"
+                          >
+                            {isOperationsSubmitting ? 'Unlocking Growth Tier...' : 'Claim 1 Month Free Growth Tier 🚀'}
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </form>
                 </div>
@@ -627,7 +762,7 @@ export function VendorApplicationClient() {
                       Early Boutique Partner Perk
                     </div>
                     <h4 className="font-serif text-lg font-semibold text-carbon-black">
-                      Unlock 1 Month of Tier 2 (Growth Package) Free
+                      Unlock 1 Month of Growth Package Free
                     </h4>
                     <p className="text-xs text-carbon-black/70 leading-relaxed">
                       Complete our 2-minute Boutique Operations Profile so we configure Ve to your shop routine. We&apos;ll upgrade your boutique to the Growth Tier (featured catalog placement, dedicated counter pickup, and studio photo enhancement) for your entire first month.
@@ -635,12 +770,15 @@ export function VendorApplicationClient() {
                   </div>
                   <Button
                     type="button"
-                    onClick={() => setShowOperationsProfile(true)}
+                    onClick={() => {
+                      setOperationsStep(0);
+                      setShowOperationsProfile(true);
+                    }}
                     variant="accent"
                     size="sm"
                     className="w-full sm:w-auto font-semibold cursor-pointer"
                   >
-                    Unlock 1 Month Growth Tier Free →
+                    Unlock 1 Month Growth Tier Free (2 min) →
                   </Button>
                 </div>
               )}
