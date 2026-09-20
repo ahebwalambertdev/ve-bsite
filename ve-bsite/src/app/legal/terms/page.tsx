@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ve Terms of Service',
     description: 'Buyer and merchant agreements, escrow protection terms, and delivery liability.',
-    url: 'https://veapp.store/legal/terms',
+    url: 'https://www.veapp.store/legal/terms',
   },
 };
 

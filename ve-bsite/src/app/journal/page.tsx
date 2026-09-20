@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'The Ve Journal — Fashion Culture & Sizing in Kampala',
     description: 'Boutique spotlights, fit guides, and Ugandan street fashion culture.',
-    url: 'https://veapp.store/journal',
+    url: 'https://www.veapp.store/journal',
   },
 };
 

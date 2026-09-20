@@ -30,7 +30,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/', '/admin', '/_next/'],
       },
     ],
-    sitemap: 'https://veapp.store/sitemap.xml',
-    host: 'https://veapp.store',
+    sitemap: 'https://www.veapp.store/sitemap.xml',
+    host: 'https://www.veapp.store',
   };
 }

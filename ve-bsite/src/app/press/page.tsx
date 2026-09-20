@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ve Press & Media Kit',
     description: 'Official logos, brand colors, and company overview.',
-    url: 'https://veapp.store/press',
+    url: 'https://www.veapp.store/press',
   },
 };
 

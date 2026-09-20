@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ve Privacy Policy — DPPA 2019 Compliance',
     description: 'How Ve protects your personal data, fitting photos, and Mobile Money numbers.',
-    url: 'https://veapp.store/legal/privacy',
+    url: 'https://www.veapp.store/legal/privacy',
   },
 };
 

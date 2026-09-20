@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Ve — Rebuilding Fashion Trust in Kampala',
     description: 'Ve is Kampala’s fashion discovery and Try-On marketplace.',
-    url: 'https://veapp.store/about',
+    url: 'https://www.veapp.store/about',
   },
 };
 

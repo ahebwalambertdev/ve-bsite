@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Ve — Direct Support in Kampala',
     description: 'WhatsApp live support, merchant inquiries, and digital operations coverage across Kampala.',
-    url: 'https://veapp.store/contact',
+    url: 'https://www.veapp.store/contact',
   },
 };
 

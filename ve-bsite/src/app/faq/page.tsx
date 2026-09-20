@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ve FAQ — Answers on Payments, Delivery, Try-On & Returns',
     description: 'Direct answers to how Ve protects buyers and boutiques across Kampala.',
-    url: 'https://veapp.store/faq',
+    url: 'https://www.veapp.store/faq',
   },
 };
 

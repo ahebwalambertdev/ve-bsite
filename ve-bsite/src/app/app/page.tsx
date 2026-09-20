@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Join the Waiting List — Ve Mobile App (Coming Soon)',
     description: 'Boutique fashion, Try-On, and safe doorstep delivery across Kampala. Coming soon.',
-    url: 'https://veapp.store/app',
+    url: 'https://www.veapp.store/app',
   },
 };
 

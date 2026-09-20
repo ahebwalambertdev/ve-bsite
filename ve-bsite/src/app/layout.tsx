@@ -34,14 +34,14 @@ export const metadata: Metadata = {
   },
   description:
     'Verified Kampala boutiques with Try-On, protected payments, and fast doorstep delivery.',
-  metadataBase: new URL('https://veapp.store'),
+  metadataBase: new URL('https://www.veapp.store'),
   openGraph: {
     type: 'website',
     siteName: 'Ve',
     title: 'Ve: Fashion, Found | Own your look',
     description:
       'Verified Kampala boutiques with Try-On, protected payments, and fast doorstep delivery.',
-    url: 'https://veapp.store',
+    url: 'https://www.veapp.store',
     images: [
       {
         url: '/api/og?title=Fashion%2C%20Found%20in%20Kampala&category=Verified%20Fashion%20Marketplace',
@@ -93,8 +93,8 @@ export default async function RootLayout({
               '@type': 'Organization',
               name: 'Ve',
               legalName: 'Ve Technologies Ltd',
-              url: 'https://veapp.store',
-              logo: 'https://veapp.store/icon.svg',
+              url: 'https://www.veapp.store',
+              logo: 'https://www.veapp.store/icon.svg',
               description:
                 'Kampala’s curated fashion marketplace featuring verified local boutiques, doorstep fit verification, and private Try-On.',
               sameAs: [
