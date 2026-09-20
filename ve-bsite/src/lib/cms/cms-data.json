@@ -74,20 +74,20 @@
   },
   "faqs": [
     {
-      "id": "payments",
-      "category": "Protected Payments & Returns",
-      "question": "How do I know my money is safe?",
-      "answer": "When you check out with MTN MoMo, Airtel Money, or card, we hold your payment safe until your delivery arrives. Try your clothes on at home with peace of mind. If an item doesn’t fit or isn’t what you ordered, you get a quick refund or exchange.",
-      "iconName": "ShieldCheck",
+      "id": "arcade-vs-ve",
+      "category": "Shopping in Kampala",
+      "question": "Why shop on Ve instead of walking through Kampala arcades and plazas?",
+      "answer": "Over 55% of Kampala shoppers say finding outfits in downtown arcades like Gazaland or Pioneer Mall takes too long, plus heat, traffic, and haggling. Ve brings verified local boutique collections directly to your phone with Try-On and fast doorstep delivery.",
+      "iconName": "Sparkles",
       "sortOrder": 1,
       "isFeaturedHome": true,
       "isPublished": true
     },
     {
-      "id": "delivery",
-      "category": "Orders & Delivery",
-      "question": "How fast does delivery take in Kampala?",
-      "answer": "Orders arrive fast across Kampala. You can track your rider in real time in the app as soon as our private beta launches.",
+      "id": "overseas-brokers",
+      "category": "Shopping in Kampala",
+      "question": "How is Ve different from ordering through Shein or overseas brokers?",
+      "answer": "Overseas brokers take 2 to 4 weeks, add high markups, and returns are virtually impossible if the size is wrong. Ve connects you directly with verified local boutiques for same-day delivery and guaranteed 48-hour easy returns.",
       "iconName": "Truck",
       "sortOrder": 2,
       "isFeaturedHome": true,
@@ -96,30 +96,90 @@
     {
       "id": "vto",
       "category": "Try-On",
-      "question": "Is my photo kept private during Try-On?",
-      "answer": "Yes, 100% private. Your photo is used only to show how clothes look on you. It is not used for sizing or body measurements. We never share your photos with sellers, other shoppers, or advertisers, and you can delete your photo with one tap whenever you like.",
+      "question": "What is Try-On and are my photos kept private?",
+      "answer": "Try-On lets you snap a photo in private and see how an outfit looks on you before ordering. It is designed purely to preview styles and aesthetics on your phone, not as a sizing calculator. Your photos remain 100% private and are never shared or made public.",
       "iconName": "Camera",
       "sortOrder": 3,
       "isFeaturedHome": true,
       "isPublished": true
     },
     {
-      "id": "returns",
-      "category": "Returns & Disputes",
-      "question": "How do returns and swaps work if an item doesn’t fit?",
-      "answer": "Open the Ve app, tap Your Orders, choose the item, and tap Return or Exchange. Pick your replacement size or upload a quick photo of the issue. A rider is dispatched to collect the item from your door.",
-      "iconName": "RotateCcw",
+      "id": "payments",
+      "category": "Protected Payments & Returns",
+      "question": "How do I know my money is safe?",
+      "answer": "When you check out with MTN MoMo, Airtel Money, or card, we hold your payment safe until your delivery arrives. Try your clothes on at home with peace of mind. If an item doesn’t fit or isn’t what you ordered, you get a quick refund or exchange.",
+      "iconName": "ShieldCheck",
       "sortOrder": 4,
+      "isFeaturedHome": true,
+      "isPublished": true
+    },
+    {
+      "id": "returns",
+      "category": "Returns & Exchanges",
+      "question": "How do returns and size swaps work if an item doesn’t fit?",
+      "answer": "Open the Ve app, tap Your Orders, and tap Return or Exchange within 48 hours. A rider collects the unworn item directly from your door, and your refund or exchange is handled promptly.",
+      "iconName": "RotateCcw",
+      "sortOrder": 5,
       "isFeaturedHome": false,
       "isPublished": true
     },
     {
-      "id": "vendor-onboarding",
-      "category": "Becoming a Boutique Vendor",
-      "question": "How can my boutique start selling on Ve?",
-      "answer": "You can apply at veapp.store/vendor by submitting your boutique name, shop location in Kampala, and National ID. Our merchant team will verify your boutique quickly so you can start listing clothes ahead of our launch.",
+      "id": "vendor-double-sell",
+      "category": "Selling as a Boutique",
+      "question": "Can I sell in my physical shop and on Ve without double-selling?",
+      "answer": "Yes. When you sell an item across your boutique counter, it is automatically removed from Ve so an online buyer never orders the same piece.",
       "iconName": "Store",
-      "sortOrder": 5,
+      "sortOrder": 6,
+      "isFeaturedHome": false,
+      "isPublished": true
+    },
+    {
+      "id": "vendor-stock-loss",
+      "category": "Selling as a Boutique",
+      "question": "How does Ve help me avoid losing clothes or cash in my shop?",
+      "answer": "Ve gives you a simple phone tool for your shop staff. When they sell an item, it's recorded instantly so your hanger stock and daily counter cash always match up.",
+      "iconName": "ShieldCheck",
+      "sortOrder": 7,
+      "isFeaturedHome": false,
+      "isPublished": true
+    },
+    {
+      "id": "vendor-fees",
+      "category": "Selling as a Boutique",
+      "question": "Do I have to pay any monthly fee or sign-up fee to sell on Ve?",
+      "answer": "No. Listing on Ve is completely free with zero monthly fees or joining charges. You only pay a small commission (from 6%) when you make a verified sale.",
+      "iconName": "Store",
+      "sortOrder": 8,
+      "isFeaturedHome": false,
+      "isPublished": true
+    },
+    {
+      "id": "vendor-delivery",
+      "category": "Selling as a Boutique",
+      "question": "How do deliveries work for my boutique?",
+      "answer": "When an order comes in, a Ve rider comes straight to your boutique counter to pick up the package. You never have to step outside or haggle with street boda riders.",
+      "iconName": "Truck",
+      "sortOrder": 9,
+      "isFeaturedHome": false,
+      "isPublished": true
+    },
+    {
+      "id": "vendor-photos",
+      "category": "Selling as a Boutique",
+      "question": "How do I take pictures of my clothes?",
+      "answer": "Just snap photos with your phone on a hanger or mannequin in your shop. Ve automatically removes cluttered backgrounds into clean catalog photos.",
+      "iconName": "Camera",
+      "sortOrder": 10,
+      "isFeaturedHome": false,
+      "isPublished": true
+    },
+    {
+      "id": "vendor-apply",
+      "category": "Selling as a Boutique",
+      "question": "How do I apply to sell on Ve?",
+      "answer": "You can apply at veapp.store/vendor. It takes under 2 minutes, and our Kampala onboarding team verifies boutiques within 24 hours.",
+      "iconName": "Store",
+      "sortOrder": 11,
       "isFeaturedHome": false,
       "isPublished": true
     },
@@ -129,18 +189,18 @@
       "question": "Questions about early access or device compatibility?",
       "answer": "Ve is currently in private development. The app will launch across Kampala on Android 8+ and iOS 15+, optimized for low-data 3G connections.",
       "iconName": "Smartphone",
-      "sortOrder": 6,
+      "sortOrder": 12,
       "isFeaturedHome": false,
       "isPublished": true
     }
   ],
   "vendorStrip": {
     "title": "Sell where Kampala shops.",
-    "description": "We bring you real buyers, send riders to collect your packages, and send your earnings straight to your Mobile Money. Zero delivery headache, zero upfront fees.",
+    "description": "We bring you real buyers, send riders to collect packages from your boutique counter, and send earnings straight to your Mobile Money. Zero monthly fees.",
     "primaryCtaText": "Become a Ve-ndor",
     "primaryCtaLink": "/sell",
-    "secondaryCtaText": "Merchant Portal",
-    "secondaryCtaLink": "veapp.store/vendor"
+    "secondaryCtaText": "Apply as a Ve-ndor",
+    "secondaryCtaLink": "/vendor"
   },
   "waitlist": {
     "title": "Wear what fits.",

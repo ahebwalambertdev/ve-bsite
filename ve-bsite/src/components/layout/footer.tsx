@@ -59,6 +59,7 @@ export function Footer({ initialNav }: FooterProps = {}) {
     initialNav?.footerLinks || DEFAULT_CMS_DATA.navigation?.footerLinks || [
       { id: 'how-it-works', label: 'How Ve Works', href: '/#how-it-works' },
       { id: 'sell', label: 'Become a Ve-ndor', href: '/sell' },
+      { id: 'vendor', label: 'Boutique Application', href: '/vendor' },
       { id: 'app', label: 'Join Waiting List (Coming Soon)', href: '/app' },
       { id: 'about', label: 'About Ve', href: '/about' },
       { id: 'team', label: 'Our Team', href: '/team' },

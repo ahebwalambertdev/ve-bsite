@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { 
@@ -11,7 +12,7 @@ import {
   ArrowRight, 
   MessageCircle, 
   Mail, 
-  ShieldCheck 
+  Layers
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -53,16 +54,12 @@ export default async function SellPage() {
 
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center gap-3 pt-3">
-          <a
-            href={vendor?.secondaryCtaLink || 'https://veapp.store/vendor'}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href="/vendor">
             <Button variant="primary" size="md">
               {vendor?.primaryCtaText || 'Become a Ve-ndor'}
               <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
             </Button>
-          </a>
+          </Link>
 
           <a
             href={whatsappUrl}
@@ -81,67 +78,67 @@ export default async function SellPage() {
         </div>
       </section>
 
-      {/* 4 Core Merchant Value Pillars */}
+      {/* 4 Core Merchant Value Pillars (Simple & Non-Technical) */}
       <section className="space-y-12">
         <div className="max-w-xl">
           <h2 className="font-serif text-3xl sm:text-4xl text-carbon-black font-normal tracking-tight">
             Built to solve Kampala boutique headaches
           </h2>
           <p className="text-sm text-carbon-black/70 mt-2">
-            Every headache of selling on Instagram and WhatsApp has been replaced with a simple, reliable tool.
+            No complex software or confusing terms. Just practical tools built for real shop owners.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Value 1 */}
+          {/* Value 1: Never Double-Sell */}
           <Card className="p-8 bg-snow border-soft-linen space-y-4">
             <div className="w-12 h-12 rounded-xl bg-soft-linen/50 flex items-center justify-center text-carbon-black">
-              <Banknote className="w-6 h-6 text-dusty-olive" />
+              <Layers className="w-6 h-6 text-dusty-olive" />
             </div>
             <h3 className="font-serif text-2xl font-semibold text-carbon-black">
-              Get Paid Straight to Mobile Money
+              Never Double-Sell a Piece
             </h3>
             <p className="text-sm text-carbon-black/75 leading-relaxed">
-              No fake SMS screenshots. When a customer orders, their payment is already secured by Ve. Once delivered, money lands directly in your MTN or Airtel line.
+              When you sell an item across your shop counter, it automatically updates on Ve so an online buyer never orders the same piece.
             </p>
           </Card>
 
-          {/* Value 2 */}
+          {/* Value 2: Free Counter Pickups */}
           <Card className="p-8 bg-snow border-soft-linen space-y-4">
             <div className="w-12 h-12 rounded-xl bg-soft-linen/50 flex items-center justify-center text-carbon-black">
               <Bike className="w-6 h-6 text-dusty-olive" />
             </div>
             <h3 className="font-serif text-2xl font-semibold text-carbon-black">
-              We Handle the Deliveries
+              Free Shop Counter Pickups
             </h3>
             <p className="text-sm text-carbon-black/75 leading-relaxed">
-              Never haggle with street riders again. When an order lands, our rider comes to your shop, picks up the package, and delivers it safely across Kampala.
+              Never haggle with street riders again. When an order lands, our rider comes to your shop counter, collects the package, and delivers it safely across Kampala.
             </p>
           </Card>
 
-          {/* Value 3 */}
+          {/* Value 3: Direct Mobile Money Payouts */}
           <Card className="p-8 bg-snow border-soft-linen space-y-4">
             <div className="w-12 h-12 rounded-xl bg-soft-linen/50 flex items-center justify-center text-carbon-black">
-              <Sparkles className="w-6 h-6 text-dusty-olive" />
+              <Banknote className="w-6 h-6 text-dusty-olive" />
             </div>
             <h3 className="font-serif text-2xl font-semibold text-carbon-black">
-              Fewer Returns with Try-On
+              Direct Mobile Money Payouts
             </h3>
             <p className="text-sm text-carbon-black/75 leading-relaxed">
-              With Try-On, customers see how your outfit looks on them before buying, helping them choose pieces they love and reducing returns.
+              No fake SMS screenshots. When a customer orders, payment is secured. Once the rider delivers, money lands directly in your MTN or Airtel line.
             </p>
           </Card>
 
-          {/* Value 4 */}
+          {/* Value 4: Clean Photos With Your Phone */}
           <Card className="p-8 bg-snow border-soft-linen space-y-4">
             <div className="w-12 h-12 rounded-xl bg-soft-linen/50 flex items-center justify-center text-carbon-black">
               <Camera className="w-6 h-6 text-dusty-olive" />
             </div>
             <h3 className="font-serif text-2xl font-semibold text-carbon-black">
-              Studio Photos &amp; Synced Stock
+              Clean Photos With Your Phone
             </h3>
             <p className="text-sm text-carbon-black/75 leading-relaxed">
-              Snap clothes on your phone and our tool automatically cleans up cluttered backgrounds into crisp catalog shots. In-store counter sales and online stock stay in sync so you never double-sell.
+              Snap clothes on a hanger or mannequin in your shop. Ve automatically cleans up cluttered backgrounds into crisp catalog photos.
             </p>
           </Card>
         </div>
@@ -154,7 +151,7 @@ export default async function SellPage() {
             Fair pricing. Keep your margins.
           </h2>
           <p className="text-sm text-carbon-black/70 mt-2">
-            Zero upfront joining fees or recurring subscription traps to start. You only pay a commission when you make a verified sale.
+            Zero upfront joining fees or recurring subscription traps. You only pay a commission when you make a verified sale.
           </p>
         </div>
 
@@ -188,12 +185,12 @@ export default async function SellPage() {
             </div>
 
             <div className="pt-2">
-              <a href="https://veapp.store/vendor" className="inline-block">
+              <Link href="/vendor" className="inline-block">
                 <Button variant="primary" size="md">
-                  Become a Ve-ndor
+                  Apply as a Ve-ndor
                   <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                 </Button>
-              </a>
+              </Link>
             </div>
           </Card>
 
@@ -207,7 +204,7 @@ export default async function SellPage() {
                 Everything you need to sell
               </h3>
               <p className="text-sm text-carbon-black/75 leading-relaxed">
-                We handle the delivery hustle, payment verification, and photo styling so you can focus on great fashion.
+                We handle the delivery hustle, payment collection, and photo styling so you can focus on great fashion.
               </p>
               <ul className="space-y-3 pt-2 text-xs sm:text-sm text-carbon-black/80">
                 <li className="flex items-center gap-2.5">
@@ -224,7 +221,7 @@ export default async function SellPage() {
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-dusty-olive flex-shrink-0" />
-                  <span>Mobile Point-of-Sale with staff accounts for your shop</span>
+                  <span>Simple phone tool so stock and cash always match</span>
                 </li>
               </ul>
             </div>

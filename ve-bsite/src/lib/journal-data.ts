@@ -215,6 +215,75 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       },
     ],
   },
+  {
+    slug: 'saturday-arcade-hustle-vs-online-comfort',
+    title: 'The Saturday Arcade Hustle vs. At-Home Comfort',
+    category: 'Consumer Guide',
+    author: 'Ve Style & City Desk',
+    readTime: '4 min read',
+    publishedAt: '2026-09-18',
+    excerpt:
+      'Over 55% of Kampala shoppers say finding clothes in downtown arcades takes too long. Here is why at-home browsing and Try-On are taking over.',
+    tldr:
+      'Fighting Kampala downtown traffic, sweltering arcades, and aggressive bargaining eats up entire Saturdays. Ve brings verified boutique inventory to your phone with Try-On and same-day delivery.',
+    coverImage: '/images/boutique-atelier.jpg',
+    content: [
+      {
+        sectionHeading: 'The 4-hour downtown endurance test',
+        paragraphs: [
+          'Anyone who has spent a Saturday afternoon winding through Gazaland, Pioneer Mall, or Park Enkadde knows the fatigue: stifling stairwells, boda-boda gridlock, and vendors pulling your sleeve. In a survey of 140+ Kampala shoppers, 55.8% cited "takes too long to find things" as their number one shopping headache.',
+          'Another 36% report leaving empty-handed because finding the exact color, style, or size is like searching for a needle in a haystack.',
+        ],
+      },
+      {
+        sectionHeading: 'Comfort, trust, and seeing how it looks from home',
+        paragraphs: [
+          'Instead of sweating through downtown corridors, Ve lets you browse verified Kampala boutiques from your couch. With Try-On, you snap a photo in private and see how an outfit looks on you before buying.',
+          'Orders arrive straight to your door across Kampala on the same day. If the fit isn’t what you wanted, you have 48 hours for a quick exchange or hassle-free return.',
+        ],
+        callout: {
+          title: 'Comfort First',
+          body: 'Shopping for fashion should feel exciting, not exhausting. When you can see the look on your phone and try it on comfortably in your bedroom, you save both your Saturday and your peace of mind.',
+        },
+      },
+    ],
+  },
+  {
+    slug: 'shein-overseas-brokers-vs-local-kampala-boutiques',
+    title: 'The 3-Week Broker Trap: Why Kampala Is Returning to Local Boutiques',
+    category: 'Consumer Guide',
+    author: 'Ve Editorial Desk',
+    readTime: '5 min read',
+    publishedAt: '2026-09-20',
+    excerpt:
+      'Waiting 4 weeks for overseas packages only to receive wrong sizes with zero return options has pushed Kampala fashion lovers back to verified local boutiques.',
+    tldr:
+      'Overseas brokers charge hefty markups, take 2 to 4 weeks to deliver, and make returns nearly impossible. Ve connects you directly with Kampala’s best boutiques for same-day delivery and 48-hour returns.',
+    coverImage: '/images/how-it-works-discover.jpeg',
+    content: [
+      {
+        sectionHeading: 'The overseas shipping lottery',
+        paragraphs: [
+          'Ordering through overseas brokers on Shein or AliExpress looks tempting until reality sets in: you pay upfront, wait 2 to 4 weeks for air cargo clearing, and pay extra broker handling fees upon arrival in Kampala.',
+          'When the package finally arrives, one in three shoppers discovers the size is completely wrong or the fabric looks nothing like the edited studio pictures. And the biggest catch? Returns are virtually impossible once the item arrives in Uganda.',
+        ],
+        table: {
+          headers: ['Shopping Channel', 'Wait Time', 'Size & Look Assurance', 'Return Policy'],
+          rows: [
+            ['Overseas Broker / Shein', '2 – 4 Weeks', 'Blind purchase from model photos', 'No returns or expensive re-shipping'],
+            ['Instagram DM Sellers', '1 – 3 Days', 'Risk of fake or filtered photos', 'Rarely accepted / dispute prone'],
+            ['Ve Local Boutiques', '2 – 4 Hours (Same Day)', 'Try-On preview on your phone', 'Guaranteed 48-hour easy returns'],
+          ],
+        },
+      },
+      {
+        sectionHeading: 'Real clothes, real boutiques, safe returns',
+        paragraphs: [
+          'Kampala already has exceptional fashion curators, designers, and boutique owners stocking high-quality pieces right here in town. Ve brings their inventory to your screen, lets you preview looks with Try-On, delivers to your gate same-day, and gives you 48 hours to exchange if needed.',
+        ],
+      },
+    ],
+  },
 ];
 
 export async function getJournalArticles(): Promise<JournalArticle[]> {

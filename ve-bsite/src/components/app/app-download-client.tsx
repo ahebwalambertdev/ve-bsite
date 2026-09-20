@@ -175,40 +175,6 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                   </p>
                 </div>
 
-                {/* Device Selector */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-carbon-black/70">
-                    Preferred Device
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setPlatform('android')}
-                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${
-                        platform === 'android'
-                          ? 'border-dusty-olive bg-dusty-olive/10 text-carbon-black ring-1 ring-dusty-olive'
-                          : 'border-soft-linen bg-snow text-carbon-black/70 hover:border-carbon-black/30'
-                      }`}
-                    >
-                      <AndroidIcon className="w-4 h-4 text-dusty-olive" />
-                      Android
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setPlatform('ios')}
-                      className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${
-                        platform === 'ios'
-                          ? 'border-dusty-olive bg-dusty-olive/10 text-carbon-black ring-1 ring-dusty-olive'
-                          : 'border-soft-linen bg-snow text-carbon-black/70 hover:border-carbon-black/30'
-                      }`}
-                    >
-                      <AppleIcon className="w-4 h-4 text-dusty-olive" />
-                      iOS
-                    </button>
-                  </div>
-                </div>
-
                 {/* Contact Input (WhatsApp or Email) */}
                 <div className="space-y-1.5">
                   <label htmlFor="contact-input" className="text-xs font-semibold uppercase tracking-wider text-carbon-black/70">
@@ -221,46 +187,15 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
                     placeholder="e.g. 0772 000 000 or your@email.com"
-                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-soft-linen bg-snow text-carbon-black placeholder:text-carbon-black/40 focus:outline-none focus:ring-2 focus:ring-dusty-olive focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 text-sm sm:text-base rounded-xl border border-soft-linen bg-snow text-carbon-black placeholder:text-carbon-black/40 focus:outline-none focus:ring-2 focus:ring-dusty-olive focus:border-transparent transition-all"
                   />
                   <p className="text-[11px] text-carbon-black/50">
                     We only send launch invites and beta codes. No spam, ever.
                   </p>
                 </div>
 
-                {/* Role Switcher */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-carbon-black/70">
-                    I am joining as
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setRole('shopper')}
-                      className={`py-2 px-3 rounded-lg border text-xs font-medium text-center transition-all ${
-                        role === 'shopper'
-                          ? 'border-carbon-black bg-carbon-black text-snow'
-                          : 'border-soft-linen bg-snow text-carbon-black/70 hover:border-carbon-black/30'
-                      }`}
-                    >
-                      Shopper (Explore Fashion)
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setRole('vendor')}
-                      className={`py-2 px-3 rounded-lg border text-xs font-medium text-center transition-all ${
-                        role === 'vendor'
-                          ? 'border-carbon-black bg-carbon-black text-snow'
-                          : 'border-soft-linen bg-snow text-carbon-black/70 hover:border-carbon-black/30'
-                      }`}
-                    >
-                      Ve-ndor (Boutique Owner)
-                    </button>
-                  </div>
-                </div>
-
                 {/* Submit Action */}
-                <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <Button
                     type="submit"
                     variant="primary"
@@ -273,6 +208,16 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                   </Button>
                   <p className="text-xs text-neutral-500 text-center sm:text-right">
                     Early access includes free Try-On credits
+                  </p>
+                </div>
+
+                {/* Separated Boutique Note */}
+                <div className="pt-2 text-center sm:text-left border-t border-soft-linen/70">
+                  <p className="text-xs text-carbon-black/70">
+                    Are you a boutique or thrift curator?{' '}
+                    <Link href="/vendor" className="font-semibold text-dusty-olive-dark hover:underline">
+                      Apply as a Ve-ndor here →
+                    </Link>
                   </p>
                 </div>
               </form>
@@ -311,11 +256,11 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                   onClick={() => setIsSubmitted(false)}
                   className="text-dusty-olive-dark hover:underline cursor-pointer"
                 >
-                  Edit details or switch device
+                  Change phone or email
                 </button>
 
-                <Link href="/sell" className="font-semibold text-carbon-black hover:text-dusty-olive flex items-center gap-1">
-                  Are you a boutique? Become a Ve-ndor <ArrowRight className="w-3.5 h-3.5" />
+                <Link href="/vendor" className="font-semibold text-carbon-black hover:text-dusty-olive flex items-center gap-1">
+                  Are you a boutique? Apply as a Ve-ndor <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </Card>
@@ -324,8 +269,8 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
           {/* Safety & Trust Badges */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-soft-linen">
             <div className="flex items-start gap-2">
-              <ShieldCheck className="w-4 h-4 text-dusty-olive flex-shrink-0 mt-0.5" />
-              <span className="text-xs text-carbon-black/70">Protected Payments</span>
+              <Sparkles className="w-4 h-4 text-dusty-olive flex-shrink-0 mt-0.5" />
+              <span className="text-xs text-carbon-black/70">Try Before Buying</span>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle2 className="w-4 h-4 text-dusty-olive flex-shrink-0 mt-0.5" />
@@ -333,7 +278,7 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
             </div>
             <div className="flex items-start gap-2 col-span-2 sm:col-span-1">
               <CheckCircle2 className="w-4 h-4 text-dusty-olive flex-shrink-0 mt-0.5" />
-              <span className="text-xs text-carbon-black/70">Safe Mobile Money</span>
+              <span className="text-xs text-carbon-black/70">Same-Day Delivery</span>
             </div>
           </div>
         </div>
@@ -371,9 +316,9 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
             </div>
 
             <div className="pt-2">
-              <Link href="/sell" className="block w-full">
+              <Link href="/vendor" className="block w-full">
                 <Button variant="accent" size="md" className="w-full justify-center font-semibold">
-                  Become a Ve-ndor
+                  Apply as a Ve-ndor
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
               </Link>

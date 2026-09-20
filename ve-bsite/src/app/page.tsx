@@ -101,19 +101,15 @@ export default async function HomePage() {
                   {cmsData.vendorStrip.primaryCtaText}
                 </Button>
               </Link>
-              <a
-                href={cmsData.vendorStrip.secondaryCtaLink || 'https://veapp.store/vendor'}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href="/vendor">
                 <Button
                   variant="outline"
                   size="md"
-                  className="border-neutral-700 bg-transparent text-snow hover:bg-neutral-800"
+                  className="border-neutral-700 bg-transparent text-snow hover:bg-neutral-800 cursor-pointer"
                 >
-                  {cmsData.vendorStrip.secondaryCtaText.replace(/→\s*$/, '').trim()} →
+                  Apply as a Ve-ndor →
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
