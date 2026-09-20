@@ -130,7 +130,7 @@ export function CopyEmailButton({
               transition={{ duration: 0.18, ease: 'easeOut' }}
               className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-1 px-1.5 py-0.5 rounded text-[9px] font-semibold font-sans bg-carbon-black text-snow shadow-lg whitespace-nowrap z-40 border border-neutral-700/70"
             >
-              Copied!
+              Email copied!
             </motion.span>
           )}
         </AnimatePresence>

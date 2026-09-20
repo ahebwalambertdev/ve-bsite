@@ -95,19 +95,20 @@ const AccordionItem: FC<AccordionItemProps> = ({
             borderTopRightRadius,
             borderBottomLeftRadius,
             borderBottomRightRadius,
-            borderColor: isOpen ? 'rgba(124, 139, 116, 0.45)' : 'rgba(235, 226, 215, 0.9)',
             backgroundColor: isOpen ? '#FFFAF6' : '#FAF6F1',
             boxShadow: isOpen
               ? '0 4px 20px -2px rgba(26, 26, 26, 0.08)'
               : '0 0 0 0 rgba(0, 0, 0, 0)',
           }}
-          className="overflow-hidden border-solid will-change-transform transition-colors"
+          className="overflow-hidden border-solid will-change-transform"
           style={{
             borderTopWidth,
             borderBottomWidth,
             borderLeftWidth,
             borderRightWidth,
             borderStyle: BORDER_STYLE,
+            borderColor: isOpen ? 'rgba(124, 139, 116, 0.45)' : 'rgba(235, 226, 215, 0.9)',
+            transition: 'border-color 0.3s ease',
             marginBlock: isOpen ? '12px' : '0px',
           }}
         >

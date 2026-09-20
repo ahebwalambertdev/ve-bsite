@@ -83,7 +83,7 @@ export function HeroSection({ onOpenDemo, dynamicContent }: HeroSectionProps) {
                 alt={look.label}
                 fill
                 priority={index === 0}
-                quality={92}
+                quality={75}
                 sizes="100vw"
                 className="w-full h-full object-cover object-center transform transition-transform duration-[7000ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{

@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import Script from 'next/script';
 import { Inter, Newsreader } from 'next/font/google';
 import '@/styles/globals.css';
 import { Header } from '@/components/layout/header';
@@ -34,8 +33,33 @@ export const metadata: Metadata = {
     template: '%s | Ve',
   },
   description:
-    'Discover verified Kampala fashion boutiques with Try-On. Fast doorstep delivery, protected Mobile Money payments, and easy 48-hour returns.',
+    'Verified Kampala boutiques with Try-On, protected payments, and fast doorstep delivery.',
   metadataBase: new URL('https://veapp.store'),
+  openGraph: {
+    type: 'website',
+    siteName: 'Ve',
+    title: 'Ve: Fashion, Found | Own your look',
+    description:
+      'Verified Kampala boutiques with Try-On, protected payments, and fast doorstep delivery.',
+    url: 'https://veapp.store',
+    images: [
+      {
+        url: '/api/og?title=Fashion%2C%20Found%20in%20Kampala&category=Verified%20Fashion%20Marketplace',
+        width: 1200,
+        height: 630,
+        alt: 'Ve — Kampala Fashion Marketplace',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ve: Fashion, Found | Own your look',
+    description:
+      'Verified Kampala boutiques with Try-On, protected payments, and fast doorstep delivery.',
+    images: [
+      '/api/og?title=Fashion%2C%20Found%20in%20Kampala&category=Verified%20Fashion%20Marketplace',
+    ],
+  },
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },

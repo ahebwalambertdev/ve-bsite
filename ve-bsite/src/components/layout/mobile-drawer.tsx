@@ -63,7 +63,7 @@ function HelpEmailIconAction({ email }: { email: string }) {
         onClick={handleCopyOrMail}
         whileTap={{ scale: 0.9 }}
         whileHover={{ scale: 1.05 }}
-        title={copied ? 'Email copied!' : `Copy ${email}`}
+        title={copied ? 'Email copied email' : `Copy ${email}`}
         aria-label={copied ? 'Email address copied' : `Copy ${email}`}
         className="inline-flex items-center gap-1.5 text-xs transition-colors cursor-pointer group p-1 -m-1"
       >
