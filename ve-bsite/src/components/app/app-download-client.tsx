@@ -685,7 +685,7 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                     size="sm"
                     className="w-full sm:w-auto font-semibold cursor-pointer"
                   >
-                    Claim Free First Delivery (60s) →
+                    Claim Free First Delivery →
                   </Button>
                 </div>
               )}

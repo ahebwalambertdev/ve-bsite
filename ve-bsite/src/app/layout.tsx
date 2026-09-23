@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Ve: Fashion, Found | Own your look',
+    default: 'Ve Apparel: Fashion, Found | Own your look',
     template: '%s | Ve',
   },
   description:
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'Ve',
-    title: 'Ve: Fashion, Found | Own your look',
+    title: 'Ve Apparel: Fashion, Found | Own your look',
     description:
       'Verified Kampala boutiques with Try-On, protected payments, and fast doorstep delivery.',
     url: 'https://www.veapp.store',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ve: Fashion, Found | Own your look',
+    title: 'Ve Apparel: Fashion, Found | Own your look',
     description:
       'Verified Kampala boutiques with Try-On, protected payments, and fast doorstep delivery.',
     images: [

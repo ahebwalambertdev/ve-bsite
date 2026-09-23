@@ -5,18 +5,18 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  CheckCircle2, 
-  Store, 
-  ArrowRight, 
+import {
+  CheckCircle2,
+  Store,
+  ArrowRight,
   ChevronLeft,
   ChevronRight,
-  MessageCircle, 
-  Sparkles, 
-  Bike, 
-  Banknote, 
-  Camera, 
-  Layers, 
+  MessageCircle,
+  Sparkles,
+  Bike,
+  Banknote,
+  Camera,
+  Layers,
   Check,
   Award
 } from 'lucide-react';
@@ -338,28 +338,6 @@ export function VendorApplicationClient() {
                 </div>
               </div>
 
-              {/* What Happens Next */}
-              <div className="p-5 bg-snow rounded-xl border border-soft-linen space-y-3 text-xs sm:text-sm text-carbon-black/80">
-                <div className="font-semibold text-carbon-black flex items-center gap-1.5">
-                  <Sparkles className="w-4 h-4 text-dusty-olive" />
-                  What happens next:
-                </div>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-dusty-olive flex-shrink-0 mt-0.5" />
-                    <span><strong>Boutique Verification:</strong> We confirm your shop location and verify basic details.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-dusty-olive flex-shrink-0 mt-0.5" />
-                    <span><strong>Catalog Setup:</strong> We help you snap and upload clean photos of your pieces for free.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-dusty-olive flex-shrink-0 mt-0.5" />
-                    <span><strong>Shop Counter Pickup Ready:</strong> Our riders are mapped to your boutique counter for fast collections.</span>
-                  </li>
-                </ul>
-              </div>
-
               {/* Special Early Adopter Perk: 1 Month of Growth Package Free Question-by-Question Form */}
               {operationsCompleted ? (
                 <div className="p-5 bg-snow rounded-xl border-2 border-dusty-olive shadow-subtle space-y-3">
@@ -459,11 +437,10 @@ export function VendorApplicationClient() {
                               <label
                                 key={opt}
                                 onClick={() => setInventoryTracking(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
-                                  inventoryTracking === opt
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${inventoryTracking === opt
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                }`}
+                                  }`}
                               >
                                 <input
                                   type="radio"
@@ -502,11 +479,10 @@ export function VendorApplicationClient() {
                               <label
                                 key={opt}
                                 onClick={() => setDoubleSellingFrequency(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
-                                  doubleSellingFrequency === opt
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${doubleSellingFrequency === opt
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                }`}
+                                  }`}
                               >
                                 <input
                                   type="radio"
@@ -546,11 +522,10 @@ export function VendorApplicationClient() {
                               <label
                                 key={opt}
                                 onClick={() => setDeliveryMethod(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
-                                  deliveryMethod === opt
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${deliveryMethod === opt
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                }`}
+                                  }`}
                               >
                                 <input
                                   type="radio"
@@ -589,11 +564,10 @@ export function VendorApplicationClient() {
                               <label
                                 key={opt}
                                 onClick={() => setShrinkageIssue(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
-                                  shrinkageIssue === opt
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${shrinkageIssue === opt
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                }`}
+                                  }`}
                               >
                                 <input
                                   type="radio"
@@ -633,11 +607,10 @@ export function VendorApplicationClient() {
                               <label
                                 key={opt}
                                 onClick={() => setPhotographyMethod(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
-                                  photographyMethod === opt
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${photographyMethod === opt
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                }`}
+                                  }`}
                               >
                                 <input
                                   type="radio"
@@ -677,11 +650,10 @@ export function VendorApplicationClient() {
                               <label
                                 key={opt}
                                 onClick={() => setTopToolDesired(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
-                                  topToolDesired === opt
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${topToolDesired === opt
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                }`}
+                                  }`}
                               >
                                 <input
                                   type="radio"
@@ -778,7 +750,7 @@ export function VendorApplicationClient() {
                     size="sm"
                     className="w-full sm:w-auto font-semibold cursor-pointer"
                   >
-                    Unlock 1 Month Growth Tier Free (2 min) →
+                    Unlock 1 Month Growth Tier Free →
                   </Button>
                 </div>
               )}
@@ -791,10 +763,6 @@ export function VendorApplicationClient() {
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto"
                 >
-                  <Button variant="accent" size="md" className="w-full justify-center">
-                    <MessageCircle className="w-4 h-4 mr-1.5" />
-                    Fast-Track on WhatsApp
-                  </Button>
                 </a>
 
                 <button
