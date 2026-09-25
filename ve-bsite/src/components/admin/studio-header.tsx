@@ -67,8 +67,11 @@ export function StudioHeader({
     <header className="h-16 w-full border-b border-soft-linen bg-snow px-4 sm:px-6 flex items-center justify-between gap-4 select-none z-30 shrink-0">
       {/* Brand & Studio Title */}
       <div className="flex items-center gap-4">
-        <Link href="/" className="flex items-center" title="Exit Studio to veapp.store">
+        <Link href="/admin/dashboard" className="flex items-center gap-2 group" title="Return to Admin Dashboard">
           <Logo className="h-5 w-auto" />
+          <span className="text-[11px] font-medium text-neutral-500 group-hover:text-carbon-black bg-soft-linen/50 px-2 py-0.5 rounded border border-soft-linen transition-colors">
+            ← Dashboard
+          </span>
         </Link>
         <div className="h-5 w-px bg-soft-linen" />
         <div className="flex items-center gap-2">

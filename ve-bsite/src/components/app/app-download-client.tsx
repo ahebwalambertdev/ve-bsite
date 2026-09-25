@@ -125,57 +125,94 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!contact.trim()) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    // 1. Optimistic Local Persistence
+    try {
+      localStorage.setItem(
+        've_waitlist_joined',
+        JSON.stringify({
+          name,
+          contact,
+          platform,
+          role,
+          ref: referralCode,
+          joinedAt: new Date().toISOString(),
+        })
+      );
+    } catch {
+      // storage ignored
+    }
+
+    // 2. Background Database Ingestion via API
+    try {
+      await fetch('/api/leads/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          contact,
+          platform,
+          role,
+          ref: referralCode,
+        }),
+      });
+    } catch (err) {
+      console.warn('[Waitlist] Background sync error (saved locally):', err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      try {
-        localStorage.setItem(
-          've_waitlist_joined',
-          JSON.stringify({
-            name,
-            contact,
-            platform,
-            role,
-            ref: referralCode,
-            joinedAt: new Date().toISOString(),
-          })
-        );
-      } catch {
-        // storage ignored
-      }
-    }, 600);
+    }
   };
 
-  const handleSurveySubmit = (e: React.FormEvent) => {
+  const handleSurveySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSurveySubmitting(true);
-    setTimeout(() => {
+
+    // 1. Optimistic Local Persistence
+    try {
+      localStorage.setItem(
+        've_customer_preferences',
+        JSON.stringify({
+          contact,
+          shoppingHabits,
+          onlineFrustration,
+          styleCategories,
+          tryOnExcitement,
+          deliveryArea,
+          voucherUnlocked: true,
+          submittedAt: new Date().toISOString(),
+        })
+      );
+    } catch {
+      // storage ignored
+    }
+
+    // 2. Background Database Ingestion via API
+    try {
+      await fetch('/api/leads/survey', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contact,
+          shoppingHabits,
+          onlineFrustration,
+          styleCategories,
+          tryOnExcitement,
+          deliveryArea,
+        }),
+      });
+    } catch (err) {
+      console.warn('[Survey] Background sync error (saved locally):', err);
+    } finally {
       setIsSurveySubmitting(false);
       setSurveyCompleted(true);
       setShowSurvey(false);
-      try {
-        localStorage.setItem(
-          've_customer_preferences',
-          JSON.stringify({
-            contact,
-            shoppingHabits,
-            onlineFrustration,
-            styleCategories,
-            tryOnExcitement,
-            deliveryArea,
-            voucherUnlocked: true,
-            submittedAt: new Date().toISOString(),
-          })
-        );
-      } catch {
-        // storage ignored
-      }
-    }, 500);
+    }
   };
 
   const toggleShoppingHabit = (val: string) => {

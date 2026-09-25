@@ -286,7 +286,89 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   },
 ];
 
+function parseMarkdownSections(markdown: string): { sectionHeading: string; paragraphs: string[] }[] {
+  if (!markdown) return [];
+  const lines = markdown.split('\n');
+  const sections: { sectionHeading: string; paragraphs: string[] }[] = [];
+  let currentHeading = 'Overview';
+  let currentParagraphs: string[] = [];
+  let currentBuffer: string[] = [];
+
+  const flushParagraph = () => {
+    if (currentBuffer.length > 0) {
+      currentParagraphs.push(currentBuffer.join(' ').trim());
+      currentBuffer = [];
+    }
+  };
+
+  const flushSection = () => {
+    flushParagraph();
+    if (currentParagraphs.length > 0) {
+      sections.push({
+        sectionHeading: currentHeading,
+        paragraphs: [...currentParagraphs],
+      });
+      currentParagraphs = [];
+    }
+  };
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('## ') || trimmed.startsWith('# ')) {
+      flushSection();
+      currentHeading = trimmed.replace(/^#+\s*/, '');
+    } else if (trimmed === '') {
+      flushParagraph();
+    } else {
+      currentBuffer.push(trimmed);
+    }
+  }
+
+  flushSection();
+
+  if (sections.length === 0) {
+    sections.push({
+      sectionHeading: 'Editorial Insight',
+      paragraphs: [markdown],
+    });
+  }
+
+  return sections;
+}
+
 export async function getJournalArticles(): Promise<JournalArticle[]> {
+  try {
+    const { getServiceSupabase } = await import('@/lib/supabase');
+    const supabase = getServiceSupabase();
+    const { data, error } = await supabase
+      .from('journal_posts')
+      .select('*')
+      .eq('is_published', true)
+      .order('published_at', { ascending: false });
+
+    if (!error && data && data.length > 0) {
+      const dynamicArticles: JournalArticle[] = data.map((post) => ({
+        slug: post.slug,
+        title: post.title,
+        category: (post.category as JournalArticle['category']) || 'Consumer Guide',
+        author: post.author || 'Ve Editorial Desk',
+        readTime: `${post.read_time_minutes || 4} min read`,
+        publishedAt: post.published_at ? post.published_at.slice(0, 10) : new Date().toISOString().slice(0, 10),
+        excerpt: post.excerpt || post.title,
+        tldr: post.excerpt || 'Read the full article below for details and guidance.',
+        coverImage: post.cover_image_url || '/images/hero-kampala-street.webp',
+        content: parseMarkdownSections(post.body),
+      }));
+
+      // Combine dynamic articles with static baseline (avoid duplicate slugs)
+      const existingSlugs = new Set(dynamicArticles.map((a) => a.slug));
+      const filteredStatic = JOURNAL_ARTICLES.filter((a) => !existingSlugs.has(a.slug));
+      return [...dynamicArticles, ...filteredStatic];
+    }
+  } catch (err) {
+    console.warn('[Journal] Dynamic articles query fallback:', err);
+  }
+
   return JOURNAL_ARTICLES;
 }
 

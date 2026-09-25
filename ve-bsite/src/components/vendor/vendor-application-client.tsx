@@ -87,63 +87,104 @@ export function VendorApplicationClient() {
     }
   }, []);
 
-  const handleOperationsSubmit = (e: React.FormEvent) => {
+  const handleOperationsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsOperationsSubmitting(true);
-    setTimeout(() => {
+
+    // 1. Optimistic Local Persistence
+    try {
+      localStorage.setItem(
+        've_vendor_operations_profile',
+        JSON.stringify({
+          boutiqueName,
+          whatsapp,
+          inventoryTracking,
+          doubleSellingFrequency,
+          deliveryMethod,
+          shrinkageIssue,
+          photographyMethod,
+          topToolDesired,
+          growthTierUnlocked: true,
+          submittedAt: new Date().toISOString(),
+        })
+      );
+    } catch {
+      // Storage ignored
+    }
+
+    // 2. Background Database Ingestion via API
+    try {
+      await fetch('/api/leads/vendor-survey', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          boutiqueName,
+          whatsapp,
+          inventoryTracking,
+          doubleSellingFrequency,
+          deliveryMethod,
+          shrinkageIssue,
+          photographyMethod,
+          topToolDesired,
+        }),
+      });
+    } catch (err) {
+      console.warn('[Vendor Ops Profile] Background sync error (saved locally):', err);
+    } finally {
       setIsOperationsSubmitting(false);
       setOperationsCompleted(true);
       setShowOperationsProfile(false);
-      try {
-        localStorage.setItem(
-          've_vendor_operations_profile',
-          JSON.stringify({
-            boutiqueName,
-            whatsapp,
-            inventoryTracking,
-            doubleSellingFrequency,
-            deliveryMethod,
-            shrinkageIssue,
-            photographyMethod,
-            topToolDesired,
-            growthTierUnlocked: true,
-            submittedAt: new Date().toISOString(),
-          })
-        );
-      } catch {
-        // Storage ignored
-      }
-    }, 500);
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!boutiqueName.trim() || !whatsapp.trim() || !ownerName.trim()) {
       return;
     }
 
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    // 1. Optimistic Local Persistence
+    try {
+      localStorage.setItem(
+        've_vendor_application',
+        JSON.stringify({
+          boutiqueName,
+          ownerName,
+          whatsapp,
+          location,
+          category,
+          socialHandle,
+          stockSize,
+          submittedAt: new Date().toISOString(),
+        })
+      );
+    } catch {
+      // Storage ignored
+    }
+
+    // 2. Background Database Ingestion via API
+    try {
+      await fetch('/api/leads/vendor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          boutiqueName,
+          ownerName,
+          whatsapp,
+          location,
+          category,
+          socialHandle,
+          stockSize,
+        }),
+      });
+    } catch (err) {
+      console.warn('[Vendor Application] Background sync error (saved locally):', err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      try {
-        localStorage.setItem(
-          've_vendor_application',
-          JSON.stringify({
-            boutiqueName,
-            ownerName,
-            whatsapp,
-            location,
-            category,
-            socialHandle,
-            stockSize,
-            submittedAt: new Date().toISOString(),
-          })
-        );
-      } catch {
-        // Storage ignored
-      }
-    }, 600);
+    }
   };
 
   const whatsappFastTrackUrl = CONTACT_CONFIG.getWhatsappUrl(
