@@ -1123,15 +1123,12 @@ export default function AdminPreviewPage() {
             {filteredJournalArticles.map((article) => (
               <div key={article.slug} className="group flex flex-col justify-between">
                 <Card className="h-full bg-snow border-soft-linen group-hover:border-dusty-olive transition-all flex flex-col justify-between p-6 space-y-6">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between gap-2">
-                      <Badge variant="olive" size="sm">
-                        {article.category}
-                      </Badge>
-                      <div className="flex items-center gap-1.5 text-[11px] text-carbon-black/60 font-medium">
-                        <Clock className="w-3.5 h-3.5 text-dusty-olive" />
-                        <span>{article.readTime}</span>
-                      </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-[11px] text-carbon-black/60 font-medium">
+                      <Clock className="w-3.5 h-3.5 text-dusty-olive" />
+                      <span>{article.readTime}</span>
+                      <span>·</span>
+                      <span>{new Date(article.publishedAt).toLocaleDateString('en-UG', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     </div>
 
                     <h2 className="font-serif text-xl font-semibold text-carbon-black group-hover:text-dusty-olive-dark transition-colors leading-snug">
@@ -1141,10 +1138,6 @@ export default function AdminPreviewPage() {
                     <p className="text-xs text-carbon-black/70 leading-relaxed line-clamp-3">
                       {article.excerpt}
                     </p>
-
-                    <div className="text-[11px] text-carbon-black/50 font-medium pt-1">
-                      {new Date(article.publishedAt).toLocaleDateString('en-UG', { month: 'short', day: 'numeric', year: 'numeric' })}
-                    </div>
                   </div>
 
                   <div className="pt-4 border-t border-soft-linen flex items-center justify-between text-xs font-semibold text-dusty-olive-dark">

@@ -13,28 +13,51 @@ export const revalidate = 60; // ISR revalidation cache
 export default async function HomePage() {
   const cmsData = await getCmsData();
 
-  // Map CMS FAQs to CardSplitAccordion format
-  const homeFaqItems: CardSplitAccordionItemData[] = (cmsData.faqs || [])
+  // Filter CMS FAQs for Home display & AEO Schema
+  const featuredFaqs = (cmsData.faqs || [])
     .filter((f) => f.isPublished && f.isFeaturedHome)
-    .sort((a, b) => a.sortOrder - b.sortOrder)
-    .map((item) => {
-      let IconComponent = HelpCircle;
-      if (item.iconName === 'ShieldCheck') IconComponent = ShieldCheck;
-      if (item.iconName === 'Truck') IconComponent = Truck;
-      if (item.iconName === 'Camera') IconComponent = Camera;
-      if (item.iconName === 'Store') IconComponent = Store;
-      if (item.iconName === 'Sparkles') IconComponent = Sparkles;
+    .sort((a, b) => a.sortOrder - b.sortOrder);
 
-      return {
-        id: item.id,
-        title: item.question,
-        icon: <IconComponent className="w-5 h-5 text-dusty-olive" />,
-        content: <span>{item.answer}</span>,
-      };
-    });
+  // Map CMS FAQs to CardSplitAccordion format
+  const homeFaqItems: CardSplitAccordionItemData[] = featuredFaqs.map((item) => {
+    let IconComponent = HelpCircle;
+    if (item.iconName === 'ShieldCheck') IconComponent = ShieldCheck;
+    if (item.iconName === 'Truck') IconComponent = Truck;
+    if (item.iconName === 'Camera') IconComponent = Camera;
+    if (item.iconName === 'Store') IconComponent = Store;
+    if (item.iconName === 'Sparkles') IconComponent = Sparkles;
+
+    return {
+      id: item.id,
+      title: item.question,
+      icon: <IconComponent className="w-5 h-5 text-dusty-olive" />,
+      content: <span>{item.answer}</span>,
+    };
+  });
+
+  // AEO Structured FAQ Schema for Google AI Overviews, Bing Copilot & ChatGPT
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: featuredFaqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
 
   return (
     <main className="min-h-screen bg-snow text-carbon-black">
+      {/* Structured FAQ Schema for Answer Engine Optimization */}
+      {featuredFaqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       {/* Optional Top Announcement Bar */}
       {cmsData.announcementBar?.enabled && (
         <div className="bg-carbon-black text-snow text-xs py-2.5 px-4 text-center font-medium flex items-center justify-center gap-2 border-b border-neutral-800">

@@ -74,6 +74,11 @@ export const metadata: Metadata = {
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: {
+      ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+        ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+        : {}),
+    },
   },
   alternates: {
     canonical: 'https://www.veapp.store',
@@ -102,31 +107,69 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${sansFont.variable} ${serifFont.variable} overflow-x-hidden max-w-[100vw]`}>
       <head>
-        {/* Organization Schema for Google Knowledge Graph and AEO */}
+        {/* Curated Machine Interface Link for LLM Discovery (Perplexity, ChatGPT, Claude) */}
+        <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Context" />
+
+        {/* Global Structured Knowledge Graph for Search & AI Answer Engines */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'Ve',
-              legalName: 'Ve Technologies Ltd',
-              url: 'https://www.veapp.store',
-              logo: 'https://www.veapp.store/icon.svg',
-              description:
-                'Kampala’s curated fashion marketplace featuring verified local boutiques, doorstep fit verification, and private Try-On.',
-              sameAs: [
-                'https://www.instagram.com/veapp.store',
-                'https://www.tiktok.com/@veapp.store',
-                'https://x.com/veapp_store',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  '@id': 'https://www.veapp.store/#organization',
+                  name: 'Ve',
+                  legalName: 'Ve Technologies Ltd',
+                  alternateName: ['Ve Apparel', 'Ve Uganda', 'Ve Marketplace'],
+                  url: 'https://www.veapp.store',
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: 'https://www.veapp.store/icon.svg',
+                    caption: 'Ve Logo',
+                  },
+                  description:
+                    'Kampala’s curated fashion marketplace featuring verified local boutiques, doorstep fit verification, and private Try-On.',
+                  sameAs: [
+                    'https://www.instagram.com/veapp.store',
+                    'https://www.tiktok.com/@veapp.store',
+                    'https://x.com/veapp_store',
+                  ],
+                  address: {
+                    '@type': 'PostalAddress',
+                    addressLocality: 'Kampala',
+                    addressCountry: 'UG',
+                  },
+                  knowsAbout: [
+                    'Kampala Fashion Boutiques',
+                    'Uganda Online Shopping',
+                    'Doorstep Try-On Fitting',
+                    'Mobile Money Protected Escrow Payments',
+                    'African Streetwear and Traditional Ceremony Tailoring',
+                  ],
+                  contactPoint: {
+                    '@type': 'ContactPoint',
+                    telephone: '+256781602159',
+                    contactType: 'customer support',
+                    areaServed: 'UG',
+                    availableLanguage: ['en', 'lg'],
+                  },
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': 'https://www.veapp.store/#website',
+                  url: 'https://www.veapp.store',
+                  name: 'Ve Apparel',
+                  alternateName: ['Ve', 'Ve Kampala Fashion'],
+                  description:
+                    'Verified Kampala boutiques with Try-On, protected payments, and fast doorstep delivery.',
+                  publisher: {
+                    '@id': 'https://www.veapp.store/#organization',
+                  },
+                  inLanguage: 'en',
+                },
               ],
-              contactPoint: {
-                '@type': 'ContactPoint',
-                telephone: '+256781602159',
-                contactType: 'customer support',
-                areaServed: 'UG',
-                availableLanguage: ['en'],
-              },
             }),
           }}
         />
