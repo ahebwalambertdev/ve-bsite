@@ -60,12 +60,17 @@ export function VendorApplicationClient() {
   const [operationsCompleted, setOperationsCompleted] = useState(false);
   const [isOperationsSubmitting, setIsOperationsSubmitting] = useState(false);
 
-  const [inventoryTracking, setInventoryTracking] = useState('');
-  const [doubleSellingFrequency, setDoubleSellingFrequency] = useState('');
-  const [deliveryMethod, setDeliveryMethod] = useState('');
-  const [shrinkageIssue, setShrinkageIssue] = useState('');
-  const [photographyMethod, setPhotographyMethod] = useState('');
+  const [primarySalesChannel, setPrimarySalesChannel] = useState('');
+  const [biggestChallenge, setBiggestChallenge] = useState('');
   const [topToolDesired, setTopToolDesired] = useState('');
+  const [portalToolsDesired, setPortalToolsDesired] = useState<string[]>([]);
+  const [customFeatureWish, setCustomFeatureWish] = useState('');
+
+  const togglePortalTool = (tool: string) => {
+    setPortalToolsDesired((prev) =>
+      prev.includes(tool) ? prev.filter((t) => t !== tool) : [...prev, tool]
+    );
+  };
 
   useEffect(() => {
     try {
@@ -98,12 +103,11 @@ export function VendorApplicationClient() {
         JSON.stringify({
           boutiqueName,
           whatsapp,
-          inventoryTracking,
-          doubleSellingFrequency,
-          deliveryMethod,
-          shrinkageIssue,
-          photographyMethod,
+          primarySalesChannel,
+          biggestChallenge,
           topToolDesired,
+          portalToolsDesired,
+          customFeatureWish,
           growthTierUnlocked: true,
           submittedAt: new Date().toISOString(),
         })
@@ -120,12 +124,15 @@ export function VendorApplicationClient() {
         body: JSON.stringify({
           boutiqueName,
           whatsapp,
-          inventoryTracking,
-          doubleSellingFrequency,
-          deliveryMethod,
-          shrinkageIssue,
-          photographyMethod,
+          primarySalesChannel,
+          biggestChallenge,
           topToolDesired,
+          portalToolsDesired,
+          customFeatureWish,
+          inventoryTracking: primarySalesChannel,
+          doubleSellingFrequency: biggestChallenge,
+          photographyMethod: portalToolsDesired.join(', '),
+          shrinkageIssue: customFeatureWish,
         }),
       });
     } catch (err) {
@@ -422,10 +429,10 @@ export function VendorApplicationClient() {
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-semibold text-carbon-black flex items-center gap-1.5">
                         <Award className="w-4 h-4 text-dusty-olive" />
-                        Question {operationsStep + 1} of 6
+                        Question {operationsStep + 1} of 5
                       </span>
                       <span className="font-mono font-medium text-dusty-olive-dark bg-dusty-olive/10 px-2.5 py-0.5 rounded-full text-[11px]">
-                        {Math.round(((operationsStep + 1) / 6) * 100)}% to Free Growth Tier
+                        {Math.round(((operationsStep + 1) / 5) * 100)}% to Free Growth Tier
                       </span>
                     </div>
 
@@ -434,25 +441,24 @@ export function VendorApplicationClient() {
                       <motion.div
                         className="bg-dusty-olive h-full rounded-full"
                         initial={false}
-                        animate={{ width: `${Math.round(((operationsStep + 1) / 6) * 100)}%` }}
+                        animate={{ width: `${Math.round(((operationsStep + 1) / 5) * 100)}%` }}
                         transition={{ duration: 0.3, ease: 'easeOut' }}
                       />
                     </div>
 
                     {/* Gamified Prize Motivation Line */}
                     <p className="text-[11px] text-neutral-600 font-medium pt-0.5">
-                      {operationsStep === 0 && '💼 Step 1 of 6: How does your boutique currently record daily sales & stock?'}
-                      {operationsStep === 1 && '📦 Step 2 of 6: Have you ever sold an outfit in your shop that an online buyer requested?'}
-                      {operationsStep === 2 && '🚚 Step 3 of 6: Halfway! How do you currently send clothes to remote customers?'}
-                      {operationsStep === 3 && '🛡️ Step 4 of 6: Do clothes ever go missing from hangers or counter cash not match?'}
-                      {operationsStep === 4 && '📸 Step 5 of 6: Almost there! How do you currently photograph clothes for your boutique?'}
-                      {operationsStep === 5 && '🎉 Final Question: Which Ve tool would make the biggest difference for your shop?'}
+                      {operationsStep === 0 && '💼 Step 1 of 5: Where does your boutique get most of its sales right now?'}
+                      {operationsStep === 1 && '📈 Step 2 of 5: What is the single hardest part of growing your clothing sales in Kampala?'}
+                      {operationsStep === 2 && '✨ Step 3 of 5: Which Ve feature would create the biggest breakthrough for your boutique?'}
+                      {operationsStep === 3 && '🛠️ Step 4 of 5: What tools would you use daily inside your Ve Vendor Portal?'}
+                      {operationsStep === 4 && '🎯 Final Step: What specific feature do you wish existed for Kampala boutiques?'}
                     </p>
                   </div>
 
                   <form onSubmit={handleOperationsSubmit} className="space-y-4 text-xs">
                     <AnimatePresence mode="wait">
-                      {/* STEP 0: Stock Tracking */}
+                      {/* STEP 0: Primary Sales Channel */}
                       {operationsStep === 0 && (
                         <motion.div
                           key="ops-step-0"
@@ -463,32 +469,33 @@ export function VendorApplicationClient() {
                           className="space-y-2"
                         >
                           <label className="font-semibold text-carbon-black block text-sm">
-                            How does your boutique currently record daily sales and stock?
+                            Where does your boutique get most of its paying customers right now?
                             <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
-                              Pick your current routine
+                              Pick your primary sales channel
                             </span>
                           </label>
                           <div className="space-y-1.5 pt-1">
                             {[
-                              'Counter notebook and pen',
-                              'WhatsApp messages & mental notes',
-                              'Excel spreadsheet on phone or computer',
-                              'Point-of-Sale (POS) software',
+                              'Walk-in foot traffic at our arcade or physical boutique',
+                              'Instagram DMs & WhatsApp catalog orders',
+                              'TikTok videos, live sessions & fashion trends',
+                              'Repeat private styling clients & phone calls',
                             ].map((opt) => (
                               <label
                                 key={opt}
-                                onClick={() => setInventoryTracking(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${inventoryTracking === opt
+                                onClick={() => setPrimarySalesChannel(opt)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  primarySalesChannel === opt
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                  }`}
+                                }`}
                               >
                                 <input
                                   type="radio"
-                                  name="inventory-tracking"
+                                  name="primary-sales-channel"
                                   value={opt}
-                                  checked={inventoryTracking === opt}
-                                  onChange={() => setInventoryTracking(opt)}
+                                  checked={primarySalesChannel === opt}
+                                  onChange={() => setPrimarySalesChannel(opt)}
                                   className="accent-dusty-olive w-4 h-4"
                                 />
                                 <span>{opt}</span>
@@ -498,7 +505,7 @@ export function VendorApplicationClient() {
                         </motion.div>
                       )}
 
-                      {/* STEP 1: Double Selling */}
+                      {/* STEP 1: Biggest Business Bottleneck */}
                       {operationsStep === 1 && (
                         <motion.div
                           key="ops-step-1"
@@ -509,28 +516,34 @@ export function VendorApplicationClient() {
                           className="space-y-2"
                         >
                           <label className="font-semibold text-carbon-black block text-sm">
-                            Have you ever sold an outfit in your shop that an online buyer had already requested?
+                            What is the single hardest part of growing your clothing business in Kampala?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Choose your biggest bottleneck
+                            </span>
                           </label>
                           <div className="space-y-1.5 pt-1">
                             {[
-                              'Frequently — it causes big customer disappointment',
-                              'Once in a while — we try to catch it manually',
-                              'Rarely or never — we keep strict tabs',
+                              'Reaching new paying customers beyond our existing WhatsApp circles',
+                              'Shoppers hesitating or abandoning orders over sizing and fit doubts',
+                              'Boda delivery hassles, delayed pickups, and damaged delicate fabrics',
+                              'Taking high-quality outfit photos without spending money on models or studios',
+                              'Fake Mobile Money SMS confirmations & delayed customer payments',
                             ].map((opt) => (
                               <label
                                 key={opt}
-                                onClick={() => setDoubleSellingFrequency(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${doubleSellingFrequency === opt
+                                onClick={() => setBiggestChallenge(opt)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  biggestChallenge === opt
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                  }`}
+                                }`}
                               >
                                 <input
                                   type="radio"
-                                  name="double-selling"
+                                  name="biggest-challenge"
                                   value={opt}
-                                  checked={doubleSellingFrequency === opt}
-                                  onChange={() => setDoubleSellingFrequency(opt)}
+                                  checked={biggestChallenge === opt}
+                                  onChange={() => setBiggestChallenge(opt)}
                                   className="accent-dusty-olive w-4 h-4"
                                 />
                                 <span>{opt}</span>
@@ -540,7 +553,7 @@ export function VendorApplicationClient() {
                         </motion.div>
                       )}
 
-                      {/* STEP 2: Delivery Method */}
+                      {/* STEP 2: Core Feature Priority */}
                       {operationsStep === 2 && (
                         <motion.div
                           key="ops-step-2"
@@ -551,29 +564,34 @@ export function VendorApplicationClient() {
                           className="space-y-2"
                         >
                           <label className="font-semibold text-carbon-black block text-sm">
-                            How do you currently send clothes to customers who order remotely?
+                            If Ve could solve ONE thing for your boutique on launch day, what should it be?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Choose what matters most for your shop
+                            </span>
                           </label>
                           <div className="space-y-1.5 pt-1">
                             {[
-                              'Bargain with street boda riders near the arcade',
-                              'The customer sends their own rider to pick up',
-                              'SafeBoda / Farasi on my phone',
-                              'We don’t do deliveries / in-person shop visits only',
+                              'Virtual Try-On: Shoppers see clothes on their body and buy with confidence',
+                              'Dedicated Courier: Reliable Ve riders pick up from your counter with doorstep delivery',
+                              'Protected MoMo: Guaranteed payments with zero fake receipt fraud or ghosting',
+                              'AI Studio Photos: Turn simple phone photos on a hanger into professional model images',
+                              'Stock Sync: Automatic inventory tracking so you never double-sell in-store vs online',
                             ].map((opt) => (
                               <label
                                 key={opt}
-                                onClick={() => setDeliveryMethod(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${deliveryMethod === opt
+                                onClick={() => setTopToolDesired(opt)}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  topToolDesired === opt
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                  }`}
+                                }`}
                               >
                                 <input
                                   type="radio"
-                                  name="delivery-method"
+                                  name="top-tool-desired"
                                   value={opt}
-                                  checked={deliveryMethod === opt}
-                                  onChange={() => setDeliveryMethod(opt)}
+                                  checked={topToolDesired === opt}
+                                  onChange={() => setTopToolDesired(opt)}
                                   className="accent-dusty-olive w-4 h-4"
                                 />
                                 <span>{opt}</span>
@@ -583,7 +601,7 @@ export function VendorApplicationClient() {
                         </motion.div>
                       )}
 
-                      {/* STEP 3: Stock Loss */}
+                      {/* STEP 3: Daily Vendor Portal Tools */}
                       {operationsStep === 3 && (
                         <motion.div
                           key="ops-step-3"
@@ -594,29 +612,32 @@ export function VendorApplicationClient() {
                           className="space-y-2"
                         >
                           <label className="font-semibold text-carbon-black block text-sm">
-                            Do you ever experience clothes going missing from hangers or counter cash not matching?
+                            Which tools would you use every day inside your Ve Vendor Portal?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Select all features you would love to have
+                            </span>
                           </label>
                           <div className="space-y-1.5 pt-1">
                             {[
-                              'Yes, missing hanger stock is a real issue',
-                              'Yes, counter cash occasionally does not tally with sales',
-                              'No, I manage the shop counter myself 100% of the time',
+                              'Direct buyer WhatsApp link & customer order manager',
+                              'Real-time daily sales, revenue & profit dashboard',
+                              'Flash sales, limited discount codes & promo creator',
+                              'Instant same-day payout withdrawals to MTN & Airtel Money',
+                              'Shopper demand radar (see which sizes and styles Kampala shoppers are searching for)',
                             ].map((opt) => (
                               <label
                                 key={opt}
-                                onClick={() => setShrinkageIssue(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${shrinkageIssue === opt
-                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  portalToolsDesired.includes(opt)
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                  }`}
+                                }`}
                               >
                                 <input
-                                  type="radio"
-                                  name="shrinkage-issue"
-                                  value={opt}
-                                  checked={shrinkageIssue === opt}
-                                  onChange={() => setShrinkageIssue(opt)}
-                                  className="accent-dusty-olive w-4 h-4"
+                                  type="checkbox"
+                                  checked={portalToolsDesired.includes(opt)}
+                                  onChange={() => togglePortalTool(opt)}
+                                  className="accent-dusty-olive rounded w-4 h-4"
                                 />
                                 <span>{opt}</span>
                               </label>
@@ -625,7 +646,7 @@ export function VendorApplicationClient() {
                         </motion.div>
                       )}
 
-                      {/* STEP 4: Photography */}
+                      {/* STEP 4: Custom Feature Wish & Co-Creation */}
                       {operationsStep === 4 && (
                         <motion.div
                           key="ops-step-4"
@@ -633,80 +654,24 @@ export function VendorApplicationClient() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -16 }}
                           transition={{ duration: 0.2 }}
-                          className="space-y-2"
+                          className="space-y-3"
                         >
-                          <label className="font-semibold text-carbon-black block text-sm">
-                            How do you currently photograph clothes for your boutique?
+                          <label htmlFor="custom-feature-wish" className="font-semibold text-carbon-black block text-sm">
+                            What specific tool or feature do you wish an app created for Kampala fashion sellers?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Optional · Tell our engineering team what would make Ve the dream platform for your boutique
+                            </span>
                           </label>
-                          <div className="space-y-1.5 pt-1">
-                            {[
-                              'Smartphone photos on a hanger or mannequin in the shop',
-                              'I or a friend model the outfits',
-                              'I hire a professional photographer / studio',
-                              'Manufacturer or stock photos from the internet',
-                            ].map((opt) => (
-                              <label
-                                key={opt}
-                                onClick={() => setPhotographyMethod(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${photographyMethod === opt
-                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
-                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                  }`}
-                              >
-                                <input
-                                  type="radio"
-                                  name="photography-method"
-                                  value={opt}
-                                  checked={photographyMethod === opt}
-                                  onChange={() => setPhotographyMethod(opt)}
-                                  className="accent-dusty-olive w-4 h-4"
-                                />
-                                <span>{opt}</span>
-                              </label>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-
-                      {/* STEP 5: Top Tool */}
-                      {operationsStep === 5 && (
-                        <motion.div
-                          key="ops-step-5"
-                          initial={{ opacity: 0, x: 16 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -16 }}
-                          transition={{ duration: 0.2 }}
-                          className="space-y-2"
-                        >
-                          <label className="font-semibold text-carbon-black block text-sm">
-                            Which Ve tool would make the biggest difference for your shop right now?
-                          </label>
-                          <div className="space-y-1.5 pt-1">
-                            {[
-                              'Automatic shop counter pickup by dedicated riders',
-                              'Never double-selling in-store vs online',
-                              'Clean studio photos with automatic background removal',
-                              'Guaranteed Mobile Money payouts with zero fake SMS receipts',
-                            ].map((opt) => (
-                              <label
-                                key={opt}
-                                onClick={() => setTopToolDesired(opt)}
-                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${topToolDesired === opt
-                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
-                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
-                                  }`}
-                              >
-                                <input
-                                  type="radio"
-                                  name="top-tool"
-                                  value={opt}
-                                  checked={topToolDesired === opt}
-                                  onChange={() => setTopToolDesired(opt)}
-                                  className="accent-dusty-olive w-4 h-4"
-                                />
-                                <span>{opt}</span>
-                              </label>
-                            ))}
+                          <textarea
+                            id="custom-feature-wish"
+                            rows={3}
+                            value={customFeatureWish}
+                            onChange={(e) => setCustomFeatureWish(e.target.value)}
+                            placeholder="e.g. Bulk WhatsApp restock alerts, automated size conversion charts, layaway down-payments..."
+                            className="w-full px-3.5 py-2.5 rounded-lg border border-soft-linen bg-snow text-carbon-black placeholder:text-carbon-black/40 focus:outline-none focus:ring-2 focus:ring-dusty-olive text-xs resize-none"
+                          />
+                          <div className="p-3 rounded-lg bg-soft-linen/30 border border-soft-linen text-[11px] text-neutral-600 leading-relaxed">
+                            💡 We design Ve hand-in-hand with boutique merchants across Kampala to solve real operational bottlenecks.
                           </div>
                         </motion.div>
                       )}
@@ -734,17 +699,16 @@ export function VendorApplicationClient() {
                       )}
 
                       <div className="flex items-center gap-2">
-                        {operationsStep < 5 ? (
+                        {operationsStep < 4 ? (
                           <Button
                             type="button"
                             variant="primary"
                             size="sm"
                             disabled={
-                              (operationsStep === 0 && !inventoryTracking) ||
-                              (operationsStep === 1 && !doubleSellingFrequency) ||
-                              (operationsStep === 2 && !deliveryMethod) ||
-                              (operationsStep === 3 && !shrinkageIssue) ||
-                              (operationsStep === 4 && !photographyMethod)
+                              (operationsStep === 0 && !primarySalesChannel) ||
+                              (operationsStep === 1 && !biggestChallenge) ||
+                              (operationsStep === 2 && !topToolDesired) ||
+                              (operationsStep === 3 && portalToolsDesired.length === 0)
                             }
                             onClick={() => setOperationsStep((s) => s + 1)}
                             className="font-semibold cursor-pointer"
@@ -757,7 +721,7 @@ export function VendorApplicationClient() {
                             type="submit"
                             variant="accent"
                             size="sm"
-                            disabled={!topToolDesired || isOperationsSubmitting}
+                            disabled={isOperationsSubmitting}
                             className="font-semibold cursor-pointer"
                           >
                             {isOperationsSubmitting ? 'Unlocking Growth Tier...' : 'Claim 1 Month Free Growth Tier 🚀'}

@@ -78,19 +78,14 @@ export default async function JournalPage({ searchParams }: JournalPageProps) {
           >
             <Card className="h-full bg-snow border-soft-linen group-hover:border-dusty-olive transition-all flex flex-col justify-between p-6 space-y-6">
               <div className="space-y-4">
-                {/* Visual placeholder box with fixed aspect ratio to prevent CLS */}
-                <div className="w-full aspect-[16/10] bg-soft-linen/50 rounded-xl overflow-hidden relative flex items-center justify-center text-carbon-black/30">
-                  <div className="absolute inset-0 bg-gradient-to-t from-carbon-black/40 via-transparent to-transparent opacity-60" />
-                  <span className="font-serif italic text-sm text-snow z-10 font-medium px-4 text-center">
+                <div className="flex items-center justify-between gap-2">
+                  <Badge variant="olive" size="sm">
                     {article.category}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2 text-[11px] text-carbon-black/60 font-medium">
-                  <Clock className="w-3.5 h-3.5 text-dusty-olive" />
-                  <span>{article.readTime}</span>
-                  <span>·</span>
-                  <span>{new Date(article.publishedAt).toLocaleDateString('en-UG', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                  </Badge>
+                  <div className="flex items-center gap-1.5 text-[11px] text-carbon-black/60 font-medium">
+                    <Clock className="w-3.5 h-3.5 text-dusty-olive" />
+                    <span>{article.readTime}</span>
+                  </div>
                 </div>
 
                 <h2 className="font-serif text-xl font-semibold text-carbon-black group-hover:text-dusty-olive-dark transition-colors leading-snug">
@@ -100,6 +95,10 @@ export default async function JournalPage({ searchParams }: JournalPageProps) {
                 <p className="text-xs text-carbon-black/70 leading-relaxed line-clamp-3">
                   {article.excerpt}
                 </p>
+
+                <div className="text-[11px] text-carbon-black/50 font-medium pt-1">
+                  {new Date(article.publishedAt).toLocaleDateString('en-UG', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </div>
               </div>
 
               <div className="pt-4 border-t border-soft-linen flex items-center justify-between text-xs font-semibold text-dusty-olive-dark">

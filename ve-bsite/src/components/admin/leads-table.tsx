@@ -3,15 +3,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { WaitlistLead } from '@/lib/types/database';
 import { CsvExportButton } from '@/components/admin/csv-export-button';
-import { 
-  Search, 
-  RefreshCw, 
-  Smartphone, 
-  Apple, 
-  Users, 
-  Tag, 
-  Calendar, 
-  ChevronLeft, 
+import {
+  Search,
+  RefreshCw,
+  Smartphone,
+  Apple,
+  Users,
+  Tag,
+  Calendar,
+  ChevronLeft,
   ChevronRight,
   Filter
 } from 'lucide-react';
@@ -205,7 +205,7 @@ export function LeadsTable() {
                     {/* Contact & Name */}
                     <td className="py-3 px-4">
                       <div className="font-semibold text-carbon-black">
-                        {lead.name || 'Anonymous Waitlist User'}
+                        {lead.name || 'Anonymous'}
                       </div>
                       <div className="font-mono text-[11px] text-neutral-500">
                         {lead.contact}

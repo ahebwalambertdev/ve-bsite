@@ -9,7 +9,6 @@ import {
   Clock, 
   User, 
   Share2, 
-  Sparkles, 
   CheckCircle2, 
   HelpCircle 
 } from 'lucide-react';
@@ -136,18 +135,14 @@ export default async function JournalArticlePage({ params }: ArticlePageProps) {
             })}
           </span>
         </div>
-      </header>
 
-      {/* Executive TL;DR Callout (AEO Inverted Pyramid §9.4) */}
-      <div className="p-6 rounded-2xl bg-soft-linen/35 border-l-4 border-dusty-olive text-carbon-black space-y-2">
-        <div className="text-xs font-bold uppercase tracking-wider text-dusty-olive-dark flex items-center gap-1.5">
-          <Sparkles className="w-4 h-4" />
-          Executive Key Takeaway (TL;DR)
-        </div>
-        <p className="text-sm font-medium leading-relaxed">
-          {article.tldr}
-        </p>
-      </div>
+        {/* Editorial Dek / Lead Summary */}
+        {article.tldr && (
+          <p className="text-base sm:text-lg text-carbon-black/80 font-serif italic leading-relaxed pt-4 border-t border-soft-linen">
+            {article.tldr}
+          </p>
+        )}
+      </header>
 
       {/* Article Sections */}
       <article className="space-y-12 text-carbon-black/85 leading-relaxed">

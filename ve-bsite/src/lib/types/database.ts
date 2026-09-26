@@ -29,10 +29,13 @@ export interface CustomerSurvey {
   id: string;
   contact: string | null;
   shopping_habits: string[];
+  current_painpoints?: string[];
   online_frustration: string | null;
   style_categories: string[];
   try_on_excitement: string | null;
+  ve_excitement?: string | null;
   delivery_area: string | null;
+  recommended_vendor?: string | null;
   created_at: string;
 }
 
@@ -42,9 +45,9 @@ export interface VendorOperationsSurvey {
   whatsapp: string | null;
   inventory_tracking: string | null;
   double_selling_frequency: string | null;
-  delivery_method: string | null;
-  shrinkage_issue: string | null;
-  photography_method: string | null;
+  delivery_method?: string | null;
+  shrinkage_issue?: string | null;
+  photography_method?: string | null;
   top_tool_desired: string | null;
   created_at: string;
 }

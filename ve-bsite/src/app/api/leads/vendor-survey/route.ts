@@ -7,12 +7,14 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const boutiqueName = sanitizeText(body.boutiqueName, 120);
     const whatsapp = sanitizePhone(body.whatsapp);
-    const inventoryTracking = sanitizeText(body.inventoryTracking, 100);
-    const doubleSellingFrequency = sanitizeText(body.doubleSellingFrequency, 100);
+    const primarySalesChannel = sanitizeText(body.primarySalesChannel || body.inventoryTracking, 120);
+    const biggestChallenge = sanitizeText(body.biggestChallenge || body.doubleSellingFrequency, 150);
+    const topToolDesired = sanitizeText(body.topToolDesired, 150);
+    const portalTools = Array.isArray(body.portalToolsDesired)
+      ? body.portalToolsDesired.map((t: unknown) => sanitizeText(t, 80)).filter(Boolean).join(', ')
+      : sanitizeText(body.portalToolsDesired || body.photographyMethod, 200);
+    const customFeatureWish = sanitizeText(body.customFeatureWish || body.shrinkageIssue, 300);
     const deliveryMethod = sanitizeText(body.deliveryMethod, 100);
-    const shrinkageIssue = sanitizeText(body.shrinkageIssue, 100);
-    const photographyMethod = sanitizeText(body.photographyMethod, 100);
-    const topToolDesired = sanitizeText(body.topToolDesired, 100);
 
     const supabase = getServiceSupabase();
     const { data, error } = await supabase
@@ -20,11 +22,11 @@ export async function POST(req: NextRequest) {
       .insert({
         boutique_name: boutiqueName || null,
         whatsapp: whatsapp || null,
-        inventory_tracking: inventoryTracking || null,
-        double_selling_frequency: doubleSellingFrequency || null,
+        inventory_tracking: primarySalesChannel || null,
+        double_selling_frequency: biggestChallenge || null,
         delivery_method: deliveryMethod || null,
-        shrinkage_issue: shrinkageIssue || null,
-        photography_method: photographyMethod || null,
+        shrinkage_issue: customFeatureWish || null,
+        photography_method: portalTools || null,
         top_tool_desired: topToolDesired || null,
       })
       .select('id')

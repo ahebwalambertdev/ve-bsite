@@ -68,10 +68,12 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
 
   // Validation answers
   const [shoppingHabits, setShoppingHabits] = useState<string[]>([]);
+  const [currentPainpoints, setCurrentPainpoints] = useState<string[]>([]);
   const [onlineFrustration, setOnlineFrustration] = useState('');
   const [styleCategories, setStyleCategories] = useState<string[]>([]);
-  const [tryOnExcitement, setTryOnExcitement] = useState('');
+  const [veExcitement, setVeExcitement] = useState('');
   const [deliveryArea, setDeliveryArea] = useState('');
+  const [recommendedVendor, setRecommendedVendor] = useState('');
 
   useEffect(() => {
     // 1. Detect platform from userAgent
@@ -180,10 +182,12 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
         JSON.stringify({
           contact,
           shoppingHabits,
+          currentPainpoints,
           onlineFrustration,
           styleCategories,
-          tryOnExcitement,
+          veExcitement,
           deliveryArea,
+          recommendedVendor,
           voucherUnlocked: true,
           submittedAt: new Date().toISOString(),
         })
@@ -200,10 +204,13 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
         body: JSON.stringify({
           contact,
           shoppingHabits,
+          currentPainpoints,
           onlineFrustration,
           styleCategories,
-          tryOnExcitement,
+          veExcitement,
+          tryOnExcitement: veExcitement,
           deliveryArea,
+          recommendedVendor,
         }),
       });
     } catch (err) {
@@ -217,6 +224,12 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
 
   const toggleShoppingHabit = (val: string) => {
     setShoppingHabits((prev) =>
+      prev.includes(val) ? prev.filter((item) => item !== val) : [...prev, val]
+    );
+  };
+
+  const toggleCurrentPainpoint = (val: string) => {
+    setCurrentPainpoints((prev) =>
       prev.includes(val) ? prev.filter((item) => item !== val) : [...prev, val]
     );
   };
@@ -384,10 +397,10 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-semibold text-carbon-black flex items-center gap-1.5">
                         <Gift className="w-4 h-4 text-dusty-olive" />
-                        Question {surveyStep + 1} of 5
+                        Question {surveyStep + 1} of 7
                       </span>
                       <span className="font-mono font-medium text-dusty-olive-dark bg-dusty-olive/10 px-2.5 py-0.5 rounded-full text-[11px]">
-                        {Math.round(((surveyStep + 1) / 5) * 100)}% to Free Delivery
+                        {Math.round(((surveyStep + 1) / 7) * 100)}% to Free Delivery
                       </span>
                     </div>
 
@@ -396,18 +409,20 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                       <motion.div
                         className="bg-dusty-olive h-full rounded-full"
                         initial={false}
-                        animate={{ width: `${Math.round(((surveyStep + 1) / 5) * 100)}%` }}
+                        animate={{ width: `${Math.round(((surveyStep + 1) / 7) * 100)}%` }}
                         transition={{ duration: 0.3, ease: 'easeOut' }}
                       />
                     </div>
 
                     {/* Gamified Prize Motivation Line */}
                     <p className="text-[11px] text-neutral-600 font-medium pt-0.5">
-                      {surveyStep === 0 && '🎁 Step 1 of 5: Where do you usually buy clothes in Kampala?'}
-                      {surveyStep === 1 && '🎁 Step 2 of 5: What is your biggest headache when shopping online?'}
-                      {surveyStep === 2 && '🎁 Step 3 of 5: Halfway! What fashion styles are you eager to browse on Ve?'}
-                      {surveyStep === 3 && '🎁 Step 4 of 5: Almost there! What excites you most about Try-On on your phone?'}
-                      {surveyStep === 4 && '🎉 Final Step: What neighborhood in Kampala should we deliver your order to?'}
+                      {surveyStep === 0 && '🎁 Step 1 of 7: Where do you usually buy clothes in Kampala?'}
+                      {surveyStep === 1 && '🎁 Step 2 of 7: What frustrates you most about shopping in Kampala right now?'}
+                      {surveyStep === 2 && '🎁 Step 3 of 7: When buying online or via WhatsApp, what is your biggest headache?'}
+                      {surveyStep === 3 && '🎁 Step 4 of 7: What fashion styles are you eager to browse on Ve?'}
+                      {surveyStep === 4 && '🎁 Step 5 of 7: What excites you most about Ve?'}
+                      {surveyStep === 5 && '🎁 Step 6 of 7: What neighborhood in Kampala should we deliver your order to?'}
+                      {surveyStep === 6 && '🎉 Final Step: Know a boutique or seller who should be on Ve?'}
                     </p>
                   </div>
 
@@ -458,7 +473,7 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                         </motion.div>
                       )}
 
-                      {/* STEP 1: Online Frustration */}
+                      {/* STEP 1: Current Shopping Painpoints in Kampala */}
                       {surveyStep === 1 && (
                         <motion.div
                           key="step-1"
@@ -469,7 +484,53 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                           className="space-y-2"
                         >
                           <label className="font-semibold text-carbon-black block text-sm">
-                            What is your biggest headache when shopping online?
+                            What frustrates you most about shopping for clothes in Kampala right now?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Select all that apply
+                            </span>
+                          </label>
+                          <div className="space-y-1.5 pt-1">
+                            {[
+                              'Sizes are inconsistent or no decent place to fit',
+                              'Tiring arcade crowds, heat & hours lost in traffic (Pioneer, Gazaland, Owino)',
+                              'Prices change depending on who is asking / haggling fatigue',
+                              'Clothes look completely different or feel cheap once you see them up close',
+                              'Hard to find authentic pieces without visiting 20 different stalls',
+                              'Aggressive shop attendants or middlemen pulling your clothes',
+                            ].map((item) => (
+                              <label
+                                key={item}
+                                className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
+                                  currentPainpoints.includes(item)
+                                    ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium'
+                                    : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
+                                }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={currentPainpoints.includes(item)}
+                                  onChange={() => toggleCurrentPainpoint(item)}
+                                  className="accent-dusty-olive rounded w-4 h-4"
+                                />
+                                <span>{item}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {/* STEP 2: Online Shopping Frustration */}
+                      {surveyStep === 2 && (
+                        <motion.div
+                          key="step-2"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-2"
+                        >
+                          <label className="font-semibold text-carbon-black block text-sm">
+                            When ordering clothes online or via WhatsApp, what is your biggest headache?
                             <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
                               Pick your single biggest challenge
                             </span>
@@ -478,9 +539,9 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                             {[
                               'Sizes are wrong or fit poorly',
                               'What arrives looks nothing like the photo',
-                              'Waiting 2-4 weeks for overseas delivery',
+                              'Waiting 2-4 weeks for overseas delivery (Shein/cargo)',
                               'Impossible returns / sellers ghosting after payment',
-                              'Expensive delivery charges',
+                              'Expensive or delayed boda deliveries',
                             ].map((frust) => (
                               <label
                                 key={frust}
@@ -506,10 +567,10 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                         </motion.div>
                       )}
 
-                      {/* STEP 2: Style Categories */}
-                      {surveyStep === 2 && (
+                      {/* STEP 3: Style Categories */}
+                      {surveyStep === 3 && (
                         <motion.div
-                          key="step-2"
+                          key="step-3"
                           initial={{ opacity: 0, x: 16 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -16 }}
@@ -551,10 +612,10 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                         </motion.div>
                       )}
 
-                      {/* STEP 3: Try-On Excitement */}
-                      {surveyStep === 3 && (
+                      {/* STEP 4: What excites you most about Ve */}
+                      {surveyStep === 4 && (
                         <motion.div
-                          key="step-3"
+                          key="step-4"
                           initial={{ opacity: 0, x: 16 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -16 }}
@@ -562,29 +623,34 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                           className="space-y-2"
                         >
                           <label className="font-semibold text-carbon-black block text-sm">
-                            What excites you most about Try-On on your phone?
+                            What excites you most about Ve?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Pick what you look forward to most
+                            </span>
                           </label>
                           <div className="space-y-1.5 pt-1">
                             {[
-                              'Seeing if an outfit matches my body and style before paying',
-                              'Trying multiple outfits in seconds without undressing',
-                              'Never wasting money on clothes that end up unworn in my closet',
+                              'Trying outfits on my phone before buying (Fit & Virtual Try-On)',
+                              'Discovering verified Kampala boutiques in one curated app',
+                              'Fast same-day doorstep delivery with 48-hour easy returns',
+                              'Secure payments with zero fake receipt fraud or scams',
+                              'Transparent pricing and guaranteed authentic fashion',
                             ].map((reason) => (
                               <label
                                 key={reason}
-                                onClick={() => setTryOnExcitement(reason)}
+                                onClick={() => setVeExcitement(reason)}
                                 className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors ${
-                                  tryOnExcitement === reason
+                                  veExcitement === reason
                                     ? 'border-dusty-olive bg-soft-linen/40 text-carbon-black font-medium ring-1 ring-dusty-olive'
                                     : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/10'
                                 }`}
                               >
                                 <input
                                   type="radio"
-                                  name="tryon-excitement"
+                                  name="ve-excitement"
                                   value={reason}
-                                  checked={tryOnExcitement === reason}
-                                  onChange={() => setTryOnExcitement(reason)}
+                                  checked={veExcitement === reason}
+                                  onChange={() => setVeExcitement(reason)}
                                   className="accent-dusty-olive w-4 h-4"
                                 />
                                 <span>{reason}</span>
@@ -594,10 +660,10 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                         </motion.div>
                       )}
 
-                      {/* STEP 4: Delivery Area */}
-                      {surveyStep === 4 && (
+                      {/* STEP 5: Delivery Area */}
+                      {surveyStep === 5 && (
                         <motion.div
-                          key="step-4"
+                          key="step-5"
                           initial={{ opacity: 0, x: 16 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -16 }}
@@ -619,17 +685,23 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                             placeholder="e.g. Ntinda, Kololo, Kira, Najjera, Entebbe Road..."
                             className="w-full px-3.5 py-2.5 rounded-lg border border-soft-linen bg-snow text-carbon-black placeholder:text-carbon-black/40 focus:outline-none focus:ring-2 focus:ring-dusty-olive text-xs"
                           />
-                          <div className="pt-1 space-y-1">
+                          <div className="pt-1 space-y-1.5">
                             <span className="text-[10px] text-neutral-500 font-semibold uppercase tracking-wider block">
-                              Quick tap:
+                              Quick tap (popular zones across Kampala):
                             </span>
-                            <div className="flex flex-wrap gap-1.5">
-                              {['Ntinda', 'Kololo', 'Kisementi', 'Bugolobi', 'Naalya', 'Kira', 'Kampala Central', 'Entebbe Rd'].map((place) => (
+                            <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pr-1">
+                              {[
+                                'Ntinda', 'Kololo', 'Kisementi', 'Bugolobi', 'Naalya', 
+                                'Kira', 'Najjera', 'Bukoto', 'Kampala Central', 'Muyenga', 
+                                'Kansanga', 'Ggaba', 'Munyonyo', 'Bunga', 'Kiwatule', 
+                                'Kyanja', 'Kisaasi', 'Naguru', 'Kamwokya', 'Lubowa', 
+                                'Rubaga', 'Mengo', 'Namugongo', 'Entebbe Rd'
+                              ].map((place) => (
                                 <button
                                   key={place}
                                   type="button"
                                   onClick={() => setDeliveryArea(place)}
-                                  className={`px-2.5 py-1 rounded-full text-[11px] border transition-colors ${
+                                  className={`px-2.5 py-1 rounded-full text-[11px] border transition-colors cursor-pointer ${
                                     deliveryArea === place
                                       ? 'bg-dusty-olive text-snow border-dusty-olive font-medium'
                                       : 'bg-soft-linen/30 border-soft-linen text-carbon-black/80 hover:bg-soft-linen/70'
@@ -639,6 +711,36 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                                 </button>
                               ))}
                             </div>
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {/* STEP 6: Recommend a Vendor */}
+                      {surveyStep === 6 && (
+                        <motion.div
+                          key="step-6"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-3"
+                        >
+                          <label htmlFor="vendor-rec-input" className="font-semibold text-carbon-black block text-sm">
+                            Know a boutique or fashion seller who should be on Ve?
+                            <span className="text-carbon-black/50 text-xs font-normal block pt-0.5">
+                              Optional · Enter their shop name, phone number, or TikTok / Instagram handle
+                            </span>
+                          </label>
+                          <input
+                            id="vendor-rec-input"
+                            type="text"
+                            value={recommendedVendor}
+                            onChange={(e) => setRecommendedVendor(e.target.value)}
+                            placeholder="e.g. Bold in Kampala, @vintage_kla, or 077..."
+                            className="w-full px-3.5 py-2.5 rounded-lg border border-soft-linen bg-snow text-carbon-black placeholder:text-carbon-black/40 focus:outline-none focus:ring-2 focus:ring-dusty-olive text-xs"
+                          />
+                          <div className="p-3 rounded-lg bg-soft-linen/30 border border-soft-linen text-[11px] text-neutral-600 leading-relaxed">
+                            💡 We will reach out to invite them so you can browse their collections and try them on directly in the app!
                           </div>
                         </motion.div>
                       )}
@@ -666,16 +768,18 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                       )}
 
                       <div className="flex items-center gap-2">
-                        {surveyStep < 4 ? (
+                        {surveyStep < 6 ? (
                           <Button
                             type="button"
                             variant="primary"
                             size="sm"
                             disabled={
                               (surveyStep === 0 && shoppingHabits.length === 0) ||
-                              (surveyStep === 1 && !onlineFrustration) ||
-                              (surveyStep === 2 && styleCategories.length === 0) ||
-                              (surveyStep === 3 && !tryOnExcitement)
+                              (surveyStep === 1 && currentPainpoints.length === 0) ||
+                              (surveyStep === 2 && !onlineFrustration) ||
+                              (surveyStep === 3 && styleCategories.length === 0) ||
+                              (surveyStep === 4 && !veExcitement) ||
+                              (surveyStep === 5 && !deliveryArea.trim())
                             }
                             onClick={() => setSurveyStep((s) => s + 1)}
                             className="font-semibold cursor-pointer"
@@ -688,7 +792,7 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                             type="submit"
                             variant="accent"
                             size="sm"
-                            disabled={!deliveryArea.trim() || isSurveySubmitting}
+                            disabled={isSurveySubmitting}
                             className="font-semibold cursor-pointer"
                           >
                             {isSurveySubmitting ? 'Unlocking Voucher...' : 'Claim Free First Delivery 🎁'}

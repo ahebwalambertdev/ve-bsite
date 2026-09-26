@@ -19,6 +19,7 @@ CREATE INDEX IF NOT EXISTS idx_waitlist_leads_contact ON public.waitlist_leads(c
 ALTER TABLE public.waitlist_leads ENABLE ROW LEVEL SECURITY;
 
 -- Anonymous public can submit to waitlist
+DROP POLICY IF EXISTS "Allow anon public insert to waitlist_leads" ON public.waitlist_leads;
 CREATE POLICY "Allow anon public insert to waitlist_leads"
 ON public.waitlist_leads
 FOR INSERT
@@ -26,6 +27,7 @@ TO anon, authenticated
 WITH CHECK (true);
 
 -- Authenticated admins and service role can read/manage leads
+DROP POLICY IF EXISTS "Allow authenticated read and manage waitlist_leads" ON public.waitlist_leads;
 CREATE POLICY "Allow authenticated read and manage waitlist_leads"
 ON public.waitlist_leads
 FOR ALL
@@ -55,12 +57,14 @@ CREATE INDEX IF NOT EXISTS idx_vendor_applications_status ON public.vendor_appli
 
 ALTER TABLE public.vendor_applications ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow anon public insert to vendor_applications" ON public.vendor_applications;
 CREATE POLICY "Allow anon public insert to vendor_applications"
 ON public.vendor_applications
 FOR INSERT
 TO anon, authenticated
 WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow authenticated read and manage vendor_applications" ON public.vendor_applications;
 CREATE POLICY "Allow authenticated read and manage vendor_applications"
 ON public.vendor_applications
 FOR ALL
@@ -85,12 +89,14 @@ CREATE INDEX IF NOT EXISTS idx_customer_surveys_created_at ON public.customer_su
 
 ALTER TABLE public.customer_surveys ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow anon public insert to customer_surveys" ON public.customer_surveys;
 CREATE POLICY "Allow anon public insert to customer_surveys"
 ON public.customer_surveys
 FOR INSERT
 TO anon, authenticated
 WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow authenticated read and manage customer_surveys" ON public.customer_surveys;
 CREATE POLICY "Allow authenticated read and manage customer_surveys"
 ON public.customer_surveys
 FOR ALL
@@ -117,12 +123,14 @@ CREATE INDEX IF NOT EXISTS idx_vendor_operations_surveys_created_at ON public.ve
 
 ALTER TABLE public.vendor_operations_surveys ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow anon public insert to vendor_operations_surveys" ON public.vendor_operations_surveys;
 CREATE POLICY "Allow anon public insert to vendor_operations_surveys"
 ON public.vendor_operations_surveys
 FOR INSERT
 TO anon, authenticated
 WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow authenticated read and manage vendor_operations_surveys" ON public.vendor_operations_surveys;
 CREATE POLICY "Allow authenticated read and manage vendor_operations_surveys"
 ON public.vendor_operations_surveys
 FOR ALL
@@ -154,6 +162,7 @@ CREATE INDEX IF NOT EXISTS idx_journal_posts_slug ON public.journal_posts(slug);
 ALTER TABLE public.journal_posts ENABLE ROW LEVEL SECURITY;
 
 -- Public can read published journal posts
+DROP POLICY IF EXISTS "Allow public read access to published journal posts" ON public.journal_posts;
 CREATE POLICY "Allow public read access to published journal posts"
 ON public.journal_posts
 FOR SELECT
@@ -161,9 +170,16 @@ TO public
 USING (is_published = true);
 
 -- Authenticated admins have full CRUD over journal posts
+DROP POLICY IF EXISTS "Allow authenticated full management of journal posts" ON public.journal_posts;
 CREATE POLICY "Allow authenticated full management of journal posts"
 ON public.journal_posts
 FOR ALL
 TO authenticated
 USING (true)
 WITH CHECK (true);
+
+-- 6. SCHEMA EXTENSIONS FOR PRODUCT-MARKET FIT & REFERRALS
+ALTER TABLE public.customer_surveys ADD COLUMN IF NOT EXISTS current_painpoints JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.customer_surveys ADD COLUMN IF NOT EXISTS recommended_vendor TEXT;
+ALTER TABLE public.customer_surveys ADD COLUMN IF NOT EXISTS ve_excitement TEXT;
+

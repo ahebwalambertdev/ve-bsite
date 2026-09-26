@@ -9,26 +9,65 @@ export async function POST(req: NextRequest) {
     const shoppingHabits = Array.isArray(body.shoppingHabits)
       ? body.shoppingHabits.map((item: unknown) => sanitizeText(item, 50)).filter(Boolean)
       : [];
+    const currentPainpoints = Array.isArray(body.currentPainpoints)
+      ? body.currentPainpoints.map((item: unknown) => sanitizeText(item, 80)).filter(Boolean)
+      : [];
     const onlineFrustration = sanitizeText(body.onlineFrustration, 150);
     const styleCategories = Array.isArray(body.styleCategories)
       ? body.styleCategories.map((item: unknown) => sanitizeText(item, 50)).filter(Boolean)
       : [];
-    const tryOnExcitement = sanitizeText(body.tryOnExcitement, 50);
+    const tryOnExcitement = sanitizeText(body.tryOnExcitement || body.veExcitement, 100);
+    const veExcitement = sanitizeText(body.veExcitement || body.tryOnExcitement, 100);
     const deliveryArea = sanitizeText(body.deliveryArea, 100);
+    const recommendedVendor = sanitizeText(body.recommendedVendor, 200);
 
     const supabase = getServiceSupabase();
-    const { data, error } = await supabase
+
+    // 1. Try inserting with extended schema
+    const payload: Record<string, unknown> = {
+      contact: contact || null,
+      shopping_habits: shoppingHabits,
+      current_painpoints: currentPainpoints,
+      online_frustration: onlineFrustration || null,
+      style_categories: styleCategories,
+      try_on_excitement: tryOnExcitement || null,
+      ve_excitement: veExcitement || null,
+      delivery_area: deliveryArea || null,
+      recommended_vendor: recommendedVendor || null,
+    };
+
+    let { data, error } = await supabase
       .from('customer_surveys')
-      .insert({
+      .insert(payload)
+      .select('id')
+      .single();
+
+    // 2. Graceful fallback if new columns don't exist yet on Supabase table
+    if (error && (error.message.includes('column') || error.code === 'PGRST204')) {
+      const fallbackPayload: Record<string, unknown> = {
         contact: contact || null,
         shopping_habits: shoppingHabits,
-        online_frustration: onlineFrustration || null,
+        online_frustration: [
+          currentPainpoints.length ? `In-person: ${currentPainpoints.join(', ')}` : null,
+          onlineFrustration ? `Online: ${onlineFrustration}` : null,
+          recommendedVendor ? `Recommended: ${recommendedVendor}` : null,
+        ]
+          .filter(Boolean)
+          .join(' | ') || null,
         style_categories: styleCategories,
         try_on_excitement: tryOnExcitement || null,
         delivery_area: deliveryArea || null,
-      })
-      .select('id')
-      .single();
+      };
+
+      const fallbackRes = await supabase
+        .from('customer_surveys')
+        .insert(fallbackPayload)
+        .select('id')
+        .single();
+
+      data = fallbackRes.data;
+      error = fallbackRes.error;
+    }
 
     if (error) {
       const errorId = crypto.randomUUID();
