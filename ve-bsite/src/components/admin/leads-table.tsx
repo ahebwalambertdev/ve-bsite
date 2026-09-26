@@ -8,6 +8,7 @@ import {
   RefreshCw,
   Smartphone,
   Apple,
+  Monitor,
   Users,
   Tag,
   Calendar,
@@ -124,6 +125,7 @@ export function LeadsTable() {
               <option value="all">All Platforms</option>
               <option value="android">Android</option>
               <option value="ios">iOS / iPhone</option>
+              <option value="desktop">Desktop / Web</option>
               <option value="both">Both</option>
             </select>
           </div>
@@ -204,12 +206,20 @@ export function LeadsTable() {
                   <tr key={lead.id} className="hover:bg-soft-linen/20 transition-colors">
                     {/* Contact & Name */}
                     <td className="py-3 px-4">
-                      <div className="font-semibold text-carbon-black">
-                        {lead.name || 'Anonymous'}
-                      </div>
-                      <div className="font-mono text-[11px] text-neutral-500">
-                        {lead.contact}
-                      </div>
+                      {lead.name ? (
+                        <>
+                          <div className="font-semibold text-carbon-black">
+                            {lead.name}
+                          </div>
+                          <div className="font-mono text-[11px] text-neutral-500">
+                            {lead.contact}
+                          </div>
+                        </>
+                      ) : (
+                        <div className="font-semibold text-carbon-black font-mono text-xs">
+                          {lead.contact}
+                        </div>
+                      )}
                     </td>
 
                     {/* Platform Badge */}
@@ -221,6 +231,10 @@ export function LeadsTable() {
                       ) : lead.platform === 'android' ? (
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
                           <Smartphone className="w-3 h-3" /> Android
+                        </span>
+                      ) : lead.platform === 'desktop' ? (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-blue-50 text-blue-700 border border-blue-200">
+                          <Monitor className="w-3 h-3" /> Desktop
                         </span>
                       ) : (
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-soft-linen/60 text-neutral-600">

@@ -331,12 +331,20 @@ export default function AdminDashboardPage() {
                 stats.recentLeads.map((lead) => (
                   <div key={lead.id} className="py-2.5 flex items-center justify-between text-xs">
                     <div>
-                      <div className="font-semibold text-carbon-black">
-                        {lead.name || 'Anonymous User'}
-                      </div>
-                      <div className="text-[11px] text-neutral-500 font-mono">
-                        {lead.contact}
-                      </div>
+                      {lead.name ? (
+                        <>
+                          <div className="font-semibold text-carbon-black">
+                            {lead.name}
+                          </div>
+                          <div className="text-[11px] text-neutral-500 font-mono">
+                            {lead.contact}
+                          </div>
+                        </>
+                      ) : (
+                        <div className="font-semibold text-carbon-black font-mono text-xs">
+                          {lead.contact}
+                        </div>
+                      )}
                     </div>
                     <div className="text-right">
                       <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-soft-linen text-neutral-700">

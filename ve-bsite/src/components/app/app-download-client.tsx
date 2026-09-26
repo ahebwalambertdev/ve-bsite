@@ -18,7 +18,8 @@ import {
   Share2, 
   Clock,
   Gift,
-  Check
+  Check,
+  Monitor
 } from 'lucide-react';
 
 function AndroidIcon({ className = 'w-4 h-4' }: { className?: string }) {
@@ -52,7 +53,7 @@ interface AppDownloadClientProps {
 }
 
 export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
-  const [platform, setPlatform] = useState<'ios' | 'android'>('android');
+  const [platform, setPlatform] = useState<'ios' | 'android' | 'desktop'>('android');
   const [role, setRole] = useState<'shopper' | 'vendor'>('shopper');
   const [contact, setContact] = useState('');
   const [name, setName] = useState('');
@@ -76,12 +77,19 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
   const [recommendedVendor, setRecommendedVendor] = useState('');
 
   useEffect(() => {
-    // 1. Detect platform from userAgent
+    // 1. Automatically detect platform from userAgent and touch capabilities
     const ua = navigator.userAgent.toLowerCase();
-    if (/iphone|ipad|ipod/.test(ua)) {
+    const isIOS =
+      /iphone|ipad|ipod/.test(ua) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isAndroid = /android/.test(ua);
+
+    if (isIOS) {
       setPlatform('ios');
-    } else {
+    } else if (isAndroid) {
       setPlatform('android');
+    } else {
+      setPlatform('desktop');
     }
 
     // 2. Capture referral code from URL search parameters if present
@@ -291,6 +299,24 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                   </p>
                 </div>
 
+                {/* Optional Name Input */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <label htmlFor="name-input" className="text-xs font-semibold uppercase tracking-wider text-carbon-black/70">
+                      Your Name
+                    </label>
+                    <span className="text-[10px] text-neutral-400 font-normal">Optional</span>
+                  </div>
+                  <input
+                    id="name-input"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="e.g. Lambert or Ahebwa"
+                    className="w-full px-4 py-2.5 text-sm rounded-xl border border-soft-linen bg-snow text-carbon-black placeholder:text-carbon-black/40 focus:outline-none focus:ring-2 focus:ring-dusty-olive focus:border-transparent transition-all"
+                  />
+                </div>
+
                 {/* Contact Input (WhatsApp or Email) */}
                 <div className="space-y-1.5">
                   <label htmlFor="contact-input" className="text-xs font-semibold uppercase tracking-wider text-carbon-black/70">
@@ -308,6 +334,54 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                   <p className="text-[11px] text-carbon-black/50">
                     We only send launch invites and beta codes. No spam, ever.
                   </p>
+                </div>
+
+                {/* Device Platform Selector */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-carbon-black/70">
+                      Preferred App / Device
+                    </label>
+                    <span className="text-[10px] text-dusty-olive-dark font-medium">Auto-detected</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setPlatform('ios')}
+                      className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border text-xs font-medium transition-all ${
+                        platform === 'ios'
+                          ? 'border-carbon-black bg-carbon-black text-snow shadow-sm'
+                          : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/30'
+                      }`}
+                    >
+                      <AppleIcon className="w-3.5 h-3.5 fill-current" />
+                      <span>iOS</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPlatform('android')}
+                      className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border text-xs font-medium transition-all ${
+                        platform === 'android'
+                          ? 'border-emerald-600 bg-emerald-600 text-snow shadow-sm'
+                          : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/30'
+                      }`}
+                    >
+                      <AndroidIcon className="w-3.5 h-3.5 fill-current" />
+                      <span>Android</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPlatform('desktop')}
+                      className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border text-xs font-medium transition-all ${
+                        platform === 'desktop'
+                          ? 'border-dusty-olive bg-dusty-olive text-snow shadow-sm'
+                          : 'border-soft-linen bg-snow text-carbon-black/80 hover:bg-soft-linen/30'
+                      }`}
+                    >
+                      <Monitor className="w-3.5 h-3.5" />
+                      <span>Desktop</span>
+                    </button>
+                  </div>
                 </div>
 
                 {/* Submit Action */}
@@ -349,7 +423,7 @@ export function AppDownloadClient({ initialRef }: AppDownloadClientProps) {
                     You&apos;re on the early access list!
                   </h3>
                   <p className="text-sm text-carbon-black/75 leading-relaxed">
-                    Thank you for joining. We will notify you at <strong className="text-carbon-black">{contact || 'your contact'}</strong> as soon as the {platform === 'ios' ? 'iOS TestFlight' : 'Android Beta'} release goes live in Kampala.
+                    Thank you for joining. We will notify you at <strong className="text-carbon-black">{contact || 'your contact'}</strong> as soon as the {platform === 'ios' ? 'iOS TestFlight' : platform === 'desktop' ? 'Web App & Early Access' : 'Android Beta'} release goes live in Kampala.
                   </p>
                 </div>
               </div>
