@@ -47,9 +47,9 @@ export function Footer({ initialNav }: FooterProps = {}) {
   const [socialLinks, setSocialLinks] = React.useState<SocialLinkConfig>(
     initialNav?.socialLinks || DEFAULT_CMS_DATA.navigation?.socialLinks || {
       whatsappUrl: 'https://wa.me/256781602159',
-      instagramUrl: 'https://instagram.com/veapp.store',
-      tiktokUrl: 'https://tiktok.com/@veapp.store',
-      twitterUrl: 'https://twitter.com/veapp.store',
+      instagramUrl: 'https://www.instagram.com/veapp.ug',
+      tiktokUrl: 'https://www.tiktok.com/@veapp.ug',
+      twitterUrl: 'https://x.com/ve_uganda',
       supportEmail: CONTACT_CONFIG.emails.info,
       vendorEmail: CONTACT_CONFIG.emails.support,
     }
@@ -207,7 +207,7 @@ export function Footer({ initialNav }: FooterProps = {}) {
           <p>© {new Date().getFullYear()} Ve Technologies Ltd. All rights reserved.</p>
           <div className="flex items-center gap-5">
             <a
-              href={socialLinks.instagramUrl || 'https://www.instagram.com/veapp.store'}
+              href={socialLinks.instagramUrl || 'https://www.instagram.com/veapp.ug'}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-snow text-neutral-400 transition-colors group"
@@ -217,7 +217,7 @@ export function Footer({ initialNav }: FooterProps = {}) {
               <span>Instagram</span>
             </a>
             <a
-              href={socialLinks.tiktokUrl || 'https://www.tiktok.com/@veapp.store'}
+              href={socialLinks.tiktokUrl || 'https://www.tiktok.com/@veapp.ug'}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-snow text-neutral-400 transition-colors group"

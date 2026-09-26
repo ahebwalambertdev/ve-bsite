@@ -302,9 +302,9 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     },
     socialLinks: {
       whatsappUrl: 'https://wa.me/256781602159',
-      instagramUrl: 'https://www.instagram.com/veapp.store',
-      tiktokUrl: 'https://www.tiktok.com/@veapp.store',
-      twitterUrl: 'https://x.com/veapp_store',
+      instagramUrl: 'https://www.instagram.com/veapp.ug',
+      tiktokUrl: 'https://www.tiktok.com/@veapp.ug',
+      twitterUrl: 'https://x.com/ve_uganda',
       supportEmail: 'help@veapp.store',
       vendorEmail: 'support@veapp.store',
     },

@@ -369,7 +369,7 @@ export function MobileDrawer({ isOpen, onClose, cta }: MobileDrawerProps) {
                 <WhatsAppIcon className="w-4 h-4" />
               </a>
               <a
-                href="https://www.instagram.com/veapp.store"
+                href="https://www.instagram.com/veapp.ug"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-neutral-500 hover:text-carbon-black transition-colors"
@@ -379,7 +379,7 @@ export function MobileDrawer({ isOpen, onClose, cta }: MobileDrawerProps) {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="https://www.tiktok.com/@veapp.store"
+                href="https://www.tiktok.com/@veapp.ug"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-neutral-500 hover:text-carbon-black transition-colors"
@@ -389,7 +389,7 @@ export function MobileDrawer({ isOpen, onClose, cta }: MobileDrawerProps) {
                 <TikTokIcon className="w-4 h-4" />
               </a>
               <a
-                href="https://twitter.com/veapp.store"
+                href="https://x.com/ve_uganda"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-neutral-500 hover:text-carbon-black transition-colors"

@@ -129,9 +129,9 @@ export default async function RootLayout({
                   description:
                     'Kampala’s curated fashion marketplace featuring verified local boutiques, doorstep fit verification, and private Try-On.',
                   sameAs: [
-                    'https://www.instagram.com/veapp.store',
-                    'https://www.tiktok.com/@veapp.store',
-                    'https://x.com/veapp_store',
+                    'https://www.instagram.com/veapp.ug',
+                    'https://www.tiktok.com/@veapp.ug',
+                    'https://x.com/ve_uganda',
                   ],
                   address: {
                     '@type': 'PostalAddress',
