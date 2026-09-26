@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'Direct answers to how Ve protects buyers and boutiques across Kampala.',
     url: 'https://www.veapp.store/faq',
   },
+  alternates: {
+    canonical: '/faq',
+  },
 };
 
 const FAQ_DATA = [

@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     description: 'Buyer and merchant agreements, payment protection terms, and delivery liability.',
     url: 'https://www.veapp.store/legal/terms',
   },
+  alternates: {
+    canonical: '/legal/terms',
+  },
 };
 
 export default async function TermsPage() {

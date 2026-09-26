@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     description: 'Quick payouts, reliable deliveries, and sizing for Kampala fashion houses.',
     url: 'https://www.veapp.store/sell',
   },
+  alternates: {
+    canonical: '/sell',
+  },
 };
 
 import { CONTACT_CONFIG } from '@/lib/contact';

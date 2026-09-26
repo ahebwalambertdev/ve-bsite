@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description: 'Boutique fashion, Try-On, and safe doorstep delivery across Kampala. Coming soon.',
     url: 'https://www.veapp.store/app',
   },
+  alternates: {
+    canonical: '/app',
+  },
 };
 
 export default function AppPage() {

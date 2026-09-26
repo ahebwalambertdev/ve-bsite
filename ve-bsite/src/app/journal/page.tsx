@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     description: 'Boutique spotlights, fit guides, and Ugandan street fashion culture.',
     url: 'https://www.veapp.store/journal',
   },
+  alternates: {
+    canonical: '/journal',
+  },
 };
 
 interface JournalPageProps {

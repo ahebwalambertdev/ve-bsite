@@ -80,9 +80,6 @@ export const metadata: Metadata = {
         : {}),
     },
   },
-  alternates: {
-    canonical: 'https://www.veapp.store',
-  },
   robots: {
     index: true,
     follow: true,

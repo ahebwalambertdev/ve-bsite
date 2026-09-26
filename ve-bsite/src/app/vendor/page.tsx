@@ -11,6 +11,9 @@ export const metadata: Metadata = {
       'Join verified Kampala boutiques on Ve. We pick up from your counter and send payouts straight to your phone.',
     url: 'https://www.veapp.store/vendor',
   },
+  alternates: {
+    canonical: '/vendor',
+  },
 };
 
 export default function VendorPage() {

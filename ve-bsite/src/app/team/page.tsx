@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     description: 'The Kampala team building trusted fashion commerce with Try-On and protected payments.',
     url: 'https://www.veapp.store/team',
   },
+  alternates: {
+    canonical: '/team',
+  },
 };
 
 export const revalidate = 60;

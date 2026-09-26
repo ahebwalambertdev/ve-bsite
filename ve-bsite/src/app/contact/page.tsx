@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     description: 'WhatsApp live support, merchant inquiries, and digital operations coverage across Kampala.',
     url: 'https://www.veapp.store/contact',
   },
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 export const revalidate = 60;

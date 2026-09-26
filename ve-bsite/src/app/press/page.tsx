@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     description: 'Official logos, brand colors, and company overview.',
     url: 'https://www.veapp.store/press',
   },
+  alternates: {
+    canonical: '/press',
+  },
 };
 
 export default async function PressPage() {

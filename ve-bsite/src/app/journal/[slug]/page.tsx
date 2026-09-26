@@ -44,6 +44,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       type: 'article',
       publishedTime: article.publishedAt,
     },
+    alternates: {
+      canonical: `/journal/${article.slug}`,
+    },
   };
 }
 

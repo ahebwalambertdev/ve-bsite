@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     description: 'How Ve protects your personal data, fitting photos, and Mobile Money numbers.',
     url: 'https://www.veapp.store/legal/privacy',
   },
+  alternates: {
+    canonical: '/legal/privacy',
+  },
 };
 
 export default async function PrivacyPage() {

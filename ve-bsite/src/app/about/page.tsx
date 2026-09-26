@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     description: 'Ve is Kampala’s fashion discovery and Try-On marketplace.',
     url: 'https://www.veapp.store/about',
   },
+  alternates: {
+    canonical: '/about',
+  },
 };
 
 import { getCmsData } from '@/lib/cms/cms-service';

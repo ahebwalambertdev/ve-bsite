@@ -4,11 +4,18 @@ import { Button } from '@/components/ui/button';
 import { CardSplitAccordion, type CardSplitAccordionItemData } from '@/components/ui/card-split-accordion';
 import { ShieldCheck, Sparkles, Truck, Camera, Store, HelpCircle } from 'lucide-react';
 
+import type { Metadata } from 'next';
 import { HeroSection } from '@/components/home/hero-section';
 import { HowItWorksSection } from '@/components/home/how-it-works-section';
 import { getCmsData } from '@/lib/cms/cms-service';
 
 export const revalidate = 60; // ISR revalidation cache
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default async function HomePage() {
   const cmsData = await getCmsData();
