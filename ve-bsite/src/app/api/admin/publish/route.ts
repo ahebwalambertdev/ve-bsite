@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       revalidatePath('/', 'page');
       revalidatePath('/faq', 'page');
       revalidatePath('/app', 'page');
-      revalidatePath('/sell', 'page');
+      revalidatePath('/vendor', 'page');
       revalidatePath('/team', 'page');
       revalidatePath('/about', 'page');
       revalidatePath('/contact', 'page');

@@ -14,7 +14,7 @@ Ve operates digitally across Greater Kampala, Uganda. The platform eliminates on
 ## Core Platform Resources
 - [Ve Homepage](https://www.veapp.store): Main marketplace discovery feed, boutique highlights, and operating pillars.
 - [Join the Waiting List](https://www.veapp.store/app): Early access registration for the upcoming iOS and Android apps with free Try-On credits.
-- [Become a Ve-ndor](https://www.veapp.store/sell): Merchant onboarding portal for Kampala fashion boutiques and independent designers.
+- [Become a Ve-ndor](https://www.veapp.store/vendor): Merchant onboarding portal for Kampala fashion boutiques and independent designers.
 - [About Ve](https://www.veapp.store/about): Company manifesto, operational foundation, and our mission to rebuild fashion trust in Uganda.
 - [Our Team](https://www.veapp.store/team): Profiles of the Kampala-based leadership, engineering, and fulfillment teams.
 - [Customer FAQ & Support](https://www.veapp.store/faq): Direct answers on protected payments, delivery times, and 48-hour return policies.

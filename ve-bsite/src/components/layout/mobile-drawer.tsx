@@ -246,7 +246,7 @@ export function MobileDrawer({ isOpen, onClose, cta }: MobileDrawerProps) {
                 <ArrowRight className="w-3.5 h-3.5 text-neutral-400" />
               </Link>
               <Link
-                href="/sell"
+                href="/vendor"
                 onClick={onClose}
                 className="flex items-center justify-between p-2.5 rounded-lg text-sm font-medium text-carbon-black hover:bg-soft-linen/40 transition-colors"
               >

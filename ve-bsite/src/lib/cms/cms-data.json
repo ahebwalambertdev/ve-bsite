@@ -12,7 +12,7 @@
     "primaryCtaText": "Join Waiting List",
     "primaryCtaLink": "/app",
     "secondaryCtaText": "Become a Ve-ndor",
-    "secondaryCtaLink": "/sell",
+    "secondaryCtaLink": "/vendor",
     "demoVideoTitle": "Experience Ve in Action",
     "demoVideoDescription": "Ve is built for Kampala’s vibrant fashion culture. Our mobile app combines video discovery with Try-On right on your phone.",
     "looks": [
@@ -198,7 +198,7 @@
     "title": "Sell where Kampala shops.",
     "description": "We bring you real buyers, send riders to collect packages from your boutique counter, and send earnings straight to your Mobile Money. Zero monthly fees.",
     "primaryCtaText": "Become a Ve-ndor",
-    "primaryCtaLink": "/sell",
+    "primaryCtaLink": "/vendor",
     "secondaryCtaText": "Apply as a Ve-ndor",
     "secondaryCtaLink": "/vendor"
   },
@@ -268,7 +268,7 @@
       {
         "id": "sell",
         "label": "Become a Ve-ndor",
-        "href": "/sell"
+        "href": "/vendor"
       },
       {
         "id": "journal",
@@ -307,7 +307,7 @@
       {
         "id": "sell",
         "label": "Become a Ve-ndor",
-        "href": "/sell"
+        "href": "/vendor"
       },
       {
         "id": "app",
@@ -583,5 +583,5 @@
       "Consumer Guide"
     ]
   },
-  "lastUpdated": "2026-09-20T18:45:00.000Z"
+  "lastUpdated": "2026-09-27T02:30:00.000Z"
 }

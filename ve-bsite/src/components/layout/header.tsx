@@ -14,7 +14,7 @@ import { NavLinkItem, HeaderCtaConfig, NavigationConfig } from '@/lib/cms/types'
 
 const FALLBACK_NAV_LINKS: NavLinkItem[] = [
   { id: 'how-it-works', href: '/#how-it-works', label: 'How Ve Works' },
-  { id: 'sell', href: '/sell', label: 'Become a Ve-ndor' },
+  { id: 'sell', href: '/vendor', label: 'Become a Ve-ndor' },
   { id: 'journal', href: '/journal', label: 'Journal' },
 ];
 

@@ -204,7 +204,7 @@ export default async function AboutPage() {
               <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
             </Button>
           </Link>
-          <Link href="/sell">
+          <Link href="/vendor">
             <Button variant="outline" size="md">
               Become a Ve-ndor
             </Button>

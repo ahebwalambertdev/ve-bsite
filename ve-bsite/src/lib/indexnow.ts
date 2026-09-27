@@ -14,7 +14,6 @@ const KEY_LOCATION = `https://${SITE_HOST}/${INDEXNOW_KEY}.txt`;
 export const CORE_STATIC_URLS = [
   `https://${SITE_HOST}/`,
   `https://${SITE_HOST}/app`,
-  `https://${SITE_HOST}/sell`,
   `https://${SITE_HOST}/vendor`,
   `https://${SITE_HOST}/about`,
   `https://${SITE_HOST}/team`,

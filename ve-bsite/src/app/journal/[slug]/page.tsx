@@ -237,7 +237,7 @@ export default async function JournalArticlePage({ params }: ArticlePageProps) {
                 Join Waiting List
               </Button>
             </Link>
-            <Link href="/sell">
+            <Link href="/vendor">
               <Button variant="outline" size="md" className="border-neutral-700 bg-transparent text-snow hover:bg-neutral-800">
                 Become a Ve-ndor
               </Button>

@@ -126,18 +126,9 @@ export default async function HomePage() {
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-3 shrink-0">
-              <Link href={cmsData.vendorStrip.primaryCtaLink || '/sell'}>
-                <Button variant="accent" size="md">
-                  {cmsData.vendorStrip.primaryCtaText}
-                </Button>
-              </Link>
               <Link href="/vendor">
-                <Button
-                  variant="outline"
-                  size="md"
-                  className="border-neutral-700 bg-transparent text-snow hover:bg-neutral-800 cursor-pointer"
-                >
-                  Apply as a Ve-ndor →
+                <Button variant="accent" size="md">
+                  {cmsData.vendorStrip.primaryCtaText || 'Become a Ve-ndor'}
                 </Button>
               </Link>
             </div>

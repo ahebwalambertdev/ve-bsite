@@ -16,7 +16,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     primaryCtaText: 'Join Waiting List',
     primaryCtaLink: '/app',
     secondaryCtaText: 'Become a Ve-ndor',
-    secondaryCtaLink: '/sell',
+    secondaryCtaLink: '/vendor',
     demoVideoTitle: 'Experience Ve in Action',
     demoVideoDescription:
       'Ve is built for Kampala’s vibrant fashion culture. Our mobile app combines video discovery with Try-On right on your phone.',
@@ -223,7 +223,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     description:
       'We bring you real buyers, send riders to collect packages from your boutique counter, and send earnings straight to your Mobile Money. Zero monthly fees.',
     primaryCtaText: 'Become a Ve-ndor',
-    primaryCtaLink: '/sell',
+    primaryCtaLink: '/vendor',
     secondaryCtaText: 'Apply as a Ve-ndor',
     secondaryCtaLink: '/vendor',
   },
@@ -291,7 +291,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
   navigation: {
     headerLinks: [
       { id: 'how-it-works', label: 'How Ve Works', href: '/#how-it-works' },
-      { id: 'sell', label: 'Become a Ve-ndor', href: '/sell' },
+      { id: 'sell', label: 'Become a Ve-ndor', href: '/vendor' },
       { id: 'journal', label: 'Journal', href: '/journal' },
       { id: 'team', label: 'Team', href: '/team' },
       { id: 'faq', label: 'Support & FAQ', href: '/faq' },
@@ -310,7 +310,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     },
     footerLinks: [
       { id: 'how-it-works', label: 'How Ve Works', href: '/#how-it-works' },
-      { id: 'sell', label: 'Become a Ve-ndor', href: '/sell' },
+      { id: 'sell', label: 'Become a Ve-ndor', href: '/vendor' },
       { id: 'app', label: 'Join Waiting List (Coming Soon)', href: '/app' },
       { id: 'about', label: 'About Ve', href: '/about' },
       { id: 'team', label: 'Our Team', href: '/team' },

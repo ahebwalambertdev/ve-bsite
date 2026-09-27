@@ -154,7 +154,7 @@ export function HeroSection({ onOpenDemo, dynamicContent }: HeroSectionProps) {
               </Button>
             </Link>
 
-            <Link href={dynamicContent?.secondaryCtaLink || '/sell'}>
+            <Link href={dynamicContent?.secondaryCtaLink || '/vendor'}>
               <Button
                 variant="outline"
                 size="md"

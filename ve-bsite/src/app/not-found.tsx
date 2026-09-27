@@ -29,7 +29,7 @@ export default function NotFound() {
           </Link>
 
           <Link
-            href="/sell"
+            href="/vendor"
             className="p-4 rounded-xl border border-soft-linen bg-snow hover:border-dusty-olive transition-colors flex items-center gap-3 group"
           >
             <div className="w-10 h-10 rounded-lg bg-soft-linen/50 flex items-center justify-center text-carbon-black group-hover:bg-dusty-olive group-hover:text-snow transition-colors">

@@ -79,7 +79,10 @@ export const getCmsData = cache(async (): Promise<SiteCmsData> => {
         const hasOutdatedTerms =
           rawJsonString.includes('Check Before You Pay') ||
           rawJsonString.toLowerCase().includes('escrow') ||
-          rawJsonString.toLowerCase().includes('waterproof bag');
+          rawJsonString.toLowerCase().includes('waterproof bag') ||
+          rawJsonString.includes('@veapp.store') ||
+          rawJsonString.includes('veapp.store/tiktok') ||
+          rawJsonString.includes('veapp_store');
 
         // If local repository code is newer than Supabase OR if Supabase has outdated terms:
         // Use the clean repository data and sync it back to Supabase
@@ -106,6 +109,21 @@ export const getCmsData = cache(async (): Promise<SiteCmsData> => {
         }
 
         // Otherwise Supabase was deliberately edited after code deployment
+        const rawSocial = data.data.navigation?.socialLinks || {};
+        const cleanSocial = {
+          ...DEFAULT_CMS_DATA.navigation.socialLinks,
+          ...rawSocial,
+          tiktokUrl: rawSocial.tiktokUrl && !rawSocial.tiktokUrl.includes('veapp.store')
+            ? rawSocial.tiktokUrl
+            : 'https://www.tiktok.com/@veapp.ug',
+          instagramUrl: rawSocial.instagramUrl && !rawSocial.instagramUrl.includes('veapp.store')
+            ? rawSocial.instagramUrl
+            : 'https://www.instagram.com/veapp.ug',
+          twitterUrl: rawSocial.twitterUrl && !rawSocial.twitterUrl.includes('veapp_store')
+            ? rawSocial.twitterUrl
+            : 'https://x.com/ve_uganda',
+        };
+
         memoryCmsCache = {
           ...DEFAULT_CMS_DATA,
           ...data.data,
@@ -118,10 +136,7 @@ export const getCmsData = cache(async (): Promise<SiteCmsData> => {
           navigation: {
             headerLinks: data.data.navigation?.headerLinks || DEFAULT_CMS_DATA.navigation.headerLinks,
             headerCta: data.data.navigation?.headerCta || DEFAULT_CMS_DATA.navigation.headerCta,
-            socialLinks: {
-              ...DEFAULT_CMS_DATA.navigation.socialLinks,
-              ...(data.data.navigation?.socialLinks || {}),
-            },
+            socialLinks: cleanSocial,
             footerLinks: data.data.navigation?.footerLinks || DEFAULT_CMS_DATA.navigation.footerLinks,
           },
           lastUpdated: data.updated_at || new Date().toISOString(),

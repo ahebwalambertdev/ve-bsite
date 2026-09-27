@@ -58,8 +58,7 @@ export function Footer({ initialNav }: FooterProps = {}) {
   const [footerLinks, setFooterLinks] = React.useState<NavLinkItem[]>(
     initialNav?.footerLinks || DEFAULT_CMS_DATA.navigation?.footerLinks || [
       { id: 'how-it-works', label: 'How Ve Works', href: '/#how-it-works' },
-      { id: 'sell', label: 'Become a Ve-ndor', href: '/sell' },
-      { id: 'vendor', label: 'Boutique Application', href: '/vendor' },
+      { id: 'vendor', label: 'Become a Ve-ndor', href: '/vendor' },
       { id: 'app', label: 'Join Waiting List (Coming Soon)', href: '/app' },
       { id: 'about', label: 'About Ve', href: '/about' },
       { id: 'team', label: 'Our Team', href: '/team' },
@@ -229,14 +228,14 @@ export function Footer({ initialNav }: FooterProps = {}) {
             {socialLinks.twitterUrl && (
               <a
                 href={socialLinks.twitterUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-snow text-neutral-400 transition-colors group"
-                aria-label="Follow Ve on X"
-              >
-                <XIcon className="w-3.5 h-3.5 text-neutral-400 group-hover:text-snow transition-colors" />
-                <span>X</span>
-              </a>
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-snow text-neutral-400 transition-colors group"
+              aria-label="Follow Ve on X"
+            >
+              <XIcon className="w-3.5 h-3.5 text-neutral-400 group-hover:text-snow transition-colors" />
+              <span>X</span>
+            </a>
             )}
           </div>
         </div>
