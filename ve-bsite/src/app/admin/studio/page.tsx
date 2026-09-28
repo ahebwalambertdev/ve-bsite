@@ -1,12 +1,14 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { SiteCmsData } from '@/lib/cms/types';
+import { SiteCmsData, CmsVersionListItem, CmsVersionRecord } from '@/lib/cms/types';
 import { DEFAULT_CMS_DATA } from '@/lib/cms/defaults';
 import { StudioHeader, ViewportMode } from '@/components/admin/studio-header';
 import { EditorPanel } from '@/components/admin/editor-panel';
 import { ViewportPreview } from '@/components/admin/viewport-preview';
-import { CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react';
+import { VersionHistoryDrawer } from '@/components/admin/version-history-drawer';
+import { PublishModal } from '@/components/admin/publish-modal';
+import { CheckCircle2, AlertCircle, RefreshCw, History } from 'lucide-react';
 
 const LOCAL_STORAGE_KEY = 've_visual_cms_draft_v1';
 
@@ -17,6 +19,8 @@ export default function VisualStudioPage() {
   const [viewportMode, setViewportMode] = useState<ViewportMode>('desktop');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPublishing, setIsPublishing] = useState<boolean>(false);
+  const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false);
+  const [isPublishModalOpen, setIsPublishModalOpen] = useState<boolean>(false);
   const [notification, setNotification] = useState<{
     type: 'success' | 'error' | 'info';
     message: string;
@@ -75,8 +79,8 @@ export default function VisualStudioPage() {
   // 3. Compute dirty/unsaved state
   const hasUnsavedChanges = JSON.stringify(draftData) !== JSON.stringify(savedData);
 
-  // 4. Publish changes to live site
-  const handlePublish = async () => {
+  // 4. Publish changes to live site with version description
+  const handlePublish = async (note: string) => {
     try {
       setIsPublishing(true);
       setNotification(null);
@@ -86,7 +90,11 @@ export default function VisualStudioPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(draftData),
+        body: JSON.stringify({
+          data: draftData,
+          note: note.trim() || undefined,
+          author: 'Admin',
+        }),
       });
 
       const json = await res.json();
@@ -94,9 +102,10 @@ export default function VisualStudioPage() {
       if (res.ok && json.success) {
         setSavedData(draftData);
         localStorage.removeItem(LOCAL_STORAGE_KEY);
+        setIsPublishModalOpen(false);
         setNotification({
           type: 'success',
-          message: 'Published to live site! Pages have been revalidated.',
+          message: 'Published to live site & created snapshot! Pages revalidated.',
         });
       } else {
         setNotification({
@@ -127,12 +136,32 @@ export default function VisualStudioPage() {
     }
   };
 
-  // Auto-dismiss notification after 5s
+  // 6. Preview historical version in studio
+  const handlePreviewVersion = (versionData: SiteCmsData, version: CmsVersionListItem) => {
+    setDraftData(versionData);
+    setNotification({
+      type: 'info',
+      message: `Loaded snapshot "${version.description || version.id}" into Studio draft. You can preview in viewport or click Publish to restore.`,
+    });
+  };
+
+  // 7. Rollback success handler
+  const handleRollbackSuccess = (restoredData: SiteCmsData, version: CmsVersionRecord) => {
+    setSavedData(restoredData);
+    setDraftData(restoredData);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    setNotification({
+      type: 'success',
+      message: `Restored live website to snapshot: ${version.description}`,
+    });
+  };
+
+  // Auto-dismiss notification after 6s
   useEffect(() => {
     if (!notification) return;
     const timer = setTimeout(() => {
       setNotification(null);
-    }, 5000);
+    }, 6000);
     return () => clearTimeout(timer);
   }, [notification]);
 
@@ -157,8 +186,9 @@ export default function VisualStudioPage() {
         onViewportChange={setViewportMode}
         hasUnsavedChanges={hasUnsavedChanges}
         isPublishing={isPublishing}
-        onPublish={handlePublish}
+        onPublish={() => setIsPublishModalOpen(true)}
         onDiscard={handleDiscard}
+        onOpenHistory={() => setIsHistoryOpen(true)}
         lastPublishedTime={savedData.lastUpdated}
       />
 
@@ -196,6 +226,24 @@ export default function VisualStudioPage() {
           draftData={draftData}
         />
       </div>
+
+      {/* 3. Version History Slide-over Drawer */}
+      <VersionHistoryDrawer
+        isOpen={isHistoryOpen}
+        onClose={() => setIsHistoryOpen(false)}
+        onPreviewVersion={handlePreviewVersion}
+        onRollbackSuccess={handleRollbackSuccess}
+      />
+
+      {/* 4. Publish Modal with Diff and Note Input */}
+      <PublishModal
+        isOpen={isPublishModalOpen}
+        onClose={() => setIsPublishModalOpen(false)}
+        onConfirm={handlePublish}
+        isPublishing={isPublishing}
+        draftData={draftData}
+        savedData={savedData}
+      />
     </div>
   );
 }

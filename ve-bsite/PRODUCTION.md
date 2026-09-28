@@ -101,6 +101,36 @@ WITH CHECK (true);
 INSERT INTO public.site_cms_data (id, data, updated_at)
 VALUES ('main', '{}'::jsonb, NOW())
 ON CONFLICT (id) DO NOTHING;
+
+-- 6. Create site_cms_versions for Version History & Instant Rollback
+CREATE TABLE IF NOT EXISTS public.site_cms_versions (
+    id TEXT PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    description TEXT,
+    author TEXT DEFAULT 'Admin',
+    changes_summary JSONB DEFAULT '[]'::jsonb,
+    is_rollback BOOLEAN DEFAULT false,
+    rollback_from TEXT,
+    data JSONB NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_site_cms_versions_created_at 
+ON public.site_cms_versions(created_at DESC);
+
+ALTER TABLE public.site_cms_versions ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read access to site_cms_versions"
+ON public.site_cms_versions
+FOR SELECT
+TO public
+USING (true);
+
+CREATE POLICY "Allow authenticated admin write access to site_cms_versions"
+ON public.site_cms_versions
+FOR ALL
+TO authenticated
+USING (true)
+WITH CHECK (true);
 ```
 
 ### 4.2 Waitlist Lead Capture Migration

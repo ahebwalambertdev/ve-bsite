@@ -13,7 +13,8 @@ import {
   ExternalLink,
   CheckCircle2,
   AlertCircle,
-  LogOut
+  LogOut,
+  History
 } from 'lucide-react';
 
 export type ViewportMode = 'desktop' | 'tablet' | 'mobile';
@@ -28,6 +29,7 @@ interface StudioHeaderProps {
   onPublish: () => void;
   onDiscard: () => void;
   lastPublishedTime?: string;
+  onOpenHistory?: () => void;
 }
 
 export interface StudioRoute {
@@ -60,6 +62,7 @@ export function StudioHeader({
   onPublish,
   onDiscard,
   lastPublishedTime,
+  onOpenHistory,
 }: StudioHeaderProps) {
   const normalizedRoute = currentRoute.split('?')[0].split('#')[0] || '/';
 
@@ -198,6 +201,17 @@ export function StudioHeader({
             Synced
           </span>
         )}
+
+        {/* Version History Button */}
+        <button
+          type="button"
+          onClick={onOpenHistory}
+          title="Open Version History & Rollbacks"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-soft-linen bg-soft-linen/50 hover:bg-soft-linen text-xs font-semibold text-carbon-black transition-colors cursor-pointer"
+        >
+          <History className="w-3.5 h-3.5 text-dusty-olive" />
+          <span className="hidden md:inline">History</span>
+        </button>
 
         <Button
           variant="primary"

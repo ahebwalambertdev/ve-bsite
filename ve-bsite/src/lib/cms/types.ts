@@ -226,3 +226,24 @@ export interface SiteCmsData {
   journal: JournalPageContent;
   lastUpdated: string;
 }
+
+export interface CmsVersionRecord {
+  id: string;
+  created_at: string;
+  description?: string;
+  author?: string;
+  changes_summary?: string[];
+  is_rollback?: boolean;
+  rollback_from?: string;
+  data: SiteCmsData;
+}
+
+export interface CmsVersionListItem {
+  id: string;
+  created_at: string;
+  description: string;
+  author: string;
+  changes_summary: string[];
+  is_rollback: boolean;
+  rollback_from?: string;
+}

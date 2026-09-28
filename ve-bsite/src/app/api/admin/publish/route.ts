@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
-import { saveCmsData } from '@/lib/cms/cms-service';
+import { saveCmsData, getCmsData } from '@/lib/cms/cms-service';
+import { recordVersion } from '@/lib/cms/cms-version-service';
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,10 +11,30 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, error: 'Invalid payload' }, { status: 400 });
     }
 
-    const result = await saveCmsData(body);
+    // Support both direct SiteCmsData and wrapped { data, note, author } payloads
+    const cmsPayload = (body.data && typeof body.data === 'object') ? body.data : body;
+    const note = typeof body.note === 'string' ? body.note : (typeof body.description === 'string' ? body.description : undefined);
+    const author = typeof body.author === 'string' ? body.author : 'Admin';
+
+    // Capture previous state for precise diffing
+    const previousData = await getCmsData();
+
+    const result = await saveCmsData(cmsPayload);
 
     if (!result.success) {
       return NextResponse.json({ success: false, error: result.error }, { status: 500 });
+    }
+
+    // Automatically snapshot version in background/history
+    let versionSnapshot = null;
+    try {
+      versionSnapshot = await recordVersion(result.data, {
+        description: note,
+        author,
+        previousData,
+      });
+    } catch (verErr) {
+      console.warn('[CMS Publish] Version snapshot recording warning:', verErr);
     }
 
     // Trigger instant On-Demand ISR Revalidation across the site
@@ -48,6 +69,7 @@ export async function POST(req: NextRequest) {
       success: true,
       message: 'Published successfully and site revalidated.',
       data: result.data,
+      version: versionSnapshot,
       publishedAt: new Date().toISOString(),
       indexNow: indexNowStatus,
     });

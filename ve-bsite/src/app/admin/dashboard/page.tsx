@@ -210,7 +210,7 @@ export default function AdminDashboardPage() {
                     Visual Studio CMS
                   </h3>
                   <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
-                    Live split-screen website editor with multi-device viewport previews and draft persistence.
+                    Live split-screen website editor with multi-device previews, version control history, and one-click rollbacks.
                   </p>
                 </div>
                 <div className="pt-4 flex items-center gap-1 text-xs font-semibold text-dusty-olive group-hover:underline">
