@@ -98,7 +98,7 @@ export const DEFAULT_VE_TEAM: TeamMember[] = [
     id: 'ahebwa',
     name: 'Lambert Ahebwa',
     role: 'Founder & CEO',
-    image: '/images/hero-kampala-street.webp',
+    image: '/images/streetwear-sun.jpg',
     bio: 'Leading product vision, security architecture, and high-trust payments for Kampala’s fashion culture.',
     socials: [
       { icon: 'twitter', url: 'https://twitter.com' },
@@ -131,7 +131,7 @@ export const DEFAULT_VE_TEAM: TeamMember[] = [
     id: 'team-cto',
     name: 'Isaac Magezi',
     role: 'CTO',
-    image: '/images/hero-kampala-street.webp',
+    image: '/images/court-depth.jpg',
     bio: 'Architecting privacy-first computer vision fitting pipelines and low-bandwidth client caching for Kampala’s mobile network.',
     socials: [
       { icon: 'github', url: 'https://github.com' },
@@ -142,7 +142,7 @@ export const DEFAULT_VE_TEAM: TeamMember[] = [
     id: 'team-lead-eng',
     name: 'Joseph Kajjabwangu',
     role: 'Lead Engineer',
-    image: '/images/hero-kampala-street.webp',
+    image: '/images/streetwear-look.jpg',
     bio: 'Engineering resilient payment protection and real-time courier dispatch infrastructure across Kampala.',
     socials: [
       { icon: 'github', url: 'https://github.com' },

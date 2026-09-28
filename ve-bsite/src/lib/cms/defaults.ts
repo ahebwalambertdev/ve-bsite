@@ -247,7 +247,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       id: 'ahebwa',
       name: 'Lambert Ahebwa',
       role: 'Founder & CEO',
-      image: '/images/hero-kampala-street.webp',
+      image: '/images/streetwear-sun.jpg',
       bio: 'Leading product vision, security architecture, and high-trust payments for Kampala’s fashion culture.',
       socialTwitter: 'https://twitter.com',
       sortOrder: 1,
@@ -272,7 +272,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       id: 'team-cto',
       name: 'Isaac Magezi',
       role: 'CTO',
-      image: '/images/hero-kampala-street.webp',
+      image: '/images/court-depth.jpg',
       bio: 'Architecting privacy-first Try-On processing and low-bandwidth client caching for Kampala’s mobile network.',
       socialTwitter: 'https://twitter.com',
       sortOrder: 4,
@@ -281,7 +281,7 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
       id: 'team-lead-eng',
       name: 'Joseph Kajjabwangu',
       role: 'Lead Engineer',
-      image: '/images/hero-kampala-street.webp',
+      image: '/images/streetwear-look.jpg',
       bio: 'Engineering resilient payment protection and real-time courier dispatch infrastructure across Kampala.',
       socialTwitter: 'https://twitter.com',
       sortOrder: 5,
@@ -583,5 +583,5 @@ export const DEFAULT_CMS_DATA: SiteCmsData = {
     categories: ['All', 'Vendor Spotlight', 'Kampala Style & Culture', 'Consumer Guide'],
   },
 
-  lastUpdated: new Date().toISOString(),
+  lastUpdated: '2024-01-01T00:00:00.000Z',
 };

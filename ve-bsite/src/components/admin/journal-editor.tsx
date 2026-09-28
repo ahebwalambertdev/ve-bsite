@@ -31,7 +31,7 @@ export function JournalEditor({ initialPost, postId }: JournalEditorProps) {
   const [category, setCategory] = useState(initialPost?.category || 'Vendor Spotlight');
   const [author, setAuthor] = useState(initialPost?.author || 'Ve Editorial Team');
   const [readTimeMinutes, setReadTimeMinutes] = useState(initialPost?.read_time_minutes || 4);
-  const [coverImageUrl, setCoverImageUrl] = useState(initialPost?.cover_image_url || '/images/hero-kampala-street.webp');
+  const [coverImageUrl, setCoverImageUrl] = useState(initialPost?.cover_image_url || '/images/hero-fashion.jpg');
   const [excerpt, setExcerpt] = useState(initialPost?.excerpt || '');
   const [body, setBody] = useState(initialPost?.body || '');
   const [isPublished, setIsPublished] = useState(initialPost?.is_published ?? true);
@@ -233,7 +233,7 @@ export function JournalEditor({ initialPost, postId }: JournalEditorProps) {
                 type="text"
                 value={coverImageUrl}
                 onChange={(e) => setCoverImageUrl(e.target.value)}
-                placeholder="/images/hero-kampala-street.webp"
+                placeholder="/images/hero-fashion.jpg"
                 className="w-full px-3 py-2 text-xs font-mono bg-snow border border-soft-linen rounded-lg focus:outline-none focus:border-dusty-olive"
               />
             </div>

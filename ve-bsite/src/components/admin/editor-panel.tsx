@@ -209,7 +209,7 @@ export function EditorPanel({ data, onChange, currentRoute = '/', onRouteChange 
     const newLook: HeroLook = {
       id: `look-${Date.now()}`,
       label: `Look 0${data.hero.looks.length + 1} · Kampala Style`,
-      image: '/images/hero-kampala-street.webp',
+      image: '/images/streetwear-look.jpg',
       tag: 'New Drop',
       location: 'Kampala',
       sortOrder: data.hero.looks.length + 1,
@@ -280,7 +280,7 @@ export function EditorPanel({ data, onChange, currentRoute = '/', onRouteChange 
       id: `team-${Date.now()}`,
       name: 'New Team Member',
       role: 'Role Title',
-      image: '/images/hero-kampala-street.webp',
+      image: '/images/portrait-close.jpg',
       bio: 'Write member bio here.',
       socialTwitter: 'https://twitter.com',
       sortOrder: (data.team || []).length + 1,

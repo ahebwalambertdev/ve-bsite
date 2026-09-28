@@ -79,13 +79,11 @@ export const getCmsData = cache(async (): Promise<SiteCmsData> => {
         const hasOutdatedTerms =
           rawJsonString.includes('Check Before You Pay') ||
           rawJsonString.toLowerCase().includes('escrow') ||
-          rawJsonString.toLowerCase().includes('waterproof bag') ||
-          rawJsonString.includes('@veapp.store') ||
-          rawJsonString.includes('veapp.store/tiktok') ||
-          rawJsonString.includes('veapp_store');
+          rawJsonString.toLowerCase().includes('waterproof bag');
 
-        // If local repository code is newer than Supabase OR if Supabase has outdated terms:
-        // Use the clean repository data and sync it back to Supabase
+        // If local repository code is explicitly newer than Supabase OR if Supabase has legacy banned copy:
+        // Use the clean repository data and sync it back to Supabase.
+        // NOTE: localData.lastUpdated is pinned to a historical epoch (2024) so it never involuntarily overrides Supabase.
         if (localTimestamp > supabaseTimestamp || hasOutdatedTerms) {
           memoryCmsCache = localData;
           isDataLoaded = true;

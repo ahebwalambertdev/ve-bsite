@@ -35,7 +35,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       'Deliveries across Kampala are fast on Ve, backed by protected payments and easy returns.',
     tldr:
       'Orders in Central Kampala arrive fast, and deliveries to outer suburbs arrive same-day. Every order is backed by protected payments and easy 48-hour returns.',
-    coverImage: '/images/hero-kampala-street.webp',
+    coverImage: '/images/hero-fashion.jpg',
     content: [
       {
         sectionHeading: 'What are the delivery times across Kampala divisions?',
@@ -87,7 +87,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       'Different boutiques and international brands use different sizing standards, making online clothing purchases tricky without seeing the style first.',
     tldr:
       'Brand sizing varies widely between fashion labels. With Ve’s Try-On, you can see how an outfit looks on you before ordering so you can choose styles with confidence.',
-    coverImage: '/images/hero-kampala-street.webp',
+    coverImage: '/images/tryon-model.jpg',
     content: [
       {
         sectionHeading: 'Why size tags differ across boutiques',
@@ -127,7 +127,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       'An intimate look inside one of Kampala’s celebrated boutique fashion houses, and how protected payments enabled them to scale online orders without fear of delivery loss.',
     tldr:
       'Artisanal Ugandan fashion thrives on tactile uniqueness. Bold in Kampala partnered with Ve to eliminate delivery dispute anxiety, expanding their customer reach from Kololo walk-ins to buyers across Entebbe and Mukono.',
-    coverImage: '/images/hero-kampala-street.webp',
+    coverImage: '/images/boutique-atelier.jpg',
     content: [
       {
         sectionHeading: 'What made social media selling unsustainable for boutique artisans?',
@@ -158,7 +158,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       'Inside the 9 AM bale openings at St. Balikuddembe (Owino) Market, where young curators unearth 90s archive grails, restore them, and bring curated vintage to weekend pop-ups at MoTIV Bugolobi.',
     tldr:
       'Kampala’s secondhand economy (mitumba) has evolved from chaotic market stalls into a curated streetwear movement. Curators spend hours picking, dry-cleaning, and styling pieces, but traditional Instagram sales left them vulnerable to ghost buyers. Ve provides verified doorstep delivery and guaranteed Mobile Money payment protection.',
-    coverImage: '/images/hero-kampala-street.webp',
+    coverImage: '/images/streetwear-look.jpg',
     content: [
       {
         sectionHeading: 'What happens during the 9:00 AM bale openings in Owino?',
@@ -190,7 +190,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       'From Kiyembe Lane fabric rolls to modern Buganda barkcloth (olubugo) waistcoats, how Kampala wedding and introduction guests are escaping the dreaded Friday-night tailor delay.',
     tldr:
       'Kwanjula (introduction) and wedding season in Kampala traditionally meant high stress: commissioning custom tailors on Kiyembe Lane and praying the outfit would be ready before Saturday morning. Ve’s curated ready-to-wear designers and easy 48-hour returns allow guests to order verified garments that arrive days in advance.',
-    coverImage: '/images/hero-kampala-street.webp',
+    coverImage: '/images/streetwear-sun.jpg',
     content: [
       {
         sectionHeading: 'The chronic Friday-night tailor panic in Kampala',
@@ -356,7 +356,7 @@ export async function getJournalArticles(): Promise<JournalArticle[]> {
         publishedAt: post.published_at ? post.published_at.slice(0, 10) : new Date().toISOString().slice(0, 10),
         excerpt: post.excerpt || post.title,
         tldr: post.excerpt || 'Read the full article below for details and guidance.',
-        coverImage: post.cover_image_url || '/images/hero-kampala-street.webp',
+        coverImage: post.cover_image_url || '/images/hero-fashion.jpg',
         content: parseMarkdownSections(post.body),
       }));
 
