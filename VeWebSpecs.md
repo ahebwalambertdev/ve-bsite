@@ -87,18 +87,18 @@
 ## 1. Executive Overview
 
 ### 1.1 What It Is
-The main website is Ve's public-facing, unauthenticated web presence — strictly decoupled from the authenticated Vendor Portal and Admin Portal (both React/Vite SPAs) and the consumer mobile app (Flutter). It serves visitors who are not yet inside the Ve ecosystem: prospective buyers deciding whether to download the app, prospective vendors evaluating whether to apply, press/partners, and existing users looking for policies or customer support.
+The main website is Ve's public-facing, unauthenticated web presence — strictly decoupled from the authenticated client surfaces in `web-app/` (the Customer marketplace `web-app/customer` and Vendor Portal `web-app/vendor-portal`), the dedicated Admin Portal (`admin-portal/` → `admin.ve.ug`), the Delivery Rider App (`rider-app/` with Capacitor Android shell), and the legacy consumer mobile app (`flutter-app`). It serves visitors who are not yet inside the Ve ecosystem: prospective buyers deciding whether to shop or download, prospective vendors evaluating whether to apply, press/partners, and existing users looking for policies or customer support.
 
 ### 1.2 Why It Is Architecturally Decoupled
-As established in `ve_vendor_portal_specification.md` §1.1, different audiences and security contexts require distinct rendering architectures:
-- **Portals (Vendor/Admin):** Highly interactive, authenticated dashboards where Single Page Applications (React/Vite) backed by live databases (Firestore/Supabase) are optimal.
+As established in system architecture specifications, different audiences and security contexts require distinct rendering architectures:
+- **Portals & Apps (`web-app`, `admin-portal`, `rider-app`):** Highly interactive, authenticated dashboards and single-page applications (React/Vite) backed by live Supabase PostgreSQL and Edge Functions.
 - **Main Website:** Public, unauthenticated surface dedicated to brand discovery, buyer/vendor acquisition, trust-building, and search ranking. It requires **instant First Contentful Paint (FCP)** and crawlable HTML without client-side authentication gating. **Next.js with SSG (Static Site Generation) and ISR (Incremental Static Regeneration)** is the chosen framework.
 
 ### 1.3 Target Audience & User Intent
 
 | Segment | Entry Point | Core Need & Conversion Goal |
 |---|---|---|
-| **Prospective Buyer** | Instagram bio, ambassador UTM link, event QR, Google search | Prove that buying clothes online in Kampala is safe and reliable $\rightarrow$ Download the mobile app. |
+| **Prospective Buyer** | Instagram bio, ambassador UTM link, event QR, Google search | Prove that buying clothes online in Kampala is safe and reliable $\rightarrow$ Explore the web storefront (`web-app/customer`) or download the mobile app. |
 | **Prospective Vendor** | Instagram bio, word of mouth, referral link | Prove business viability (predictable payouts, automated delivery) $\rightarrow$ Route into Vendor Portal registration (`/register`). |
 | **Existing App User** | In-app settings link, external search | Access self-serve FAQs, dispute resolutions, Terms of Service, or direct WhatsApp support. |
 | **Press & Ecosystem Partners** | Direct search, pitch decks, startup directories | Brand story, verified traction data via Trust Reports, founder/press contact. |
@@ -128,8 +128,8 @@ Three deployment options are evaluated:
 *Recommendation:* **Cloudflare Pages** or **Vercel Hobby/Pro**.
 
 ### 2.2 Repository & Monorepo Placement (`DECISION NEEDED #2`)
-The Vendor and Admin portals reside in a `pnpm-workspace` monorepo.
-- **Option A (Monorepo App):** Add Next.js as a third package in `web-app/`. Shares TypeScript interfaces and design tokens directly, but mixes Vite and Next.js build pipelines, complicating CI/CD.
+The Customer marketplace and Vendor portal reside in `web-app/`, with the Admin portal in `admin-portal/` in a `pnpm-workspace` monorepo importing `packages/shared`.
+- **Option A (Monorepo App):** Add Next.js as another package in the monorepo. Shares TypeScript interfaces and design tokens directly, but mixes Vite and Next.js build pipelines, complicating CI/CD.
 - **Option B (Dedicated Repository):** Separate repository with an extracted `@ve/design-tokens` package or synchronized Tailwind configuration. Cleaner deployment hooks, zero build-tooling conflict.
 *Recommendation:* **Dedicated Repository** for the marketing site.
 

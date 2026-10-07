@@ -7,7 +7,7 @@
 
 ## 1. Project Constitution & Design Baseline
 
-The main website (`https://ve.ug`) is Ve's public-facing, unauthenticated web presence. It is architecturally decoupled from the authenticated portals (Vendor/Admin) and consumer mobile app (Flutter). Its core mission is converting prospective buyers into mobile app downloads and prospective vendors into portal registration through **trust earned via operational evidence**.
+The main website (`https://ve.ug`) is Ve's public-facing, unauthenticated web presence. It is architecturally decoupled from the authenticated client surfaces in `web-app/` (`customer` and `vendor-portal`), the dedicated `admin-portal/` (`admin.ve.ug`), and `rider-app/` (with Capacitor Android shell). Its core mission is converting prospective buyers into web shoppers or app downloads and prospective vendors into portal registration through **trust earned via operational evidence**.
 
 ### 1.1 Locked Design Foundations
 * **Color Palette ([`Website/palette.css`](./palette.css) & [`Website/DESIGN.md`](./DESIGN.md)):**

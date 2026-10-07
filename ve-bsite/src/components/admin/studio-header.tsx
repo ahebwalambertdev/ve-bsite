@@ -77,11 +77,6 @@ export function StudioHeader({
           </span>
         </Link>
         <div className="h-5 w-px bg-soft-linen" />
-        <div className="flex items-center gap-2">
-          <span className="font-serif text-sm font-semibold text-carbon-black">
-            Visual CMS Studio
-          </span>
-        </div>
       </div>
 
       {/* Center: Route Switcher & Device Toggles */}
@@ -129,11 +124,10 @@ export function StudioHeader({
                 key={r.path}
                 type="button"
                 onClick={() => onRouteChange(r.path)}
-                className={`px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer ${
-                  normalizedRoute === r.path
+                className={`px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer ${normalizedRoute === r.path
                     ? 'bg-snow text-carbon-black shadow-xs font-semibold'
                     : 'text-carbon-black/60 hover:text-carbon-black'
-                }`}
+                  }`}
               >
                 {r.label}
               </button>
@@ -148,8 +142,8 @@ export function StudioHeader({
             onClick={() => onViewportChange('desktop')}
             title="Desktop Viewport (100%)"
             className={`p-1.5 rounded-md transition-all cursor-pointer ${viewportMode === 'desktop'
-                ? 'bg-snow text-dusty-olive-dark shadow-sm'
-                : 'text-carbon-black/50 hover:text-carbon-black'
+              ? 'bg-snow text-dusty-olive-dark shadow-sm'
+              : 'text-carbon-black/50 hover:text-carbon-black'
               }`}
           >
             <Monitor className="w-4 h-4" />
@@ -159,8 +153,8 @@ export function StudioHeader({
             onClick={() => onViewportChange('tablet')}
             title="Tablet Viewport (768px)"
             className={`p-1.5 rounded-md transition-all cursor-pointer ${viewportMode === 'tablet'
-                ? 'bg-snow text-dusty-olive-dark shadow-sm'
-                : 'text-carbon-black/50 hover:text-carbon-black'
+              ? 'bg-snow text-dusty-olive-dark shadow-sm'
+              : 'text-carbon-black/50 hover:text-carbon-black'
               }`}
           >
             <Tablet className="w-4 h-4" />
@@ -170,8 +164,8 @@ export function StudioHeader({
             onClick={() => onViewportChange('mobile')}
             title="Mobile Viewport (390px)"
             className={`p-1.5 rounded-md transition-all cursor-pointer ${viewportMode === 'mobile'
-                ? 'bg-snow text-dusty-olive-dark shadow-sm'
-                : 'text-carbon-black/50 hover:text-carbon-black'
+              ? 'bg-snow text-dusty-olive-dark shadow-sm'
+              : 'text-carbon-black/50 hover:text-carbon-black'
               }`}
           >
             <Smartphone className="w-4 h-4" />
